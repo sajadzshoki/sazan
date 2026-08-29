@@ -2,6 +2,10 @@
 
 SAZAN is a bilingual (Persian/English) digital product agency website built with Nuxt 4, Vue 3, TypeScript, UnoCSS, Nuxt UI, `@nuxtjs/i18n`, and MongoDB-ready Nitro server utilities. It includes the public marketing site, portfolio/case-study experience, guided project-request flow, contact page, and a small protected internal admin panel.
 
+## Project context
+
+Developers and AI agents should read [`PROJECT_CONTEXT.md`](./PROJECT_CONTEXT.md) before making significant changes. It is the main source of truth for current architecture, routes, APIs, data models, design tokens, fallback behavior, and extension conventions.
+
 ## Installation
 
 ```bash
