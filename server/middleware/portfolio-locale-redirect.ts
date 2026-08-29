@@ -5,10 +5,16 @@ const isSupportedLocale = (value: string | undefined): value is SupportedLocale 
   return value === 'fa' || value === 'en';
 };
 
+const localizedPublicRoutes = ['/projects', '/start-a-project', '/contact'] as const;
+
+const shouldRedirectPath = (pathname: string) => {
+  return localizedPublicRoutes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
+};
+
 export default defineEventHandler((event) => {
   const url = getRequestURL(event);
 
-  if (url.pathname !== '/projects' && !url.pathname.startsWith('/projects/')) {
+  if (!shouldRedirectPath(url.pathname)) {
     return;
   }
 

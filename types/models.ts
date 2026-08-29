@@ -83,21 +83,53 @@ export interface Project extends TimestampedEntity {
   translations?: Partial<Record<LocaleCode, ProjectTranslationMeta>>;
 }
 
-export type ProjectRequestBudgetRange = 'under-5k' | '5k-15k' | '15k-50k' | '50k-plus' | 'not-sure';
+export type ProjectRequestProjectType =
+  | 'website'
+  | 'webApplication'
+  | 'mobileApplication'
+  | 'ecommerce'
+  | 'adminPanel'
+  | 'backendApi'
+  | 'somethingElse'
+  | 'notSure';
+
+export type ProjectRequestFeature =
+  | 'uiUxDesign'
+  | 'authentication'
+  | 'payments'
+  | 'dashboard'
+  | 'adminPanel'
+  | 'apiIntegration'
+  | 'ecommerce'
+  | 'aiFeatures'
+  | 'other'
+  | 'notSure';
+
+export type ProjectRequestBudgetRange = 'under-2k' | '2k-5k' | '5k-10k' | '10k-25k' | '25k-plus' | 'not-sure';
+export type ProjectRequestTimeline = 'asap' | 'within-1-month' | '1-3-months' | 'flexible' | 'not-sure';
+export type PreferredContactMethod = 'email' | 'whatsapp' | 'telegram' | 'phone';
 export type ProjectRequestStatus = 'new' | 'qualified' | 'contacted' | 'proposal' | 'won' | 'lost' | 'archived';
 
-export interface ProjectRequest extends TimestampedEntity {
+export interface ProjectRequestContact {
   fullName: string;
   email: string;
-  company?: string;
   phone?: string;
-  preferredLocale: LocaleCode;
-  services: string[];
+  company?: string;
+  preferredContactMethod?: PreferredContactMethod;
+}
+
+export interface ProjectRequest extends TimestampedEntity {
+  selectedProjectTypes: ProjectRequestProjectType[];
+  businessDescription?: string;
+  requestedFeatures: ProjectRequestFeature[];
   budgetRange?: ProjectRequestBudgetRange;
-  timeline?: string;
-  message: string;
+  timeline?: ProjectRequestTimeline;
+  contact: ProjectRequestContact;
+  preferredLocale: LocaleCode;
   source?: string;
   status: ProjectRequestStatus;
+  notificationStatus?: 'pending' | 'sent' | 'skipped' | 'failed';
+  userAgent?: string;
 }
 
 export type ContactMessageStatus = 'new' | 'read' | 'replied' | 'archived';

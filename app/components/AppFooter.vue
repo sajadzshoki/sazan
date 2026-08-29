@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { navItems, services, socialLinks } from '~/data/home';
+import { navItems, services } from '~/data/home';
 
 const localePath = useLocalePath();
+const config = useRuntimeConfig();
 const year = new Date().getFullYear();
 const homePath = computed(() => localePath('/'));
+const contactEmail = computed(() => config.public.contact?.email || 'hello@sazan.studio');
+const contactEmailHref = computed(() => `mailto:${contactEmail.value}`);
+const footerSocialLinks = computed(() => [
+  { label: 'LinkedIn', href: config.public.contact?.social?.linkedin || '' },
+  { label: 'Behance', href: config.public.contact?.social?.behance || '' },
+  { label: 'Dribbble', href: config.public.contact?.social?.dribbble || '' }
+]);
 const getNavPath = (item: { path?: string; hash?: string }) => {
   if (item.path) {
     return localePath(item.path);
@@ -24,8 +32,8 @@ const getNavPath = (item: { path?: string; hash?: string }) => {
           <p class="mt-6 text-base leading-7 text-background/72">
             {{ $t('footer.statement') }}
           </p>
-          <a href="mailto:hello@sazan.studio" class="sazan-focus mt-7 inline-flex text-2xl font-black tracking-[-0.05em]">
-            {{ $t('footer.email') }}
+          <a :href="contactEmailHref" class="sazan-focus mt-7 inline-flex text-2xl font-black tracking-[-0.05em]">
+            {{ contactEmail }}
           </a>
         </div>
 
@@ -59,10 +67,19 @@ const getNavPath = (item: { path?: string; hash?: string }) => {
               {{ $t('footer.social') }}
             </h2>
             <ul class="mt-5 grid gap-3 text-sm text-background/75">
-              <li v-for="social in socialLinks" :key="social">
-                <a href="#" class="sazan-focus rounded-sm hover:text-background">
-                  {{ social }}
+              <li v-for="social in footerSocialLinks" :key="social.label">
+                <a
+                  v-if="social.href"
+                  :href="social.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sazan-focus rounded-sm hover:text-background"
+                >
+                  {{ social.label }}
                 </a>
+                <span v-else class="text-background/45">
+                  {{ social.label }} — {{ $t('contact.social.placeholder') }}
+                </span>
               </li>
             </ul>
           </div>

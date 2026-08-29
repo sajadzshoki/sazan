@@ -1,5 +1,8 @@
 <script setup lang="ts">
+const localePath = useLocalePath();
 const { t } = useI18n();
+
+const startProjectPath = computed(() => localePath('/start-a-project'));
 </script>
 
 <template>
@@ -22,9 +25,9 @@ const { t } = useI18n();
           </div>
 
           <div class="grid gap-4 lg:justify-items-end">
-            <a href="mailto:hello@sazan.studio" class="sazan-button-primary w-full sm:w-max">
+            <NuxtLink :to="startProjectPath" class="sazan-button-primary w-full sm:w-max">
               {{ t('common.startProject') }}
-            </a>
+            </NuxtLink>
             <p class="text-sm leading-6 text-muted lg:max-w-xs lg:text-end">
               {{ t('home.cta.note') }}
             </p>

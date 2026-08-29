@@ -7,8 +7,16 @@ export default {
   common: {
     startProject: 'Start a Project',
     exploreWork: 'Explore Our Work',
+    exploreProjects: 'Explore Projects',
     viewAllProjects: 'View All Projects',
-    viewCaseStudy: 'View Case Study'
+    viewCaseStudy: 'View Case Study',
+    returnHome: 'Return Home',
+    continue: 'Continue',
+    back: 'Back',
+    skip: 'Skip for now',
+    edit: 'Edit',
+    optional: 'Optional',
+    required: 'Required'
   },
   navigation: {
     primary: 'Primary navigation',
@@ -149,7 +157,7 @@ export default {
       eyebrow: 'Start light, think big',
       title: 'Have an idea? We can shape the first version together.',
       lead: 'You do not need a perfect brief. Bring the challenge, the product idea, or the messy notes — we will help translate them into a clear digital plan.',
-      note: 'Send a short note and we will help turn the first conversation into a practical next step.'
+      note: 'Open the guided request, skip anything unclear, and we will turn the first conversation into a practical next step.'
     }
   },
   portfolio: {
@@ -236,6 +244,221 @@ export default {
         title: 'More work in a similar direction.',
         lead: 'Related projects are selected by category and overlapping services.'
       }
+    }
+  },
+
+  startProject: {
+    seo: {
+      title: 'Start a Project',
+      description: 'Start a lightweight project request with SAZAN. Share only what you know and we will shape the rest together.'
+    },
+    hero: {
+      eyebrow: 'Start light',
+      title: 'Tell us just enough to begin.',
+      lead: 'No perfect brief required. Choose what you know, skip what you do not, and we will turn the first conversation into a clear next step.'
+    },
+    progress: {
+      stepOf: 'Step {current} of {total}',
+      optionalReminder: 'Most questions are optional'
+    },
+    guidance: {
+      eyebrow: 'A quick note'
+    },
+    acknowledgements: {
+      default: 'You can answer lightly. The goal is to understand the shape of the opportunity, not to lock every decision today.',
+      projectTypes: '{value} gives us a helpful starting point. If that changes later, no problem.',
+      idea: 'That context helps. Next, choose any capabilities that sound relevant — or keep moving if you are unsure.',
+      features: '{value} is enough signal for now. We can prioritize together after we review the request.',
+      budget: '{value} helps us suggest the right level of scope without forcing a fixed quote too early.',
+      contact: 'Last step: tell us how to reach you. This is the only required part of the flow.',
+      review: 'Almost there. Review what you shared, edit anything, and send it when it feels right.'
+    },
+    steps: {
+      projectTypes: {
+        shortTitle: 'Build type',
+        eyebrow: 'What are you building?',
+        title: 'What kind of digital product are we talking about?',
+        lead: 'Pick one or more if the idea crosses categories. If it is still fuzzy, that is completely fine.'
+      },
+      idea: {
+        shortTitle: 'Idea',
+        eyebrow: 'Your idea',
+        title: 'Tell us about the business, product, or challenge.',
+        lead: 'A few rough sentences are enough. Notes, goals, links, constraints, or questions all work here.'
+      },
+      features: {
+        shortTitle: 'Needs',
+        eyebrow: 'What do you need?',
+        title: 'Choose the capabilities that might matter.',
+        lead: 'This helps us understand the product surface. Select multiple options or choose not sure yet.'
+      },
+      budget: {
+        shortTitle: 'Budget',
+        eyebrow: 'Budget range',
+        title: 'What investment range feels realistic?',
+        lead: 'A flexible range is enough. We use this to recommend scope, not to force a package.'
+      },
+      timeline: {
+        shortTitle: 'Timeline',
+        eyebrow: 'Timing',
+        title: 'When would you like to move?',
+        lead: 'Share the pace if you know it. If timing depends on the plan, choose flexible or not sure yet.'
+      },
+      contact: {
+        shortTitle: 'Contact',
+        eyebrow: 'Contact information',
+        title: 'Where should we continue the conversation?',
+        lead: 'Only your name and email are required. Everything else just helps us reply in the right way.',
+        methodHint: 'Optional — choose the channel you would prefer for the first response.'
+      },
+      review: {
+        shortTitle: 'Review',
+        eyebrow: 'Final check',
+        title: 'A quick review before it lands with us.',
+        lead: 'We only show what you filled in. You can edit any step before sending.'
+      }
+    },
+    options: {
+      projectTypes: {
+        website: { label: 'Website', description: 'Brand, marketing, content, or editorial website.' },
+        webApplication: { label: 'Web Application', description: 'A product, portal, tool, or workflow used in the browser.' },
+        mobileApplication: { label: 'Mobile Application', description: 'A focused iOS, Android, or cross-platform app.' },
+        ecommerce: { label: 'E-commerce', description: 'Storefront, checkout, catalog, subscriptions, or marketplace.' },
+        adminPanel: { label: 'Admin Panel', description: 'Internal operations, permissions, reports, and dashboards.' },
+        backendApi: { label: 'Backend / API', description: 'Data models, integrations, services, and technical foundations.' },
+        somethingElse: { label: 'Something else', description: 'A custom digital experience that does not fit a standard box.' },
+        notSure: { label: "I'm not sure yet", description: 'We can help define the right shape together.' }
+      },
+      features: {
+        uiUxDesign: { label: 'UI/UX Design', description: 'Flows, wireframes, interface design, and design systems.' },
+        authentication: { label: 'Authentication', description: 'Accounts, roles, permissions, and secure access.' },
+        payments: { label: 'Payments', description: 'Checkout, subscriptions, invoices, or payment integrations.' },
+        dashboard: { label: 'Dashboard', description: 'Data views, metrics, reporting, and product visibility.' },
+        adminPanel: { label: 'Admin Panel', description: 'Back-office tools for teams and operators.' },
+        apiIntegration: { label: 'API Integration', description: 'Connecting third-party services, CRMs, payments, or data sources.' },
+        ecommerce: { label: 'E-commerce', description: 'Catalogs, carts, checkout, and order flows.' },
+        aiFeatures: { label: 'AI Features', description: 'Practical AI-assisted workflows, search, generation, or automation.' },
+        other: { label: 'Other', description: 'Anything specific you can describe later in the notes.' },
+        notSure: { label: 'Not sure yet', description: 'We will help identify what the product actually needs.' }
+      },
+      budgets: {
+        under2k: { label: 'Under $2k', description: 'Small polish, consulting, or a tightly scoped starting point.' },
+        twoToFive: { label: '$2k – $5k', description: 'A compact website, prototype, or focused product improvement.' },
+        fiveToTen: { label: '$5k – $10k', description: 'A stronger first version with design and implementation depth.' },
+        tenToTwentyFive: { label: '$10k – $25k', description: 'A custom product build with strategy, design, and engineering.' },
+        twentyFivePlus: { label: '$25k+', description: 'A larger product engagement or multi-phase platform.' },
+        notSure: { label: 'Not sure yet', description: 'We can help calibrate scope and investment.' }
+      },
+      timelines: {
+        asap: { label: 'As soon as possible', description: 'There is urgency and we should talk quickly.' },
+        within1Month: { label: 'Within 1 month', description: 'You would like momentum soon.' },
+        oneToThreeMonths: { label: '1–3 months', description: 'A planned project with room for discovery.' },
+        flexible: { label: 'Flexible', description: 'Quality and fit matter more than a fixed date.' },
+        notSure: { label: 'Not sure yet', description: 'Timing can be shaped after the first conversation.' }
+      },
+      contactMethods: {
+        email: { label: 'Email' },
+        whatsapp: { label: 'WhatsApp' },
+        telegram: { label: 'Telegram' },
+        phone: { label: 'Phone' }
+      }
+    },
+    fields: {
+      businessDescription: 'What should we know?',
+      fullName: 'Full name',
+      email: 'Email',
+      phone: 'Phone number',
+      company: 'Company name',
+      preferredContactMethod: 'Preferred contact method'
+    },
+    placeholders: {
+      businessDescription: 'For example: We run a growing retail brand and need a faster storefront, cleaner checkout, and a way to publish seasonal campaigns without engineering help.',
+      fullName: 'Your name',
+      email: "you{'@'}example.com",
+      phone: '+31 ...',
+      company: 'Company or studio name'
+    },
+    examples: {
+      idea: 'Useful things: what you sell, who uses it, what is broken today, links, launch goals, or open questions.'
+    },
+    actions: {
+      review: 'Review request',
+      submit: 'Send request',
+      submitting: 'Sending...'
+    },
+    review: {
+      separator: ', ',
+      emptyOptional: 'You skipped the optional details. That is okay — we can figure them out together.',
+      labels: {
+        projectTypes: 'Build type',
+        idea: 'Idea or business context',
+        features: 'Requested capabilities',
+        budget: 'Budget range',
+        timeline: 'Timeline',
+        contact: 'Contact information'
+      }
+    },
+    validation: {
+      fullNameRequired: 'Please add your name.',
+      emailRequired: 'Please add your email.',
+      emailInvalid: 'Please use a valid email address.',
+      fixFields: 'Please check the highlighted contact fields.',
+      invalidRequest: 'Some submitted options were not recognized. Please review the request and try again.',
+      serverError: 'Something went wrong while sending the request. Please try again or email us directly.'
+    },
+    success: {
+      eyebrow: "We've got it",
+      title: "You're officially on our radar.",
+      lead: 'Your request has landed with SAZAN. We will review the context, look for the smartest first step, and get back to you soon.',
+      contactNote: 'We will use your preferred contact method when possible, and email as the reliable fallback.',
+      reference: 'Reference {reference}'
+    }
+  },
+  contact: {
+    seo: {
+      title: 'Contact',
+      description: 'Contact SAZAN for digital product strategy, design, websites, applications, commerce, admin systems, and backend work.'
+    },
+    hero: {
+      eyebrow: 'Contact',
+      title: 'A good product conversation starts small.',
+      lead: 'Send a note, start a guided request, or keep exploring the work. We are ready when the idea is ready enough to discuss.'
+    },
+    directory: {
+      eyebrow: 'Direct lines',
+      title: 'Choose the channel that feels easiest.',
+      lead: 'For new projects, the guided request gives us the best context. For everything else, a short message is enough.'
+    },
+    channels: {
+      email: {
+        label: 'Email',
+        note: 'Best for briefs, links, documents, and thoughtful first notes.'
+      },
+      whatsapp: {
+        label: 'WhatsApp',
+        placeholder: 'Configured soon',
+        note: 'Useful for quick coordination once a conversation has started.'
+      },
+      telegram: {
+        label: 'Telegram',
+        placeholder: 'Configured soon',
+        note: 'A lightweight channel for async questions and updates.'
+      },
+      phone: {
+        label: 'Phone',
+        placeholder: 'Available after first contact',
+        note: 'We usually schedule calls after reviewing the project context.'
+      }
+    },
+    social: {
+      eyebrow: 'Social presence',
+      title: 'Signals, not noise.',
+      placeholder: 'Coming soon'
+    },
+    cta: {
+      eyebrow: 'Have a product in mind?',
+      title: 'Start with the guided request — skip anything you do not know yet.',
+      lead: 'The flow is designed for early ideas, messy notes, and teams who want a clear next step without writing a giant brief.'
     }
   },
 

@@ -2,8 +2,7 @@
 const localePath = useLocalePath();
 const { t } = useI18n();
 
-const homePath = computed(() => localePath('/'));
-const startProjectPath = computed(() => `${homePath.value}#project-cta`);
+const startProjectPath = computed(() => localePath('/start-a-project'));
 const selectedWorkPath = computed(() => localePath('/projects'));
 const metrics = ['products', 'disciplines', 'languages'] as const;
 </script>
@@ -34,12 +33,12 @@ const metrics = ['products', 'disciplines', 'languages'] as const;
           </div>
 
           <div class="motion-fade-up motion-delay-3 mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
-            <a :href="startProjectPath" class="sazan-button-primary">
+            <NuxtLink :to="startProjectPath" class="sazan-button-primary">
               {{ t('common.startProject') }}
-            </a>
-            <a :href="selectedWorkPath" class="sazan-button-secondary">
+            </NuxtLink>
+            <NuxtLink :to="selectedWorkPath" class="sazan-button-secondary">
               {{ t('common.exploreWork') }}
-            </a>
+            </NuxtLink>
           </div>
         </div>
 

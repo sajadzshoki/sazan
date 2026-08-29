@@ -49,6 +49,11 @@ export default defineNuxtConfig({
     mongodbUri: process.env.MONGODB_URI || '',
     mongodbDatabase: process.env.MONGODB_DATABASE || 'sazan',
     storageProvider: process.env.STORAGE_PROVIDER || 'local',
+    notifications: {
+      webhookUrl: process.env.NOTIFICATION_WEBHOOK_URL || '',
+      webhookToken: process.env.NOTIFICATION_WEBHOOK_TOKEN || '',
+      webhookProviderName: process.env.NOTIFICATION_WEBHOOK_PROVIDER_NAME || 'webhook'
+    },
     minio: {
       endpoint: process.env.MINIO_ENDPOINT || '',
       accessKey: process.env.MINIO_ACCESS_KEY || '',
@@ -57,7 +62,18 @@ export default defineNuxtConfig({
     },
     public: {
       siteName: 'SAZAN',
-      defaultLocale: 'fa'
+      defaultLocale: 'fa',
+      contact: {
+        email: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'hello@sazan.studio',
+        whatsapp: process.env.NUXT_PUBLIC_CONTACT_WHATSAPP || '',
+        telegram: process.env.NUXT_PUBLIC_CONTACT_TELEGRAM || '',
+        phone: process.env.NUXT_PUBLIC_CONTACT_PHONE || '',
+        social: {
+          linkedin: process.env.NUXT_PUBLIC_SOCIAL_LINKEDIN || '',
+          behance: process.env.NUXT_PUBLIC_SOCIAL_BEHANCE || '',
+          dribbble: process.env.NUXT_PUBLIC_SOCIAL_DRIBBBLE || ''
+        }
+      }
     }
   },
 

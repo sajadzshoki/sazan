@@ -35,7 +35,7 @@ export const navItems: readonly NavItem[] = [
   { key: 'projects', path: '/projects' },
   { key: 'services', hash: '#services' },
   { key: 'process', hash: '#process' },
-  { key: 'contact', hash: '#project-cta' }
+  { key: 'contact', path: '/contact' }
 ];
 
 export const featuredProjects: readonly FeaturedProject[] = [

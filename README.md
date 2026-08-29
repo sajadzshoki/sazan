@@ -1,6 +1,6 @@
 # SAZAN
 
-SAZAN is a bilingual portfolio and lead-generation website for a premium digital product agency. The current implementation includes the Phase 1 foundation, Phase 2 homepage/design-system layer, and Phase 3 public portfolio experience built with Nuxt 4, Vue 3, TypeScript, UnoCSS, Nuxt UI, @nuxtjs/i18n, and MongoDB-ready server utilities.
+SAZAN is a bilingual portfolio and lead-generation website for a premium digital product agency. The current implementation includes the Phase 1 foundation, Phase 2 homepage/design-system layer, Phase 3 public portfolio experience, Phase 3.5 visual polish, and Phase 4 lead-generation/contact flow built with Nuxt 4, Vue 3, TypeScript, UnoCSS, Nuxt UI, @nuxtjs/i18n, and MongoDB-ready server utilities.
 
 ## Development
 
@@ -27,12 +27,14 @@ MONGODB_URI=mongodb://localhost:27017
 MONGODB_DATABASE=sazan
 ```
 
+Phase 4 project-request submissions write to MongoDB when `MONGODB_URI` is configured. Notification webhooks are optional; when no notification provider is configured, submissions use a safe development logging fallback without blocking the request.
+
 MinIO-related variables are included only as a future-ready storage foundation; the media system is not implemented yet.
 
 ## Structure
 
 - `app/components` — reusable UI, layout primitives, and homepage sections
-- `app/data` — local content metadata for homepage sections and portfolio case studies
+- `app/data` — local content metadata for homepage sections, portfolio case studies, and lead-flow options
 - `app/layouts` — application layouts
 - `app/pages` — route pages
 - `app/composables` — app state/utilities such as theme, locale direction, and digit formatting
@@ -54,11 +56,13 @@ Implemented:
 - Local mock project metadata for homepage previews
 - Public portfolio listing at localized `/projects` routes with category filtering
 - Dynamic project detail/case-study pages with metadata, visuals, gallery, optional video, links, and related projects
-- Locale-aware `/projects` redirect middleware for direct unprefixed portfolio access
+- Guided Start a Project flow at localized `/start-a-project` routes
+- Project request API with server-side validation, MongoDB persistence when configured, and notification provider abstraction
+- Editorial Contact page at localized `/contact` routes
+- Locale-aware redirect middleware for direct unprefixed public route access
 
 Intentionally left for later phases:
 
-- Project request flow
 - Admin panel and authentication
 - Media upload/storage implementation
 - Database-backed content APIs beyond the health/foundation utilities

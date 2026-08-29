@@ -4,7 +4,7 @@ export default defineEventHandler(() => {
   return {
     ok: true,
     service: 'sazan',
-    phase: 'portfolio-public-experience',
+    phase: 'lead-generation-flow',
     i18n: {
       locales: ['fa', 'en'],
       defaultLocale: config.public.defaultLocale
@@ -13,6 +13,11 @@ export default defineEventHandler(() => {
       provider: 'mongodb',
       configured: Boolean(config.mongodbUri),
       database: config.mongodbDatabase || 'sazan'
+    },
+    notifications: {
+      provider: config.notifications.webhookProviderName || 'webhook',
+      configured: Boolean(config.notifications.webhookUrl),
+      fallback: 'development-log'
     },
     storage: {
       provider: config.storageProvider,

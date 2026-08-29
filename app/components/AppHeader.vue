@@ -15,7 +15,7 @@ const getNavPath = (item: { path?: string; hash?: string }) => {
   return `${homePath.value}${item.hash || ''}`;
 };
 
-const getSectionPath = (hash: string) => `${homePath.value}${hash}`;
+const startProjectPath = computed(() => localePath('/start-a-project'));
 const closeMenu = () => {
   isMenuOpen.value = false;
 };
@@ -62,9 +62,9 @@ watch(
               </span>
             </template>
           </ClientOnly>
-          <a :href="getSectionPath('#project-cta')" class="sazan-button-primary">
+          <NuxtLink :to="startProjectPath" class="sazan-button-primary">
             {{ $t('common.startProject') }}
-          </a>
+          </NuxtLink>
         </div>
 
         <button
@@ -118,9 +118,9 @@ watch(
               </ClientOnly>
             </div>
 
-            <a :href="getSectionPath('#project-cta')" class="sazan-button-primary w-full" @click="closeMenu">
+            <NuxtLink :to="startProjectPath" class="sazan-button-primary w-full" @click="closeMenu">
               {{ $t('common.startProject') }}
-            </a>
+            </NuxtLink>
           </div>
         </BaseContainer>
       </div>
