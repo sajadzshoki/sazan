@@ -1,4 +1,4 @@
-import { createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 import type { H3Event } from 'h3';
 import { createError, deleteCookie, getCookie, setCookie } from 'h3';
@@ -20,14 +20,10 @@ const toBase64Url = (value: string) => Buffer.from(value).toString('base64url');
 const fromBase64Url = (value: string) => Buffer.from(value, 'base64url').toString('utf8');
 
 const timingSafeStringEqual = (left: string, right: string) => {
-  const leftBuffer = Buffer.from(left);
-  const rightBuffer = Buffer.from(right);
+  const leftDigest = createHash('sha256').update(left).digest();
+  const rightDigest = createHash('sha256').update(right).digest();
 
-  if (leftBuffer.length !== rightBuffer.length) {
-    return false;
-  }
-
-  return timingSafeEqual(leftBuffer, rightBuffer);
+  return timingSafeEqual(leftDigest, rightDigest);
 };
 
 const signPayload = (payload: string, secret: string) => {
@@ -36,10 +32,10 @@ const signPayload = (payload: string, secret: string) => {
 
 const getAdminRuntimeConfig = () => {
   const config = useRuntimeConfig();
-  const email = String(config.admin.email || '').trim().toLowerCase();
-  const password = String(config.admin.password || '');
-  const sessionSecret = String(config.admin.sessionSecret || '');
-  const sessionMaxAgeSeconds = Number(config.admin.sessionMaxAgeSeconds || 60 * 60 * 8);
+  const email = String(process.env.ADMIN_EMAIL || config.admin.email || '').trim().toLowerCase();
+  const password = String(process.env.ADMIN_PASSWORD || config.admin.password || '');
+  const sessionSecret = String(process.env.ADMIN_SESSION_SECRET || config.admin.sessionSecret || '');
+  const sessionMaxAgeSeconds = Number(process.env.ADMIN_SESSION_MAX_AGE_SECONDS || config.admin.sessionMaxAgeSeconds || 60 * 60 * 8);
 
   return {
     email,

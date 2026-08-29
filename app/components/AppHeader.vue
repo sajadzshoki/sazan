@@ -15,6 +15,15 @@ const getNavPath = (item: { path?: string; hash?: string }) => {
   return `${homePath.value}${item.hash || ''}`;
 };
 
+const isNavItemActive = (item: { path?: string; hash?: string }) => {
+  if (item.path) {
+    const path = localePath(item.path);
+    return route.path === path || route.path.startsWith(`${path}/`);
+  }
+
+  return route.path === homePath.value && route.hash === item.hash;
+};
+
 const startProjectPath = computed(() => localePath('/start-a-project'));
 const closeMenu = () => {
   isMenuOpen.value = false;
@@ -47,6 +56,7 @@ watch(
             :key="item.key"
             :href="getNavPath(item)"
             class="sazan-link"
+            :aria-current="isNavItemActive(item) ? 'page' : undefined"
           >
             {{ $t(`navigation.links.${item.key}`) }}
           </a>
@@ -99,6 +109,7 @@ watch(
                 :key="item.key"
                 :href="getNavPath(item)"
                 class="sazan-focus sazan-title-tight flex items-center justify-between border-b border-border py-4 text-2xl font-black"
+                :aria-current="isNavItemActive(item) ? 'page' : undefined"
                 @click="closeMenu"
               >
                 <span>{{ $t(`navigation.links.${item.key}`) }}</span>

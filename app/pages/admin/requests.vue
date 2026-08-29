@@ -168,7 +168,7 @@ useHead({ title: () => t('admin.nav.requests') });
           <span class="admin-badge" :class="requestStatusClass(selectedRequest.status)">{{ requestStatusLabel(selectedRequest.status) }}</span>
         </div>
 
-        <div class="mt-5 grid gap-4 md:grid-cols-2">
+        <dl class="mt-5 grid gap-4 md:grid-cols-2">
           <div class="admin-detail-box">
             <dt>{{ t('admin.fields.company') }}</dt>
             <dd>{{ selectedRequest.contact.company || '—' }}</dd>
@@ -193,9 +193,9 @@ useHead({ title: () => t('admin.nav.requests') });
             <dt>{{ t('admin.fields.timeline') }}</dt>
             <dd>{{ labelFor(timelineOptions, selectedRequest.timeline) }}</dd>
           </div>
-        </div>
+        </dl>
 
-        <div class="mt-5 grid gap-4">
+        <dl class="mt-5 grid gap-4">
           <div class="admin-detail-box">
             <dt>{{ t('admin.fields.projectTypes') }}</dt>
             <dd class="flex flex-wrap gap-2">
@@ -212,7 +212,7 @@ useHead({ title: () => t('admin.nav.requests') });
             <dt>{{ t('admin.fields.businessDescription') }}</dt>
             <dd class="whitespace-pre-wrap leading-8">{{ selectedRequest.businessDescription || '—' }}</dd>
           </div>
-        </div>
+        </dl>
 
         <div class="mt-5 rounded-2xl border border-border bg-background p-4">
           <label class="admin-field">

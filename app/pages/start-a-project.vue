@@ -332,6 +332,10 @@ function applyServerIssues(issues: ServerIssue[]) {
 }
 
 async function submitRequest() {
+  if (isSubmitting.value || isSuccess.value) {
+    return;
+  }
+
   submitError.value = '';
 
   if (!validateContact()) {
@@ -389,11 +393,15 @@ function handlePrimaryAction() {
   goNext();
 }
 
-useSeoMeta({
+usePublicSeo({
   title: () => t('startProject.seo.title'),
-  ogTitle: () => t('startProject.seo.title'),
   description: () => t('startProject.seo.description'),
-  ogDescription: () => t('startProject.seo.description')
+  structuredData: () => ({
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: t('startProject.seo.title'),
+    description: t('startProject.seo.description')
+  })
 });
 </script>
 
@@ -624,7 +632,7 @@ useSeoMeta({
                         :class="contactErrors.fullName ? 'border-primary' : 'border-border'"
                         :placeholder="t('startProject.placeholders.fullName')"
                         :aria-invalid="Boolean(contactErrors.fullName)"
-                        aria-describedby="full-name-error"
+                        :aria-describedby="contactErrors.fullName ? 'full-name-error' : undefined"
                         @input="clearContactError('fullName')"
                       >
                       <p v-if="contactErrors.fullName" id="full-name-error" class="mt-2 text-sm font-bold text-primary" role="alert">
@@ -647,7 +655,7 @@ useSeoMeta({
                         :class="contactErrors.email ? 'border-primary' : 'border-border'"
                         :placeholder="t('startProject.placeholders.email')"
                         :aria-invalid="Boolean(contactErrors.email)"
-                        aria-describedby="email-error"
+                        :aria-describedby="contactErrors.email ? 'email-error' : undefined"
                         @input="clearContactError('email')"
                       >
                       <p v-if="contactErrors.email" id="email-error" class="mt-2 text-sm font-bold text-primary" role="alert">

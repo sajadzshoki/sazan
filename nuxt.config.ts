@@ -14,7 +14,7 @@ const themeInitScript = `
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-08-29',
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV !== 'production' },
 
   modules: ['@nuxt/ui', '@unocss/nuxt', '@nuxtjs/i18n'],
 
@@ -34,7 +34,14 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'color-scheme', content: 'light dark' }
+        { name: 'color-scheme', content: 'light dark' },
+        { name: 'theme-color', content: '#f8f7f3', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#090a0a', media: '(prefers-color-scheme: dark)' },
+        { name: 'application-name', content: 'SAZAN' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'manifest', href: '/site.webmanifest' }
       ],
       script: [
         {
@@ -68,6 +75,7 @@ export default defineNuxtConfig({
     },
     public: {
       siteName: 'SAZAN',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://sazan.studio',
       defaultLocale: 'fa',
       contact: {
         email: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'hello@sazan.studio',

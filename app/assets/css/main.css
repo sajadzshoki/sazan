@@ -77,6 +77,32 @@ body {
   min-height: 100vh;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  min-width: 0;
+}
+
+button:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 ::selection {
   background: rgb(var(--color-primary) / 0.24);
   color: rgb(var(--color-foreground));
@@ -220,6 +246,11 @@ html[dir='rtl'] .sazan-meta {
   position: relative;
   color: rgb(var(--color-foreground));
   font-weight: 750;
+}
+
+.sazan-button-primary,
+.sazan-button-secondary {
+  text-align: center;
 }
 
 .sazan-text-link::after {
@@ -459,6 +490,7 @@ html[dir='rtl'] .admin-detail-box dt {
   border-bottom: 1px solid rgb(var(--color-border));
   padding: 1rem 1.25rem;
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .admin-table th {

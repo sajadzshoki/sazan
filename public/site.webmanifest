@@ -1,0 +1,17 @@
+{
+  "name": "SAZAN",
+  "short_name": "SAZAN",
+  "description": "Digital product agency",
+  "start_url": "/fa",
+  "display": "standalone",
+  "background_color": "#f8f7f3",
+  "theme_color": "#181714",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

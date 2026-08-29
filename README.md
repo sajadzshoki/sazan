@@ -1,68 +1,105 @@
 # SAZAN
 
-SAZAN is a bilingual portfolio and lead-generation website for a premium digital product agency. The current implementation includes the Phase 1 foundation, Phase 2 homepage/design-system layer, Phase 3 public portfolio experience, Phase 3.5 visual polish, and Phase 4 lead-generation/contact flow built with Nuxt 4, Vue 3, TypeScript, UnoCSS, Nuxt UI, @nuxtjs/i18n, and MongoDB-ready server utilities.
+SAZAN is a bilingual (Persian/English) digital product agency website built with Nuxt 4, Vue 3, TypeScript, UnoCSS, Nuxt UI, `@nuxtjs/i18n`, and MongoDB-ready Nitro server utilities. It includes the public marketing site, portfolio/case-study experience, guided project-request flow, contact page, and a small protected internal admin panel.
 
-## Development
+## Installation
 
 ```bash
 npm install
+cp .env.example .env
 npm run dev
 ```
 
-The dev server binds to `0.0.0.0` for Arena live previews.
+The development server binds to `0.0.0.0` for preview environments.
 
-## Scripts
+## Commands
 
 - `npm run dev` — start Nuxt in development mode
-- `npm run build` — production build
-- `npm run preview` — preview the production output
 - `npm run typecheck` — run Nuxt/Vue TypeScript checks
+- `npm run build` — create a production build
+- `npm run preview` — preview the production output
+- `npm audit --omit=dev` — audit production dependencies
 
-## Environment
+## Environment variables
 
-Copy `.env.example` to `.env` when database-backed features are needed.
+Required for production admin access:
+
+```bash
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=change-this-password
+ADMIN_SESSION_SECRET=change-this-long-random-secret
+ADMIN_SESSION_MAX_AGE_SECONDS=28800
+```
+
+Public/site configuration:
+
+```bash
+NUXT_PUBLIC_SITE_URL=https://sazan.studio
+NUXT_PUBLIC_CONTACT_EMAIL=hello@sazan.studio
+NUXT_PUBLIC_CONTACT_WHATSAPP=
+NUXT_PUBLIC_CONTACT_TELEGRAM=
+NUXT_PUBLIC_CONTACT_PHONE=
+NUXT_PUBLIC_SOCIAL_LINKEDIN=
+NUXT_PUBLIC_SOCIAL_BEHANCE=
+NUXT_PUBLIC_SOCIAL_DRIBBBLE=
+```
+
+MongoDB is optional in development. When `MONGODB_URI` is not configured, the public portfolio keeps using local mock data and admin content uses an in-memory fallback seeded from the same data.
 
 ```bash
 MONGODB_URI=mongodb://localhost:27017
 MONGODB_DATABASE=sazan
 ```
 
-Phase 4 project-request submissions write to MongoDB when `MONGODB_URI` is configured. Notification webhooks are optional; when no notification provider is configured, submissions use a safe development logging fallback without blocking the request.
+Project-request notifications are optional. Without a webhook, requests are still accepted; development logs are used only outside production.
 
-MinIO-related variables are included only as a future-ready storage foundation; the media system is not implemented yet.
+```bash
+NOTIFICATION_WEBHOOK_URL=
+NOTIFICATION_WEBHOOK_TOKEN=
+NOTIFICATION_WEBHOOK_PROVIDER_NAME=webhook
+```
 
-## Structure
+Media storage defaults to local development uploads. MinIO credentials remain server-only and are reserved for the future adapter.
 
-- `app/components` — reusable UI, layout primitives, and homepage sections
-- `app/data` — local content metadata for homepage sections, portfolio case studies, and lead-flow options
-- `app/layouts` — application layouts
-- `app/pages` — route pages
-- `app/composables` — app state/utilities such as theme, locale direction, and digit formatting
-- `app/utils` — shared app utilities
-- `i18n` — scalable locale messages and Vue I18n config
-- `server/api` — Nitro API routes
+```bash
+STORAGE_PROVIDER=local
+MINIO_ENDPOINT=
+MINIO_ACCESS_KEY=
+MINIO_SECRET_KEY=
+MINIO_BUCKET=sazan-media
+```
+
+## Admin panel
+
+The internal admin panel is available at `/admin`. It uses environment-based credentials, signed HTTP-only cookies, and server-side API authorization. There is no registration, RBAC, or multi-user management.
+
+Admin tools include:
+
+- Dashboard counts and recent items
+- Project CRUD, publish/unpublish, featured toggle, preview links, media references, pricing, timeline, links, and localized content
+- Category CRUD with order and enabled state
+- Service CRUD with icon, active state, featured flag, and order
+- Project request review with status updates, archive, and delete
+- Public contact/social settings
+
+## Production notes
+
+- Set `NUXT_PUBLIC_SITE_URL` to the canonical production origin so canonical links, sitemap, robots, and structured data are correct.
+- Use strong admin credentials and a long random `ADMIN_SESSION_SECRET`.
+- Keep MongoDB, MinIO, webhook tokens, and session secrets out of public runtime config.
+- `/admin` and `/api/admin/*` are excluded from robots and protected server-side.
+- Uploaded local media is written under `public/uploads/admin` and ignored by Git; use persistent storage for production deployments.
+
+## Project structure
+
+- `app/components` — reusable UI, layout primitives, homepage, and portfolio components
+- `app/pages` — localized public pages and unlocalized admin pages
+- `app/layouts` — public and admin layouts
+- `app/composables` — theme, direction, SEO, admin helpers, and formatting utilities
+- `app/data` — local homepage, portfolio, and lead-flow content
+- `i18n` — English and Persian messages
+- `server/api` — public and protected Nitro API routes
+- `server/routes` — robots and sitemap routes
 - `server/models` — MongoDB collection accessors
-- `server/utils` — server-only integrations such as MongoDB/storage config
-- `types` — domain models shared by app and server code
-
-## Current scope
-
-Implemented:
-
-- Bilingual `/fa` and `/en` routes with RTL/LTR document direction
-- Persistent light/dark/system theme handling with semantic design tokens
-- Polished responsive header and footer
-- Complete homepage sections: hero, selected work preview, services, process, agency statement, and project CTA
-- Local mock project metadata for homepage previews
-- Public portfolio listing at localized `/projects` routes with category filtering
-- Dynamic project detail/case-study pages with metadata, visuals, gallery, optional video, links, and related projects
-- Guided Start a Project flow at localized `/start-a-project` routes
-- Project request API with server-side validation, MongoDB persistence when configured, and notification provider abstraction
-- Editorial Contact page at localized `/contact` routes
-- Locale-aware redirect middleware for direct unprefixed public route access
-
-Intentionally left for later phases:
-
-- Admin panel and authentication
-- Media upload/storage implementation
-- Database-backed content APIs beyond the health/foundation utilities
+- `server/utils` — auth, validation, storage, data, notifications, and MongoDB utilities
+- `types` — shared domain models

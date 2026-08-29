@@ -71,7 +71,7 @@ const logout = async () => {
     <Transition name="admin-drawer">
       <div v-if="isDrawerOpen" class="fixed inset-0 z-50 lg:hidden">
         <button class="absolute inset-0 bg-foreground/35" type="button" :aria-label="t('admin.actions.close')" @click="isDrawerOpen = false" />
-        <aside class="relative h-full w-[min(20rem,86vw)] border-e border-border bg-surface p-4 shadow-[var(--shadow-strong)]">
+        <aside class="relative h-full w-[min(20rem,86vw)] border-e border-border bg-surface p-4 shadow-[var(--shadow-strong)]" role="dialog" aria-modal="true" :aria-label="t('admin.title')">
           <div class="mb-6 flex items-center justify-between">
             <span class="text-xl font-black">{{ t('admin.title') }}</span>
             <button class="sazan-focus rounded-full border border-border px-3 py-1 text-sm" type="button" @click="isDrawerOpen = false">

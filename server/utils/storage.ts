@@ -55,7 +55,7 @@ const sanitizeFilename = (filename = 'media') => filename
 
 export const getStorageRuntimeConfig = (): StorageRuntimeConfig => {
   const config = useRuntimeConfig();
-  const provider = String(config.storageProvider || 'local');
+  const provider = String(process.env.STORAGE_PROVIDER || config.storageProvider || 'local');
 
   if (!isStorageProvider(provider)) {
     throw createError({
@@ -71,9 +71,14 @@ export const getStorageRuntimeConfig = (): StorageRuntimeConfig => {
       publicBaseUrl: '/uploads/admin'
     },
     minio: {
-      endpoint: config.minio.endpoint,
-      bucket: config.minio.bucket,
-      isConfigured: Boolean(config.minio.endpoint && config.minio.accessKey && config.minio.secretKey && config.minio.bucket)
+      endpoint: String(process.env.MINIO_ENDPOINT || config.minio.endpoint || ''),
+      bucket: String(process.env.MINIO_BUCKET || config.minio.bucket || 'sazan-media'),
+      isConfigured: Boolean(
+        (process.env.MINIO_ENDPOINT || config.minio.endpoint)
+        && (process.env.MINIO_ACCESS_KEY || config.minio.accessKey)
+        && (process.env.MINIO_SECRET_KEY || config.minio.secretKey)
+        && (process.env.MINIO_BUCKET || config.minio.bucket)
+      )
     }
   };
 };

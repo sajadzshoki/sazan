@@ -37,12 +37,15 @@ const toSafeNotificationSummary = (request: ProjectRequest, context: Notificatio
 
 const createWebhookProvider = (): NotificationProvider => {
   const config = useRuntimeConfig();
+  const webhookUrl = String(process.env.NOTIFICATION_WEBHOOK_URL || config.notifications.webhookUrl || '');
+  const webhookToken = String(process.env.NOTIFICATION_WEBHOOK_TOKEN || config.notifications.webhookToken || '');
+  const providerName = String(process.env.NOTIFICATION_WEBHOOK_PROVIDER_NAME || config.notifications.webhookProviderName || 'webhook');
 
   return {
-    name: config.notifications.webhookProviderName || 'webhook',
-    isConfigured: () => Boolean(config.notifications.webhookUrl),
+    name: providerName,
+    isConfigured: () => Boolean(webhookUrl),
     async sendProjectRequest(request, context) {
-      if (!config.notifications.webhookUrl) {
+      if (!webhookUrl) {
         return {
           provider: this.name,
           ok: true,
@@ -54,11 +57,11 @@ const createWebhookProvider = (): NotificationProvider => {
         'content-type': 'application/json'
       };
 
-      if (config.notifications.webhookToken) {
-        headers.authorization = `Bearer ${config.notifications.webhookToken}`;
+      if (webhookToken) {
+        headers.authorization = `Bearer ${webhookToken}`;
       }
 
-      const response = await fetch(config.notifications.webhookUrl, {
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers,
         body: JSON.stringify({
@@ -88,7 +91,9 @@ export const notifyProjectRequest = async (request: ProjectRequest, context: Not
   const configuredProviders = providers.filter((provider) => provider.isConfigured());
 
   if (configuredProviders.length === 0) {
-    logDevelopmentFallback(request, context);
+    if (process.env.NODE_ENV !== 'production') {
+      logDevelopmentFallback(request, context);
+    }
 
     return [
       {

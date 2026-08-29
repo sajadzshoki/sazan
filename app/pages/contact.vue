@@ -15,7 +15,7 @@ type SocialChannel = {
 };
 
 const config = useRuntimeConfig();
-const { data: siteSettings } = await useFetch('/api/site-settings');
+const { data: siteSettings } = await useFetch('/api/site-settings', { key: 'site-settings' });
 const localePath = useLocalePath();
 const { t } = useI18n();
 const startProjectPath = computed(() => localePath('/start-a-project'));
@@ -104,11 +104,16 @@ const socialChannels = computed<SocialChannel[]>(() => {
   ];
 });
 
-useSeoMeta({
+usePublicSeo({
   title: () => t('contact.seo.title'),
-  ogTitle: () => t('contact.seo.title'),
   description: () => t('contact.seo.description'),
-  ogDescription: () => t('contact.seo.description')
+  structuredData: () => ({
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: t('contact.seo.title'),
+    description: t('contact.seo.description'),
+    email: contactConfig.value.email
+  })
 });
 </script>
 

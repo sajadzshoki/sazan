@@ -3,7 +3,7 @@ import { navItems, services } from '~/data/home';
 
 const localePath = useLocalePath();
 const config = useRuntimeConfig();
-const { data: siteSettings } = await useFetch('/api/site-settings');
+const { data: siteSettings } = await useFetch('/api/site-settings', { key: 'site-settings' });
 const year = new Date().getFullYear();
 const homePath = computed(() => localePath('/'));
 const publicContact = computed(() => siteSettings.value?.contact || config.public.contact);

@@ -3,7 +3,8 @@ import { isPortfolioFilterKey, type PortfolioFilterKey } from '~/data/projects';
 
 const route = useRoute();
 const localePath = useLocalePath();
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const config = useRuntimeConfig();
 const { filters, projects, getCategoryLabel } = usePortfolio();
 const { formatDigits } = useLocaleDigits();
 
@@ -41,11 +42,24 @@ const selectFilter = async (filter: PortfolioFilterKey) => {
   });
 };
 
-useSeoMeta({
+const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.studio').replace(/\/$/, ''));
+
+usePublicSeo({
   title: () => t('portfolio.seo.title'),
-  ogTitle: () => t('portfolio.seo.title'),
   description: () => t('portfolio.seo.description'),
-  ogDescription: () => t('portfolio.seo.description')
+  structuredData: () => ({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t('portfolio.seo.title'),
+    description: t('portfolio.seo.description'),
+    inLanguage: locale.value === 'fa' ? 'fa-IR' : 'en-US',
+    hasPart: projects.value.slice(0, 12).map((project, index) => ({
+      '@type': 'CreativeWork',
+      position: index + 1,
+      name: project.title,
+      url: `${siteUrl.value}${localePath(`/projects/${project.slug}`)}`
+    }))
+  })
 });
 </script>
 

@@ -9,6 +9,7 @@ import {
   useServicesCollection,
   useSiteSettingsCollection
 } from '../models';
+import { getMongoRuntimeConfig } from './mongodb';
 import type { Category, LocaleCode, Project, ProjectRequest, PublicContactSettings, Service, SiteSettings } from '~~/types';
 
 const localizedCategoryTitles: Record<string, { en: string; fa: string }> = {
@@ -65,7 +66,7 @@ const getNow = () => new Date();
 
 const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 
-const isMongoConfigured = () => Boolean(useRuntimeConfig().mongodbUri);
+const isMongoConfigured = () => Boolean(getMongoRuntimeConfig().uri);
 
 const createDefaultSiteSettings = (): SiteSettings => {
   const config = useRuntimeConfig();

@@ -7,10 +7,19 @@ type MongoGlobal = typeof globalThis & {
 
 const mongoGlobal = globalThis as MongoGlobal;
 
-export const getMongoClient = async () => {
+export const getMongoRuntimeConfig = () => {
   const config = useRuntimeConfig();
 
-  if (!config.mongodbUri) {
+  return {
+    uri: String(process.env.MONGODB_URI || config.mongodbUri || ''),
+    database: String(process.env.MONGODB_DATABASE || config.mongodbDatabase || 'sazan')
+  };
+};
+
+export const getMongoClient = async () => {
+  const mongoConfig = getMongoRuntimeConfig();
+
+  if (!mongoConfig.uri) {
     throw createError({
       statusCode: 500,
       statusMessage: 'MongoDB is not configured. Set MONGODB_URI before using database-backed features.'
@@ -18,7 +27,7 @@ export const getMongoClient = async () => {
   }
 
   if (!mongoGlobal.__sazanMongoClientPromise) {
-    const client = new MongoClient(config.mongodbUri);
+    const client = new MongoClient(mongoConfig.uri);
     mongoGlobal.__sazanMongoClientPromise = client.connect();
   }
 
@@ -26,8 +35,8 @@ export const getMongoClient = async () => {
 };
 
 export const getMongoDatabase = async (): Promise<Db> => {
-  const config = useRuntimeConfig();
+  const mongoConfig = getMongoRuntimeConfig();
   const client = await getMongoClient();
 
-  return client.db(config.mongodbDatabase || 'sazan');
+  return client.db(mongoConfig.database);
 };

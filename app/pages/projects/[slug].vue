@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
 const localePath = useLocalePath();
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const config = useRuntimeConfig();
 const { formatDigits } = useLocaleDigits();
 const { getProjectBySlug, getRelatedProjects } = usePortfolio();
 
@@ -21,6 +22,8 @@ const categoryLabel = computed(() => t(`portfolio.categories.${project.value.cat
 const serviceLabels = computed(() => project.value.services.map((service) => t(`home.services.items.${service}.title`)));
 const relatedProjects = computed(() => getRelatedProjects(project.value.raw, 3));
 
+const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.studio').replace(/\/$/, ''));
+
 const projectLinks = computed(() => {
   const links: Array<{ label: string; url: string }> = [];
 
@@ -35,11 +38,20 @@ const projectLinks = computed(() => {
   return links;
 });
 
-useSeoMeta({
+usePublicSeo({
   title: () => project.value.title,
-  ogTitle: () => project.value.title,
   description: () => project.value.shortDescription,
-  ogDescription: () => project.value.shortDescription
+  type: 'article',
+  structuredData: () => ({
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.value.title,
+    description: project.value.shortDescription,
+    inLanguage: locale.value === 'fa' ? 'fa-IR' : 'en-US',
+    dateCreated: project.value.year,
+    genre: categoryLabel.value,
+    url: `${siteUrl.value}${localePath(`/projects/${project.value.slug}`)}`
+  })
 });
 </script>
 
