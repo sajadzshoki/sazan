@@ -6,7 +6,7 @@ import {
   projectTypeValues,
   timelineValues
 } from '../../app/data/lead';
-import { useProjectRequestsCollection } from '../models';
+import { createProjectRequestRecord, updateAdminProjectRequest } from '../utils/admin-data';
 import { notifyProjectRequest } from '../utils/notifications';
 import type {
   LocaleCode,
@@ -179,23 +179,8 @@ export default defineEventHandler(async (event) => {
     ...(userAgent ? { userAgent } : {})
   };
 
-  const config = useRuntimeConfig();
-  let persistedInMongo = false;
-
   try {
-    if (config.mongodbUri) {
-      const collection = await useProjectRequestsCollection();
-      await collection.insertOne(request);
-      persistedInMongo = true;
-    } else {
-      console.info('[SAZAN project-request:fallback] MongoDB not configured. Request accepted in development mode.', {
-        reference,
-        selectedProjectTypes,
-        requestedFeatures,
-        preferredLocale,
-        createdAt: request.createdAt
-      });
-    }
+    await createProjectRequestRecord(request);
   } catch (error) {
     console.error('[SAZAN project-request] Failed to persist request', error);
 
@@ -216,21 +201,10 @@ export default defineEventHandler(async (event) => {
       ? 'skipped'
       : 'failed';
 
-  if (persistedInMongo) {
-    try {
-      const collection = await useProjectRequestsCollection();
-      await collection.updateOne(
-        { id: reference },
-        {
-          $set: {
-            notificationStatus,
-            updatedAt: new Date()
-          }
-        }
-      );
-    } catch (error) {
-      console.error('[SAZAN project-request] Failed to update notification status', error);
-    }
+  try {
+    await updateAdminProjectRequest(reference, { notificationStatus });
+  } catch (error) {
+    console.error('[SAZAN project-request] Failed to update notification status', error);
   }
 
   return {

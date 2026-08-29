@@ -39,6 +39,7 @@ export interface Service extends TimestampedEntity {
   icon?: string;
   order?: number;
   featured?: boolean;
+  active?: boolean;
   status: PublishStatus;
 }
 
@@ -70,14 +71,17 @@ export interface Project extends TimestampedEntity {
   fullDescription?: LocalizedString;
   categoryId?: string;
   category?: Category;
+  services?: string[];
   technologies: string[];
   coverImage?: MediaAsset;
   gallery?: MediaAsset[];
   videos?: MediaAsset[];
+  videoUrl?: string;
   demoUrl?: string;
   projectUrl?: string;
   pricing?: ProjectPricing;
   timeline?: ProjectTimeline;
+  year?: string;
   featured: boolean;
   status: PublishStatus;
   translations?: Partial<Record<LocaleCode, ProjectTranslationMeta>>;
@@ -108,7 +112,7 @@ export type ProjectRequestFeature =
 export type ProjectRequestBudgetRange = 'under-2k' | '2k-5k' | '5k-10k' | '10k-25k' | '25k-plus' | 'not-sure';
 export type ProjectRequestTimeline = 'asap' | 'within-1-month' | '1-3-months' | 'flexible' | 'not-sure';
 export type PreferredContactMethod = 'email' | 'whatsapp' | 'telegram' | 'phone';
-export type ProjectRequestStatus = 'new' | 'qualified' | 'contacted' | 'proposal' | 'won' | 'lost' | 'archived';
+export type ProjectRequestStatus = 'new' | 'reviewing' | 'contacted' | 'inProgress' | 'completed' | 'archived';
 
 export interface ProjectRequestContact {
   fullName: string;
@@ -141,4 +145,21 @@ export interface ContactMessage extends TimestampedEntity {
   message: string;
   preferredLocale: LocaleCode;
   status: ContactMessageStatus;
+}
+
+export interface PublicContactSettings {
+  email: string;
+  phone?: string;
+  whatsapp?: string;
+  telegram?: string;
+  social: {
+    linkedin?: string;
+    behance?: string;
+    dribbble?: string;
+  };
+}
+
+export interface SiteSettings extends TimestampedEntity {
+  key: 'publicContact';
+  contact: PublicContactSettings;
 }

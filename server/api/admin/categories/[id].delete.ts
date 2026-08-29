@@ -1,0 +1,21 @@
+import { requireAdminSession } from '../../../utils/admin-auth';
+import { deleteAdminCategory } from '../../../utils/admin-data';
+import { safeError } from '../../../utils/admin-input';
+
+export default defineEventHandler(async (event) => {
+  requireAdminSession(event);
+
+  const id = getRouterParam(event, 'id');
+
+  if (!id) {
+    throw safeError(400, 'Category id is required');
+  }
+
+  const deleted = await deleteAdminCategory(id);
+
+  if (!deleted) {
+    throw safeError(404, 'Category not found');
+  }
+
+  return { ok: true };
+});

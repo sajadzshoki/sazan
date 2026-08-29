@@ -3,14 +3,16 @@ import { navItems, services } from '~/data/home';
 
 const localePath = useLocalePath();
 const config = useRuntimeConfig();
+const { data: siteSettings } = await useFetch('/api/site-settings');
 const year = new Date().getFullYear();
 const homePath = computed(() => localePath('/'));
-const contactEmail = computed(() => config.public.contact?.email || 'hello@sazan.studio');
+const publicContact = computed(() => siteSettings.value?.contact || config.public.contact);
+const contactEmail = computed(() => publicContact.value?.email || 'hello@sazan.studio');
 const contactEmailHref = computed(() => `mailto:${contactEmail.value}`);
 const footerSocialLinks = computed(() => [
-  { label: 'LinkedIn', href: config.public.contact?.social?.linkedin || '' },
-  { label: 'Behance', href: config.public.contact?.social?.behance || '' },
-  { label: 'Dribbble', href: config.public.contact?.social?.dribbble || '' }
+  { label: 'LinkedIn', href: publicContact.value?.social?.linkedin || '' },
+  { label: 'Behance', href: publicContact.value?.social?.behance || '' },
+  { label: 'Dribbble', href: publicContact.value?.social?.dribbble || '' }
 ]);
 const getNavPath = (item: { path?: string; hash?: string }) => {
   if (item.path) {

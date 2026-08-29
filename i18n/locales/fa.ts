@@ -462,6 +462,220 @@ export default {
     }
   },
 
+
+  admin: {
+    title: 'پنل مدیریت',
+    subtitle: 'ابزار داخلی برای مدیریت محتوای سازان.',
+    eyebrow: 'فضای داخلی',
+    nav: {
+      label: 'ناوبری پنل مدیریت',
+      dashboard: 'داشبورد',
+      projects: 'پروژه‌ها',
+      categories: 'دسته‌بندی‌ها',
+      services: 'خدمات',
+      requests: 'درخواست‌های پروژه',
+      settings: 'تنظیمات'
+    },
+    actions: {
+      menu: 'منو',
+      close: 'بستن',
+      logout: 'خروج',
+      language: 'زبان',
+      theme: 'تم',
+      viewSite: 'مشاهده سایت عمومی',
+      retry: 'تلاش دوباره',
+      manage: 'مدیریت',
+      review: 'بررسی',
+      new: 'جدید',
+      edit: 'ویرایش',
+      publish: 'انتشار',
+      unpublish: 'لغو انتشار',
+      feature: 'منتخب کن',
+      unfeature: 'حذف از منتخب',
+      delete: 'حذف',
+      cancel: 'لغو',
+      save: 'ذخیره',
+      preview: 'پیش‌نمایش',
+      enable: 'فعال‌سازی',
+      disable: 'غیرفعال‌سازی',
+      refresh: 'به‌روزرسانی',
+      archive: 'آرشیو',
+      reset: 'بازنشانی'
+    },
+    states: {
+      loading: 'در حال بارگذاری…',
+      saving: 'در حال ذخیره…',
+      loadError: 'داده‌های پنل بارگذاری نشد.',
+      saveError: 'تغییرات ذخیره نشد. فیلدهای ضروری را بررسی کنید و دوباره تلاش کنید.',
+      deleteError: 'حذف این مورد انجام نشد.',
+      empty: 'فعلاً چیزی برای نمایش نیست.',
+      saved: 'تغییرات ذخیره شد.',
+      configured: 'تنظیم شده',
+      notConfigured: 'تنظیم نشده',
+      notSpecified: 'مشخص نشده'
+    },
+    status: {
+      publish: {
+        draft: 'پیش‌نویس',
+        review: 'در بازبینی',
+        published: 'منتشر شده',
+        archived: 'آرشیو شده'
+      },
+      request: {
+        new: 'جدید',
+        reviewing: 'در حال بررسی',
+        contacted: 'تماس گرفته شد',
+        inProgress: 'در حال انجام',
+        completed: 'تکمیل شده',
+        archived: 'آرشیو شده'
+      }
+    },
+    login: {
+      eyebrow: 'دسترسی امن',
+      title: 'ورود مدیر',
+      heroTitle: 'اتاق کنترل کوچک برای محتوای سازان.',
+      heroLead: 'با حساب مدیریتی تنظیم‌شده در محیط وارد شوید تا پروژه‌ها، خدمات، درخواست‌ها و اطلاعات تماس را مدیریت کنید.',
+      securityNote: 'نشست‌ها سمت سرور امضا می‌شوند و در کوکی HttpOnly نگه‌داری می‌شوند. اطلاعات ورود به مرورگر ارسال نمی‌شود.',
+      notConfigured: 'تا زمانی که ADMIN_EMAIL، ADMIN_PASSWORD و ADMIN_SESSION_SECRET تنظیم نشوند، ورود مدیر غیرفعال است.',
+      invalid: 'ایمیل یا رمز عبور نادرست است.',
+      submit: 'ورود'
+    },
+    dashboard: {
+      cards: {
+        projects: 'پروژه‌ها',
+        published: 'منتشر شده',
+        requests: 'درخواست‌ها',
+        newRequests: 'درخواست جدید'
+      },
+      recentProjects: 'پروژه‌های اخیر',
+      projectHint: 'آخرین رکوردهای ویرایش‌شده پورتفولیو.',
+      recentRequests: 'درخواست‌های اخیر',
+      requestHint: 'جدیدترین درخواست‌های ورودی و وضعیت پیگیری.',
+      system: 'وضعیت سیستم',
+      dataProvider: 'منبع داده',
+      mediaProvider: 'رسانه',
+      minio: 'MinIO'
+    },
+    projects: {
+      title: 'پروژه‌های پورتفولیو',
+      description: 'ایجاد، ویرایش، انتشار، منتخب‌کردن و پیش‌نمایش رکوردهای پروژه.',
+      editTitle: 'ویرایش پروژه',
+      newTitle: 'پروژه جدید',
+      formHint: 'قبل از انتشار، محتوای انگلیسی و فارسی را کامل نگه دارید.',
+      media: 'ارجاع‌های رسانه',
+      linksPricingTimeline: 'لینک‌ها، قیمت‌گذاری و زمان‌بندی'
+    },
+    categories: {
+      title: 'دسته‌بندی‌ها',
+      description: 'عنوان‌های دوزبانه دسته‌بندی با ترتیب و وضعیت فعال بودن.',
+      editTitle: 'ویرایش دسته‌بندی',
+      newTitle: 'دسته‌بندی جدید',
+      formHint: 'دسته‌بندی غیرفعال در پنل می‌ماند اما بهتر است در سایت عمومی استفاده نشود.'
+    },
+    services: {
+      title: 'خدمات',
+      description: 'رکوردهای دوزبانه خدمات با آیکن، ترتیب و وضعیت فعال بودن.',
+      editTitle: 'ویرایش خدمت',
+      newTitle: 'خدمت جدید',
+      formHint: 'برای کارت‌های عمومی خدمات، توضیح کوتاه و کاربردی بنویسید.'
+    },
+    requests: {
+      title: 'درخواست‌های پروژه',
+      description: 'درخواست‌های ورودی را بررسی کنید، وضعیت را تغییر دهید، آرشیو یا حذف کنید.',
+      selectEmpty: 'برای دیدن جزئیات، یک درخواست را انتخاب کنید.'
+    },
+    settings: {
+      title: 'تنظیمات تماس عمومی',
+      description: 'اطلاعات تماس و لینک‌های شبکه‌های اجتماعی قابل نمایش در سایت عمومی را مدیریت کنید.',
+      publicPreview: 'پیش‌نمایش عمومی',
+      storage: 'ذخیره‌سازی',
+      storageNote: 'آپلود محلی برای توسعه ذخیره می‌شود. اطلاعات MinIO فقط سمت سرور می‌ماند و این آداپتر برای پیاده‌سازی آینده آماده است.'
+    },
+    fields: {
+      email: 'ایمیل',
+      password: 'رمز عبور',
+      title: 'عنوان',
+      status: 'وضعیت',
+      category: 'دسته‌بندی',
+      updatedAt: 'به‌روزرسانی',
+      createdAt: 'ایجاد',
+      actions: 'عملیات',
+      titleEn: 'عنوان — انگلیسی',
+      titleFa: 'عنوان — فارسی',
+      slug: 'اسلاگ',
+      year: 'سال',
+      shortDescriptionEn: 'توضیح کوتاه — انگلیسی',
+      shortDescriptionFa: 'توضیح کوتاه — فارسی',
+      fullDescriptionEn: 'توضیح کامل — انگلیسی',
+      fullDescriptionFa: 'توضیح کامل — فارسی',
+      technologies: 'تکنولوژی‌ها',
+      services: 'خدمات',
+      coverImageUrl: 'آدرس تصویر کاور',
+      coverImageKey: 'کلید تصویر کاور',
+      coverAltEn: 'متن جایگزین کاور — انگلیسی',
+      coverAltFa: 'متن جایگزین کاور — فارسی',
+      galleryRefs: 'ارجاع‌های گالری',
+      videoUrl: 'آدرس یا ارجاع ویدئو',
+      demoUrl: 'آدرس دمو',
+      projectUrl: 'آدرس پروژه',
+      pricingVisibility: 'نمایش قیمت',
+      currency: 'واحد پول',
+      priceMin: 'حداقل قیمت',
+      priceMax: 'حداکثر قیمت',
+      durationWeeks: 'مدت به هفته',
+      pricingNoteEn: 'یادداشت قیمت — انگلیسی',
+      pricingNoteFa: 'یادداشت قیمت — فارسی',
+      timelineNoteEn: 'یادداشت زمان‌بندی — انگلیسی',
+      timelineNoteFa: 'یادداشت زمان‌بندی — فارسی',
+      featured: 'منتخب',
+      order: 'ترتیب',
+      descriptionEn: 'توضیح — انگلیسی',
+      descriptionFa: 'توضیح — فارسی',
+      enabled: 'فعال',
+      icon: 'آیکن',
+      active: 'فعال',
+      contact: 'تماس',
+      budget: 'بودجه',
+      company: 'شرکت',
+      phone: 'تلفن',
+      preferredContact: 'روش تماس ترجیحی',
+      locale: 'زبان',
+      timeline: 'زمان‌بندی',
+      projectTypes: 'نوع پروژه',
+      features: 'قابلیت‌ها',
+      businessDescription: 'توضیح کسب‌وکار',
+      whatsapp: 'واتساپ',
+      telegram: 'تلگرام',
+      linkedin: 'لینکدین',
+      behance: 'بیهنس',
+      dribbble: 'دریبل',
+      social: 'لینک‌های اجتماعی'
+    },
+    filters: {
+      all: 'همه'
+    },
+    placeholders: {
+      onePerLine: 'هر مورد در یک خط',
+      oneMediaPerLine: 'هر آدرس یا کلید رسانه در یک خط'
+    },
+    media: {
+      uploadCover: 'آپلود فایل کاور',
+      uploaded: 'رسانه آپلود شد و به عنوان کاور نشست.',
+      uploadError: 'آپلود رسانه انجام نشد.'
+    },
+    pricing: {
+      public: 'عمومی',
+      private: 'خصوصی',
+      onRequest: 'پس از درخواست'
+    },
+    confirm: {
+      deleteProject: '«{title}» حذف شود؟ این کار قابل بازگشت نیست.',
+      deleteCategory: '«{title}» حذف شود؟ این کار قابل بازگشت نیست.',
+      deleteService: '«{title}» حذف شود؟ این کار قابل بازگشت نیست.',
+      deleteRequest: 'درخواست «{title}» حذف شود؟ این کار قابل بازگشت نیست.'
+    }
+  },
+
   language: {
     label: 'زبان',
     switchTo: 'تغییر زبان به {locale}'

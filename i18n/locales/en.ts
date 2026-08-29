@@ -462,6 +462,220 @@ export default {
     }
   },
 
+
+  admin: {
+    title: 'Admin',
+    subtitle: 'Internal content tools for SAZAN.',
+    eyebrow: 'Internal workspace',
+    nav: {
+      label: 'Admin navigation',
+      dashboard: 'Dashboard',
+      projects: 'Projects',
+      categories: 'Categories',
+      services: 'Services',
+      requests: 'Project Requests',
+      settings: 'Settings'
+    },
+    actions: {
+      menu: 'Menu',
+      close: 'Close',
+      logout: 'Log out',
+      language: 'Language',
+      theme: 'Theme',
+      viewSite: 'View public site',
+      retry: 'Retry',
+      manage: 'Manage',
+      review: 'Review',
+      new: 'New',
+      edit: 'Edit',
+      publish: 'Publish',
+      unpublish: 'Unpublish',
+      feature: 'Feature',
+      unfeature: 'Unfeature',
+      delete: 'Delete',
+      cancel: 'Cancel',
+      save: 'Save',
+      preview: 'Preview',
+      enable: 'Enable',
+      disable: 'Disable',
+      refresh: 'Refresh',
+      archive: 'Archive',
+      reset: 'Reset'
+    },
+    states: {
+      loading: 'Loading…',
+      saving: 'Saving…',
+      loadError: 'Could not load admin data.',
+      saveError: 'Could not save changes. Check the required fields and try again.',
+      deleteError: 'Could not delete this item.',
+      empty: 'Nothing to show yet.',
+      saved: 'Changes saved.',
+      configured: 'Configured',
+      notConfigured: 'Not configured',
+      notSpecified: 'Not specified'
+    },
+    status: {
+      publish: {
+        draft: 'Draft',
+        review: 'Review',
+        published: 'Published',
+        archived: 'Archived'
+      },
+      request: {
+        new: 'New',
+        reviewing: 'Reviewing',
+        contacted: 'Contacted',
+        inProgress: 'In Progress',
+        completed: 'Completed',
+        archived: 'Archived'
+      }
+    },
+    login: {
+      eyebrow: 'Secure access',
+      title: 'Admin login',
+      heroTitle: 'A small control room for SAZAN content.',
+      heroLead: 'Sign in with the environment-configured admin account to manage projects, services, requests, and contact settings.',
+      securityNote: 'Sessions are server-side, signed, and stored in an HTTP-only cookie. Credentials are never shipped to the browser.',
+      notConfigured: 'Admin login is disabled until ADMIN_EMAIL, ADMIN_PASSWORD, and ADMIN_SESSION_SECRET are configured.',
+      invalid: 'Invalid email or password.',
+      submit: 'Sign in'
+    },
+    dashboard: {
+      cards: {
+        projects: 'Projects',
+        published: 'Published',
+        requests: 'Requests',
+        newRequests: 'New requests'
+      },
+      recentProjects: 'Recent projects',
+      projectHint: 'Latest edited portfolio records.',
+      recentRequests: 'Recent requests',
+      requestHint: 'Newest lead submissions and follow-up state.',
+      system: 'System status',
+      dataProvider: 'Data provider',
+      mediaProvider: 'Media provider',
+      minio: 'MinIO'
+    },
+    projects: {
+      title: 'Portfolio projects',
+      description: 'Create, edit, publish, feature, and preview project records.',
+      editTitle: 'Edit project',
+      newTitle: 'New project',
+      formHint: 'Keep English and Persian content complete before publishing.',
+      media: 'Media references',
+      linksPricingTimeline: 'Links, pricing, and timeline'
+    },
+    categories: {
+      title: 'Categories',
+      description: 'Localized category labels with ordering and enabled state.',
+      editTitle: 'Edit category',
+      newTitle: 'New category',
+      formHint: 'Disabled categories stay available in admin but should not be used publicly.'
+    },
+    services: {
+      title: 'Services',
+      description: 'Localized service records with icons, ordering, and active state.',
+      editTitle: 'Edit service',
+      newTitle: 'New service',
+      formHint: 'Use short, practical descriptions for public service cards.'
+    },
+    requests: {
+      title: 'Project requests',
+      description: 'Review incoming project requests, update status, archive, or delete.',
+      selectEmpty: 'Select a request to see its details.'
+    },
+    settings: {
+      title: 'Public contact settings',
+      description: 'Manage the contact information and social links shown publicly when connected.',
+      publicPreview: 'Public preview',
+      storage: 'Storage',
+      storageNote: 'Local uploads are saved for development. MinIO credentials stay server-only and this adapter is ready for future implementation.'
+    },
+    fields: {
+      email: 'Email',
+      password: 'Password',
+      title: 'Title',
+      status: 'Status',
+      category: 'Category',
+      updatedAt: 'Updated',
+      createdAt: 'Created',
+      actions: 'Actions',
+      titleEn: 'Title — English',
+      titleFa: 'Title — Persian',
+      slug: 'Slug',
+      year: 'Year',
+      shortDescriptionEn: 'Short description — English',
+      shortDescriptionFa: 'Short description — Persian',
+      fullDescriptionEn: 'Full description — English',
+      fullDescriptionFa: 'Full description — Persian',
+      technologies: 'Technologies',
+      services: 'Services',
+      coverImageUrl: 'Cover image URL',
+      coverImageKey: 'Cover image key',
+      coverAltEn: 'Cover alt — English',
+      coverAltFa: 'Cover alt — Persian',
+      galleryRefs: 'Gallery refs',
+      videoUrl: 'Video URL or reference',
+      demoUrl: 'Demo URL',
+      projectUrl: 'Project URL',
+      pricingVisibility: 'Pricing visibility',
+      currency: 'Currency',
+      priceMin: 'Minimum price',
+      priceMax: 'Maximum price',
+      durationWeeks: 'Duration in weeks',
+      pricingNoteEn: 'Pricing note — English',
+      pricingNoteFa: 'Pricing note — Persian',
+      timelineNoteEn: 'Timeline note — English',
+      timelineNoteFa: 'Timeline note — Persian',
+      featured: 'Featured',
+      order: 'Order',
+      descriptionEn: 'Description — English',
+      descriptionFa: 'Description — Persian',
+      enabled: 'Enabled',
+      icon: 'Icon',
+      active: 'Active',
+      contact: 'Contact',
+      budget: 'Budget',
+      company: 'Company',
+      phone: 'Phone',
+      preferredContact: 'Preferred contact',
+      locale: 'Locale',
+      timeline: 'Timeline',
+      projectTypes: 'Project types',
+      features: 'Features',
+      businessDescription: 'Business description',
+      whatsapp: 'WhatsApp',
+      telegram: 'Telegram',
+      linkedin: 'LinkedIn',
+      behance: 'Behance',
+      dribbble: 'Dribbble',
+      social: 'Social links'
+    },
+    filters: {
+      all: 'All'
+    },
+    placeholders: {
+      onePerLine: 'One item per line',
+      oneMediaPerLine: 'One URL or media key per line'
+    },
+    media: {
+      uploadCover: 'Upload cover file',
+      uploaded: 'Media uploaded and attached as cover.',
+      uploadError: 'Media upload failed.'
+    },
+    pricing: {
+      public: 'Public',
+      private: 'Private',
+      onRequest: 'On request'
+    },
+    confirm: {
+      deleteProject: 'Delete “{title}”? This cannot be undone.',
+      deleteCategory: 'Delete “{title}”? This cannot be undone.',
+      deleteService: 'Delete “{title}”? This cannot be undone.',
+      deleteRequest: 'Delete request from “{title}”? This cannot be undone.'
+    }
+  },
+
   language: {
     label: 'Language',
     switchTo: 'Switch to {locale}'

@@ -54,6 +54,12 @@ export default defineNuxtConfig({
       webhookToken: process.env.NOTIFICATION_WEBHOOK_TOKEN || '',
       webhookProviderName: process.env.NOTIFICATION_WEBHOOK_PROVIDER_NAME || 'webhook'
     },
+    admin: {
+      email: process.env.ADMIN_EMAIL || '',
+      password: process.env.ADMIN_PASSWORD || '',
+      sessionSecret: process.env.ADMIN_SESSION_SECRET || '',
+      sessionMaxAgeSeconds: Number(process.env.ADMIN_SESSION_MAX_AGE_SECONDS || 60 * 60 * 8)
+    },
     minio: {
       endpoint: process.env.MINIO_ENDPOINT || '',
       accessKey: process.env.MINIO_ACCESS_KEY || '',

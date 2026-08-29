@@ -15,6 +15,7 @@ type SocialChannel = {
 };
 
 const config = useRuntimeConfig();
+const { data: siteSettings } = await useFetch('/api/site-settings');
 const localePath = useLocalePath();
 const { t } = useI18n();
 const startProjectPath = computed(() => localePath('/start-a-project'));
@@ -25,16 +26,17 @@ const cleanTelegramHandle = (value: string) => value.replace(/^@/, '').replace(/
 
 const contactConfig = computed(() => {
   const configuredContact = config.public.contact;
+  const managedContact = siteSettings.value?.contact;
 
   return {
-    email: configuredContact?.email || 'hello@sazan.studio',
-    whatsapp: configuredContact?.whatsapp || '',
-    telegram: configuredContact?.telegram || '',
-    phone: configuredContact?.phone || '',
+    email: managedContact?.email || configuredContact?.email || 'hello@sazan.studio',
+    whatsapp: managedContact?.whatsapp || configuredContact?.whatsapp || '',
+    telegram: managedContact?.telegram || configuredContact?.telegram || '',
+    phone: managedContact?.phone || configuredContact?.phone || '',
     social: {
-      linkedin: configuredContact?.social?.linkedin || '',
-      behance: configuredContact?.social?.behance || '',
-      dribbble: configuredContact?.social?.dribbble || ''
+      linkedin: managedContact?.social?.linkedin || configuredContact?.social?.linkedin || '',
+      behance: managedContact?.social?.behance || configuredContact?.social?.behance || '',
+      dribbble: managedContact?.social?.dribbble || configuredContact?.social?.dribbble || ''
     }
   };
 });
