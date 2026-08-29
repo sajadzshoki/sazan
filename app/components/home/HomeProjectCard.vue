@@ -32,13 +32,20 @@ const projectPath = computed(() => localePath(`/projects/${props.project.slug}`)
       :aria-label="$t('portfolio.card.openProject', { title: projectTitle })"
     />
 
-    <div class="project-visual rounded-[1.6rem]" :data-tone="project.tone">
+    <div
+      class="project-visual min-h-[21rem] rounded-[1.6rem]"
+      :class="[
+        isWide ? 'lg:min-h-[29rem]' : '',
+        isTall ? 'lg:min-h-[34rem]' : 'lg:min-h-[24rem]'
+      ]"
+      :data-tone="project.tone"
+    >
       <div class="absolute inset-x-6 top-6 z-10 flex items-center justify-between text-xs font-black text-muted">
         <span>{{ t(`home.selectedWork.projects.${project.key}.category`) }}</span>
         <span>{{ displayYear }}</span>
       </div>
 
-      <div class="absolute bottom-7 left-7 right-7 z-10 grid gap-3 rounded-2xl border border-border bg-background/84 p-4 backdrop-blur-sm">
+      <div class="absolute inset-x-5 bottom-5 z-10 grid gap-3 rounded-2xl border border-border bg-background/84 p-4 backdrop-blur-sm sm:inset-x-7 sm:bottom-7">
         <div class="flex items-center justify-between gap-4">
           <span class="sazan-meta">{{ t('home.selectedWork.projectLabel', { number: displayIndex }) }}</span>
           <span class="text-xs text-primary">↗</span>
@@ -65,7 +72,7 @@ const projectPath = computed(() => localePath(`/projects/${props.project.slug}`)
         <li
           v-for="technology in project.technologies"
           :key="technology"
-          class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-bold text-muted transition group-hover:border-primary/40 group-hover:text-foreground"
+          class="sazan-chip group-hover:border-primary/40 group-hover:text-foreground"
         >
           {{ technology }}
         </li>

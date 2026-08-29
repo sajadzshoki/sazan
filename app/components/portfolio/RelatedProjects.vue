@@ -12,9 +12,9 @@ const getCategoryLabel = (category: LocalizedPortfolioProject['category']) => t(
 </script>
 
 <template>
-  <section class="sazan-section">
+  <section class="sazan-section-tight">
     <BaseContainer>
-      <div class="flex flex-col gap-6 border-t border-border pt-10 md:flex-row md:items-end md:justify-between">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           :eyebrow="t('portfolio.detail.related.eyebrow')"
           :title="t('portfolio.detail.related.title')"
@@ -25,7 +25,7 @@ const getCategoryLabel = (category: LocalizedPortfolioProject['category']) => t(
         </NuxtLink>
       </div>
 
-      <div class="mt-12 grid gap-8 lg:grid-cols-3">
+      <div class="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-3">
         <NuxtLink
           v-for="project in props.projects"
           :key="project.slug"

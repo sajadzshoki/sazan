@@ -8,7 +8,7 @@ const { t } = useI18n();
       <div class="relative overflow-hidden border border-border bg-surface p-7 shadow-[var(--shadow-soft)] sm:p-10 lg:p-14">
         <div class="absolute inset-0 grid-paper opacity-28" aria-hidden="true" />
         <div class="absolute -end-24 -top-24 h-72 w-72 rounded-full bg-primary/18 blur-3xl" aria-hidden="true" />
-        <div class="relative z-10 grid gap-10 lg:grid-cols-[0.72fr_0.28fr] lg:items-end">
+        <div class="relative z-10 grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-end lg:gap-10">
           <div>
             <p class="sazan-eyebrow">
               {{ t('home.cta.eyebrow') }}

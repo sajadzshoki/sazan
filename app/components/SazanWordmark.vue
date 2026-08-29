@@ -15,7 +15,7 @@ withDefaults(defineProps<{
       :class="inverted ? 'border-background bg-background text-foreground' : 'border-foreground bg-foreground text-background'"
     >
       <span class="absolute inset-x-1/2 top-0 h-full w-px -translate-x-1/2 bg-current/25" aria-hidden="true" />
-      <span class="absolute inset-y-1/2 left-0 h-px w-full -translate-y-1/2 bg-current/25" aria-hidden="true" />
+      <span class="absolute inset-y-1/2 start-0 h-px w-full -translate-y-1/2 bg-current/25" aria-hidden="true" />
       <span class="relative text-sm font-black tracking-[-0.08em]">S</span>
     </span>
 

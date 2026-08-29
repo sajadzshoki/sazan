@@ -14,7 +14,7 @@ const { formatDigits } = useLocaleDigits();
         :lead="t('home.process.lead')"
       />
 
-      <div class="relative mt-14 grid gap-7 md:grid-cols-4">
+      <div class="relative mt-12 grid gap-7 md:grid-cols-4 lg:mt-14">
         <article
           v-for="step in processSteps"
           :key="step.key"

@@ -14,7 +14,7 @@ const { t } = useI18n();
           <p class="sazan-editorial-statement max-w-5xl text-balance text-[clamp(2.6rem,6.6vw,7.2rem)] font-black">
             {{ t('home.statement.title') }}
           </p>
-          <div class="mt-10 grid gap-6 border-t border-background/16 pt-8 md:grid-cols-2">
+          <div class="mt-9 grid gap-6 border-t border-background/16 pt-7 md:mt-10 md:grid-cols-2 md:pt-8">
             <p class="text-lg leading-8 text-background/76">
               {{ t('home.statement.lead') }}
             </p>

@@ -62,7 +62,7 @@ watch(
               </span>
             </template>
           </ClientOnly>
-          <a :href="getSectionPath('#project-cta')" class="sazan-button-primary py-2.5">
+          <a :href="getSectionPath('#project-cta')" class="sazan-button-primary">
             {{ $t('common.startProject') }}
           </a>
         </div>
@@ -77,11 +77,11 @@ watch(
         >
           <span class="relative h-3.5 w-5" aria-hidden="true">
             <span
-              class="absolute left-0 top-0 h-px w-5 bg-current transition"
+              class="absolute start-0 top-0 h-px w-5 bg-current transition"
               :class="isMenuOpen ? 'translate-y-[0.42rem] rotate-45' : ''"
             />
             <span
-              class="absolute bottom-0 left-0 h-px w-5 bg-current transition"
+              class="absolute bottom-0 start-0 h-px w-5 bg-current transition"
               :class="isMenuOpen ? '-translate-y-[0.42rem] -rotate-45' : ''"
             />
           </span>

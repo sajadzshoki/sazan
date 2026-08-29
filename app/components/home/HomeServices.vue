@@ -8,7 +8,7 @@ const { formatDigits } = useLocaleDigits();
 <template>
   <section id="services" class="sazan-section-tight border-y border-border bg-surface/42">
     <BaseContainer>
-      <div class="grid gap-12 lg:grid-cols-[0.38fr_0.62fr]">
+      <div class="grid gap-10 lg:grid-cols-[0.38fr_0.62fr] lg:gap-12">
         <div class="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             :eyebrow="t('home.services.eyebrow')"
@@ -21,7 +21,7 @@ const { formatDigits } = useLocaleDigits();
           <article
             v-for="service in services"
             :key="service.key"
-            class="group grid gap-5 border-b border-border py-7 transition hover:bg-background/42 sm:grid-cols-[5rem_1fr] sm:gap-8 lg:grid-cols-[6rem_1fr_15rem]"
+            class="group grid gap-5 border-b border-border py-6 transition hover:bg-background/42 sm:grid-cols-[5rem_1fr] sm:gap-8 lg:grid-cols-[6rem_1fr_15rem] lg:py-7"
           >
             <div class="service-index text-2xl">
               {{ formatDigits(service.index) }}
@@ -40,7 +40,7 @@ const { formatDigits } = useLocaleDigits();
               <li
                 v-for="technology in service.technologies"
                 :key="technology"
-                class="h-max rounded-full border border-border bg-background px-3 py-1 text-xs font-bold text-muted group-hover:border-primary/45 group-hover:text-foreground"
+                class="sazan-chip group-hover:border-primary/45 group-hover:text-foreground"
               >
                 {{ technology }}
               </li>

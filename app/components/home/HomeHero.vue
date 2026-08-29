@@ -9,20 +9,20 @@ const metrics = ['products', 'disciplines', 'languages'] as const;
 </script>
 
 <template>
-  <section class="relative isolate min-h-[calc(100svh-var(--header-height))] overflow-hidden">
+  <section class="relative isolate overflow-hidden">
     <div class="absolute inset-x-0 top-0 -z-10 h-px bg-border" aria-hidden="true" />
     <BaseContainer>
-      <div class="grid min-h-[calc(100svh-var(--header-height))] items-center gap-14 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:py-20">
+      <div class="grid items-center gap-12 py-14 md:py-16 lg:min-h-[calc(100svh-var(--header-height)-3.5rem)] lg:grid-cols-[1.08fr_0.92fr] lg:gap-14 lg:py-18">
         <div class="max-w-5xl">
           <p class="sazan-eyebrow motion-fade-up">
             {{ t('home.hero.eyebrow') }}
           </p>
 
-          <h1 class="sazan-display motion-fade-up motion-delay-1 mt-8 max-w-5xl text-balance text-foreground">
+          <h1 class="sazan-display motion-fade-up motion-delay-1 mt-7 max-w-5xl text-balance text-foreground sm:mt-8">
             {{ t('home.hero.title') }}
           </h1>
 
-          <div class="motion-fade-up motion-delay-2 mt-8 grid gap-7 lg:grid-cols-[minmax(0,0.74fr)_minmax(14rem,0.26fr)] lg:items-end">
+          <div class="motion-fade-up motion-delay-2 mt-7 grid gap-6 lg:grid-cols-[minmax(0,0.74fr)_minmax(14rem,0.26fr)] lg:items-end lg:gap-7">
             <p class="sazan-body-lg max-w-2xl text-pretty">
               {{ t('home.hero.lead') }}
             </p>
@@ -33,7 +33,7 @@ const metrics = ['products', 'disciplines', 'languages'] as const;
             </div>
           </div>
 
-          <div class="motion-fade-up motion-delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
+          <div class="motion-fade-up motion-delay-3 mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
             <a :href="startProjectPath" class="sazan-button-primary">
               {{ t('common.startProject') }}
             </a>
@@ -44,13 +44,13 @@ const metrics = ['products', 'disciplines', 'languages'] as const;
         </div>
 
         <div class="motion-fade-up motion-delay-2 relative lg:justify-self-end">
-          <div class="hero-visual hero-visual-float relative aspect-[0.86] min-h-[28rem] w-full max-w-[34rem] overflow-hidden rounded-[2rem] p-5 sm:p-7">
+          <div class="hero-visual hero-visual-float relative aspect-[0.92] min-h-[22rem] w-full max-w-[34rem] overflow-hidden rounded-[1.75rem] p-5 sm:aspect-[0.86] sm:min-h-[27rem] sm:rounded-[2rem] sm:p-7 lg:min-h-[28rem]">
             <div class="absolute inset-0 grid-paper opacity-35" aria-hidden="true" />
             <div class="relative z-10 flex h-full flex-col justify-between">
               <div class="flex items-start justify-between gap-5">
                 <div>
                   <p class="sazan-meta">{{ t('home.hero.visual.kicker') }}</p>
-                  <p class="mt-3 max-w-[16rem] text-3xl font-black leading-none tracking-[-0.08em] text-foreground">
+                  <p class="mt-3 max-w-[16rem] text-2xl font-black leading-none tracking-[-0.06em] text-foreground sm:text-3xl sm:tracking-[-0.08em]">
                     {{ t('home.hero.visual.title') }}
                   </p>
                 </div>

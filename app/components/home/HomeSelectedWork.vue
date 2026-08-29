@@ -9,7 +9,7 @@ const selectedWorkPath = computed(() => localePath('/projects'));
 <template>
   <section id="selected-work" class="sazan-section">
     <BaseContainer>
-      <div class="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-end">
+      <div class="grid gap-8 lg:grid-cols-[0.7fr_0.3fr] lg:items-end">
         <SectionHeading
           :eyebrow="t('home.selectedWork.eyebrow')"
           :title="t('home.selectedWork.title')"
@@ -26,7 +26,7 @@ const selectedWorkPath = computed(() => localePath('/projects'));
         </div>
       </div>
 
-      <div class="mt-14 grid gap-x-8 gap-y-14 lg:grid-cols-2">
+      <div class="mt-12 grid gap-x-8 gap-y-12 lg:mt-14 lg:grid-cols-2 lg:gap-y-14">
         <HomeProjectCard
           v-for="(project, index) in featuredProjects"
           :key="project.key"

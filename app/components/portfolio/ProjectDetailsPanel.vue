@@ -61,14 +61,14 @@ const details = computed(() => {
 </script>
 
 <template>
-  <aside class="border border-border bg-surface p-5 shadow-[var(--shadow-soft)] lg:p-6">
+  <aside class="sazan-surface p-5 shadow-[var(--shadow-soft)] lg:p-6">
     <h2 class="sazan-meta text-foreground">
       {{ t('portfolio.detail.projectDetails') }}
     </h2>
 
     <dl class="mt-6 grid gap-5">
       <div v-for="item in details" :key="item.label" class="border-t border-border pt-4 first:border-t-0 first:pt-0">
-        <dt class="text-xs font-bold uppercase tracking-[0.12em] text-muted">
+        <dt class="sazan-meta">
           {{ item.label }}
         </dt>
         <dd class="mt-2 text-base font-bold leading-7 text-foreground">

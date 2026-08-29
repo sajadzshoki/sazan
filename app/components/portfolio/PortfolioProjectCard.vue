@@ -32,13 +32,13 @@ const articleClass = computed(() => {
 const visualClass = computed(() => {
   switch (props.project.layout) {
     case 'feature':
-      return 'min-h-[28rem]';
+      return 'min-h-[23rem] sm:min-h-[28rem]';
     case 'portrait':
-      return 'min-h-[34rem]';
+      return 'min-h-[27rem] sm:min-h-[34rem]';
     case 'landscape':
-      return 'min-h-[23rem]';
+      return 'min-h-[21rem] sm:min-h-[24rem]';
     default:
-      return 'min-h-[21rem]';
+      return 'min-h-[20rem] sm:min-h-[22rem]';
   }
 });
 </script>
@@ -75,7 +75,7 @@ const visualClass = computed(() => {
             <li
               v-for="technology in project.technologies.slice(0, 4)"
               :key="technology"
-              class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-bold text-muted transition group-hover:border-primary/45 group-hover:text-foreground"
+              class="sazan-chip group-hover:border-primary/45 group-hover:text-foreground"
             >
               {{ technology }}
             </li>

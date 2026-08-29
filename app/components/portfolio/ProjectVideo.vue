@@ -11,7 +11,7 @@ const { t } = useI18n();
 <template>
   <section class="sazan-section-tight border-y border-border bg-surface/42">
     <BaseContainer>
-      <div class="grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-center">
+      <div class="grid gap-8 lg:grid-cols-[0.4fr_0.6fr] lg:items-center lg:gap-10">
         <div>
           <p class="sazan-eyebrow">
             {{ t('portfolio.detail.video.eyebrow') }}
@@ -24,7 +24,7 @@ const { t } = useI18n();
           </p>
         </div>
 
-        <div class="relative min-h-[22rem] overflow-hidden border border-border bg-background shadow-[var(--shadow-soft)]">
+        <div class="relative min-h-[18rem] overflow-hidden border border-border bg-background shadow-[var(--shadow-soft)] sm:min-h-[22rem]">
           <div class="portfolio-grain absolute inset-0 opacity-50" aria-hidden="true" />
           <div class="absolute inset-6 border border-border" aria-hidden="true" />
           <div class="absolute inset-0 grid place-items-center p-8 text-center">

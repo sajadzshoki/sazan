@@ -31,11 +31,12 @@ export default defineConfig({
     }
   },
   shortcuts: {
-    'sazan-container': 'mx-auto w-full max-w-7xl px-5 sm:px-7 lg:px-10',
+    'sazan-container': 'mx-auto w-full max-w-[86rem] px-5 sm:px-8 lg:px-10 xl:px-12',
     'sazan-focus': 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
     'sazan-surface': 'border border-border bg-surface text-foreground shadow-sm',
     'sazan-link': 'sazan-focus rounded-full text-sm font-medium text-muted transition-colors hover:text-foreground',
-    'sazan-button-primary': 'sazan-focus inline-flex items-center justify-center rounded-full border border-primary bg-primary px-5 py-3 text-sm font-semibold text-background shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0',
-    'sazan-button-secondary': 'sazan-focus inline-flex items-center justify-center rounded-full border border-border bg-surface/80 px-5 py-3 text-sm font-semibold text-foreground transition hover:-translate-y-0.5 hover:border-primary/45 hover:bg-elevated/80 active:translate-y-0'
+    'sazan-chip': 'inline-flex h-max items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-bold leading-5 text-muted transition-colors',
+    'sazan-button-primary': 'sazan-focus inline-flex min-h-11 items-center justify-center rounded-full border border-primary bg-primary px-5 py-2.5 text-sm font-bold text-background shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0',
+    'sazan-button-secondary': 'sazan-focus inline-flex min-h-11 items-center justify-center rounded-full border border-border bg-surface/85 px-5 py-2.5 text-sm font-bold text-foreground transition hover:-translate-y-0.5 hover:border-primary/45 hover:bg-elevated/80 active:translate-y-0'
   }
 });

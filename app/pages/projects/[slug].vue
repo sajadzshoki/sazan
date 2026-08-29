@@ -47,13 +47,13 @@ useSeoMeta({
   <article>
     <section class="case-study-hero relative overflow-hidden border-b border-border">
       <BaseContainer>
-        <div class="grid gap-12 py-12 lg:grid-cols-[0.58fr_0.42fr] lg:items-end lg:py-20">
+        <div class="grid gap-10 py-14 md:py-16 lg:grid-cols-[0.58fr_0.42fr] lg:items-end lg:gap-12 lg:py-20">
           <div>
             <NuxtLink :to="localePath('/projects')" class="sazan-text-link text-sm">
               {{ t('portfolio.detail.backToProjects') }}
             </NuxtLink>
 
-            <p class="sazan-eyebrow motion-fade-up mt-10">
+            <p class="sazan-eyebrow motion-fade-up mt-8 sm:mt-10">
               {{ categoryLabel }} / {{ formatDigits(project.year) }}
             </p>
 
@@ -61,16 +61,16 @@ useSeoMeta({
               {{ project.title }}
             </h1>
 
-            <p class="sazan-body-lg motion-fade-up motion-delay-2 mt-7 max-w-3xl text-pretty">
+            <p class="sazan-body-lg motion-fade-up motion-delay-2 mt-6 max-w-3xl text-pretty sm:mt-7">
               {{ project.shortDescription }}
             </p>
 
-            <div class="motion-fade-up motion-delay-3 mt-9 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between lg:max-w-3xl">
+            <div class="motion-fade-up motion-delay-3 mt-8 flex flex-col gap-5 sm:mt-9 sm:flex-row sm:items-center sm:justify-between lg:max-w-3xl">
               <ul class="flex flex-wrap gap-2">
                 <li
                   v-for="service in serviceLabels"
                   :key="service"
-                  class="rounded-full border border-border bg-surface/80 px-3 py-1 text-xs font-bold text-muted"
+                  class="sazan-chip"
                 >
                   {{ service }}
                 </li>
@@ -83,7 +83,7 @@ useSeoMeta({
                   :href="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="sazan-button-secondary py-2.5"
+                  class="sazan-button-secondary"
                 >
                   {{ link.label }}
                 </a>
@@ -95,7 +95,7 @@ useSeoMeta({
             :visual="project.coverVisual"
             :label="t('portfolio.detail.heroVisualLabel')"
             :title="project.title"
-            class="motion-fade-up motion-delay-2 min-h-[32rem] lg:min-h-[42rem]"
+            class="motion-fade-up motion-delay-2 min-h-[24rem] sm:min-h-[30rem] lg:min-h-[42rem]"
           />
         </div>
       </BaseContainer>
@@ -103,8 +103,12 @@ useSeoMeta({
 
     <section v-if="project.results.length" class="border-b border-border bg-foreground text-background">
       <BaseContainer>
-        <div class="grid divide-y divide-background/12 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          <div v-for="result in project.results" :key="result.label" class="py-7 sm:px-7 sm:first:ps-0 sm:last:pe-0">
+        <div class="grid sm:grid-cols-3">
+          <div
+            v-for="result in project.results"
+            :key="result.label"
+            class="border-t border-background/12 py-6 first:border-t-0 sm:border-s sm:border-t-0 sm:px-7 sm:py-8 sm:first:border-s-0 sm:first:ps-0 sm:last:pe-0"
+          >
             <p class="text-4xl font-black tracking-[-0.07em]">
               {{ result.value }}
             </p>
@@ -118,7 +122,7 @@ useSeoMeta({
 
     <section class="sazan-section">
       <BaseContainer>
-        <div class="grid gap-12 lg:grid-cols-[minmax(0,0.66fr)_minmax(19rem,0.34fr)] lg:items-start">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.66fr)_minmax(19rem,0.34fr)] lg:items-start lg:gap-12">
           <div>
             <p class="sazan-eyebrow">
               {{ t('portfolio.detail.overview.eyebrow') }}
@@ -126,11 +130,11 @@ useSeoMeta({
             <h2 class="sazan-heading-lg mt-5 max-w-4xl text-balance text-foreground">
               {{ project.overview }}
             </h2>
-            <p class="mt-7 max-w-3xl text-lg leading-8 text-muted">
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-muted sm:mt-7">
               {{ project.fullDescription }}
             </p>
 
-            <div class="mt-12 grid gap-8 md:grid-cols-2">
+            <div class="mt-10 grid gap-7 md:mt-12 md:grid-cols-2 md:gap-8">
               <div class="border-t border-border pt-5">
                 <h3 class="sazan-meta text-foreground">
                   {{ t('portfolio.detail.challenge') }}
@@ -149,11 +153,11 @@ useSeoMeta({
               </div>
             </div>
 
-            <div class="mt-14">
+            <div class="mt-12 lg:mt-14">
               <h3 class="sazan-heading-lg text-foreground">
                 {{ t('portfolio.detail.features.title') }}
               </h3>
-              <ol class="mt-8 border-y border-border">
+              <ol class="mt-7 border-y border-border sm:mt-8">
                 <li
                   v-for="(feature, index) in project.keyFeatures"
                   :key="feature"
@@ -181,7 +185,7 @@ useSeoMeta({
 
     <section class="sazan-section-tight border-y border-border bg-surface/38">
       <BaseContainer>
-        <div class="grid gap-10 lg:grid-cols-[0.35fr_0.65fr]">
+        <div class="grid gap-8 lg:grid-cols-[0.35fr_0.65fr] lg:gap-10">
           <div>
             <p class="sazan-eyebrow">
               {{ t('portfolio.detail.technologies.eyebrow') }}

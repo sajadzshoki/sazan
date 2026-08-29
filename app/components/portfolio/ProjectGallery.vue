@@ -23,7 +23,7 @@ const getItemClass = (orientation: LocalizedPortfolioGalleryItem['orientation'])
         />
       </div>
 
-      <div class="mt-12 grid gap-6 lg:grid-cols-12">
+      <div class="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-12 lg:gap-8">
         <article
           v-for="item in props.items"
           :key="item.id"
@@ -34,7 +34,7 @@ const getItemClass = (orientation: LocalizedPortfolioGalleryItem['orientation'])
             :visual="item.visual"
             :label="t('portfolio.detail.gallery.visualLabel')"
             :title="item.title"
-            :class="item.orientation === 'portrait' ? 'min-h-[36rem]' : 'min-h-[25rem]'"
+            :class="item.orientation === 'portrait' ? 'min-h-[28rem] sm:min-h-[34rem] lg:min-h-[36rem]' : 'min-h-[21rem] sm:min-h-[25rem]'"
           />
           <div class="mt-4 grid gap-2 border-t border-border pt-4 md:grid-cols-[0.35fr_0.65fr]">
             <h3 class="sazan-title-tight text-xl font-black text-foreground">

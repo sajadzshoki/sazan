@@ -101,12 +101,12 @@ const handleLocaleClick = async (targetLocale: AppLocaleCode, event: MouseEvent)
 </script>
 
 <template>
-  <div class="flex items-center gap-1" :aria-label="$t('language.label')">
+  <div class="flex h-9 items-center gap-1 rounded-full border border-border bg-surface/70 p-1 shadow-sm" role="group" :aria-label="$t('language.label')">
     <a
       v-for="localeItem in availableLocales"
       :key="localeItem.code"
       :href="getLocaleSwitchPath(localeItem.code)"
-      class="sazan-focus inline-flex h-8 min-w-9 items-center justify-center rounded-md px-2.5 text-xs font-medium transition-colors"
+      class="sazan-focus inline-flex h-7 min-w-8 items-center justify-center rounded-full px-2.5 text-xs font-bold transition-colors"
       :class="locale === localeItem.code ? 'bg-primary/10 text-primary' : 'text-muted hover:bg-elevated hover:text-foreground'"
       :aria-current="locale === localeItem.code ? 'page' : undefined"
       :aria-label="$t('language.switchTo', { locale: localeItem.name })"

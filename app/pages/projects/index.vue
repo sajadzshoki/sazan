@@ -53,17 +53,17 @@ useSeoMeta({
   <div>
     <section class="sazan-section-tight border-b border-border">
       <BaseContainer>
-        <div class="grid gap-10 lg:grid-cols-[0.68fr_0.32fr] lg:items-end">
+        <div class="grid gap-9 lg:grid-cols-[0.68fr_0.32fr] lg:items-end lg:gap-10">
           <div>
             <p class="sazan-eyebrow motion-fade-up">
               {{ t('portfolio.hero.eyebrow') }}
             </p>
-            <h1 class="sazan-display motion-fade-up motion-delay-1 mt-8 max-w-5xl text-balance text-foreground">
+            <h1 class="sazan-display motion-fade-up motion-delay-1 mt-7 max-w-5xl text-balance text-foreground sm:mt-8">
               {{ t('portfolio.hero.title') }}
             </h1>
           </div>
 
-          <div class="motion-fade-up motion-delay-2 grid gap-7 lg:justify-items-end lg:text-end">
+          <div class="motion-fade-up motion-delay-2 grid gap-6 lg:justify-items-end lg:gap-7 lg:text-end">
             <p class="sazan-body-lg max-w-md text-pretty">
               {{ t('portfolio.hero.lead') }}
             </p>
@@ -92,12 +92,12 @@ useSeoMeta({
 
     <section class="border-b border-border bg-surface/38">
       <BaseContainer>
-        <div class="filter-panel flex gap-1 overflow-x-auto py-4" role="group" :aria-label="t('portfolio.filters.label')">
+        <div class="filter-panel flex gap-2 overflow-x-auto py-3 sm:py-4" role="group" :aria-label="t('portfolio.filters.label')">
           <button
             v-for="filter in filters"
             :key="filter"
             type="button"
-            class="sazan-focus group shrink-0 border px-4 py-3 text-start transition sm:px-5"
+            class="sazan-focus group min-w-[8.5rem] shrink-0 border px-4 py-3 text-start transition sm:min-w-[9.25rem] sm:px-5"
             :class="selectedFilter === filter
               ? 'border-primary bg-background text-foreground shadow-sm'
               : 'border-transparent text-muted hover:border-border hover:bg-background/70 hover:text-foreground'"
@@ -117,7 +117,7 @@ useSeoMeta({
 
     <section class="sazan-section">
       <BaseContainer>
-        <div class="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div class="mb-9 flex flex-col gap-3 md:mb-10 md:flex-row md:items-end md:justify-between">
           <p class="sazan-meta">
             {{ t('portfolio.listing.showing', { count: projectCount, category: activeCategoryLabel }) }}
           </p>
@@ -126,7 +126,7 @@ useSeoMeta({
           </p>
         </div>
 
-        <TransitionGroup name="portfolio-grid" tag="div" class="grid gap-x-8 gap-y-16 lg:grid-cols-12">
+        <TransitionGroup name="portfolio-grid" tag="div" class="grid gap-x-8 gap-y-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-16">
           <PortfolioProjectCard
             v-for="(project, index) in filteredProjects"
             :key="project.slug"
