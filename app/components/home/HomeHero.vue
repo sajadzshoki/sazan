@@ -17,9 +17,9 @@ const metrics = ['products', 'disciplines', 'languages'] as const;
             {{ t('home.hero.eyebrow') }}
           </p>
 
-          <h1 class="sazan-display motion-fade-up motion-delay-1 mt-7 max-w-5xl text-balance text-foreground sm:mt-8">
+          <h2 class="sazan-display text-18 motion-fade-up motion-delay-1 mt-7 max-w-5xl text-balance text-foreground sm:mt-8">
             {{ t('home.hero.title') }}
-          </h1>
+          </h2>
 
           <div class="motion-fade-up motion-delay-2 mt-7 grid gap-6 lg:grid-cols-[minmax(0,0.74fr)_minmax(14rem,0.26fr)] lg:items-end lg:gap-7">
             <p class="sazan-body-lg max-w-2xl text-pretty">
