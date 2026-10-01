@@ -1,7 +1,7 @@
 import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 import type { H3Event } from 'h3';
-import { createError, deleteCookie, getCookie, setCookie } from 'h3';
+import { createError, deleteCookie, getCookie, getRequestHeader, getRequestURL, setCookie } from 'h3';
 
 const adminSessionCookieName = 'sazan_admin_session';
 
@@ -28,6 +28,15 @@ const timingSafeStringEqual = (left: string, right: string) => {
 
 const signPayload = (payload: string, secret: string) => {
   return createHmac('sha256', secret).update(payload).digest('base64url');
+};
+
+const isSecureRequest = (event: H3Event) => {
+  const forwardedProto = String(getRequestHeader(event, 'x-forwarded-proto') || '')
+    .split(',')[0]
+    .trim()
+    .toLowerCase();
+
+  return forwardedProto === 'https' || getRequestURL(event).protocol === 'https:';
 };
 
 const getAdminRuntimeConfig = () => {
@@ -95,7 +104,7 @@ export const createAdminSession = (event: H3Event, email: string): AdminSession 
   setCookie(event, adminSessionCookieName, `${encodedPayload}.${signature}`, {
     httpOnly: true,
     sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
+    secure: isSecureRequest(event),
     path: '/',
     maxAge: config.sessionMaxAgeSeconds
   });
