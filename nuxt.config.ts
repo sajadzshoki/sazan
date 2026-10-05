@@ -1,7 +1,8 @@
 const themeInitScript = `
 (function () {
   try {
-    var preference = window.localStorage.getItem('sazan-theme') || 'system';
+    var preference = window.localStorage.getItem('sazan-theme') || 'light';
+    if (preference !== 'light' && preference !== 'dark' && preference !== 'system') preference = 'light';
     var isDark = preference === 'dark' || (preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
     var theme = isDark ? 'dark' : 'light';
     var root = document.documentElement;
@@ -35,13 +36,16 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'color-scheme', content: 'light dark' },
-        { name: 'theme-color', content: '#f8f7f3', media: '(prefers-color-scheme: light)' },
-        { name: 'theme-color', content: '#090a0a', media: '(prefers-color-scheme: dark)' },
+        { name: 'theme-color', content: '#f4f7fc' },
         { name: 'application-name', content: 'SAZAN' }
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'manifest', href: '/site.webmanifest' }
+        { rel: 'icon', type: 'image/png', href: '/favicon-64.png' },
+        { rel: 'apple-touch-icon', href: '/favicon-64.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap' }
       ],
       script: [
         {

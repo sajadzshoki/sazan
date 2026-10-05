@@ -54,9 +54,7 @@ const recover = async (path: string) => {
 <template>
   <main class="min-h-screen bg-background px-5 py-8 text-foreground sm:px-8" :dir="direction">
     <div class="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-5xl place-items-center">
-      <section class="relative overflow-hidden rounded-[2rem] border border-border bg-surface p-6 text-center shadow-[var(--shadow-strong)] sm:p-10 lg:p-14">
-        <div class="absolute inset-0 grid-paper opacity-25" aria-hidden="true" />
-        <div class="absolute -end-20 -top-20 h-72 w-72 rounded-full bg-primary/16 blur-3xl" aria-hidden="true" />
+      <section class="relative overflow-hidden border border-border bg-surface p-6 text-center sm:p-10 lg:p-14">
         <div class="relative z-10">
           <p class="sazan-eyebrow justify-center">
             {{ eyebrow }} · SAZAN

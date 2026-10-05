@@ -1,7 +1,7 @@
 import { portfolioProjects } from '../../app/data/projects';
 
 const locales = ['fa', 'en'] as const;
-const staticRoutes = ['/', '/projects', '/contact', '/start-a-project'] as const;
+const staticRoutes = ['/', '/projects', '/services', '/about', '/contact', '/start-a-project'] as const;
 
 const escapeXml = (value: string) => value
   .replace(/&/g, '&amp;')

@@ -1,47 +1,50 @@
 <script setup lang="ts">
 import type { LocalizedPortfolioProject } from '~/composables/usePortfolio';
+import { screenshotFor } from '~/utils/presentation';
 
-const props = defineProps<{
+defineProps<{
   projects: LocalizedPortfolioProject[];
 }>();
 
 const localePath = useLocalePath();
 const { t } = useI18n();
-
-const getCategoryLabel = (category: LocalizedPortfolioProject['category']) => t(`portfolio.categories.${category}`);
 </script>
 
 <template>
-  <section class="sazan-section-tight">
+  <section v-if="projects.length" class="sazan-section-tight border-t border-border">
     <BaseContainer>
-      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <SectionHeading
-          :eyebrow="t('portfolio.detail.related.eyebrow')"
-          :title="t('portfolio.detail.related.title')"
-          :lead="t('portfolio.detail.related.lead')"
-        />
-        <NuxtLink :to="localePath('/projects')" class="sazan-text-link w-max">
+      <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="sazan-eyebrow">
+            {{ t('portfolio.detail.related.eyebrow') }}
+          </p>
+          <h2 class="sazan-heading-lg mt-4 text-foreground">
+            {{ t('portfolio.detail.related.title') }}
+          </h2>
+        </div>
+        <NuxtLink :to="localePath('/projects')" class="sazan-text-link w-max text-sm">
           {{ t('portfolio.detail.backToProjects') }}
         </NuxtLink>
       </div>
 
-      <div class="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-3">
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
         <NuxtLink
-          v-for="project in props.projects"
+          v-for="project in projects"
           :key="project.slug"
           :to="localePath(`/projects/${project.slug}`)"
-          class="group sazan-focus block rounded-[1.35rem]"
+          class="group sazan-focus block"
         >
-          <PortfolioVisual
-            :visual="project.coverVisual"
-            :label="getCategoryLabel(project.category)"
+          <DeviceFrame
+            :type="project.category === 'mobileApps' ? 'phone' : 'laptop'"
+            :src="screenshotFor(project.media, project.category === 'mobileApps' ? 'phone' : 'laptop')"
+            :alt="project.title"
             :title="project.title"
-            compact
+            :caption="t(`portfolio.categories.${project.category}`)"
           />
-          <h3 class="sazan-title-tight mt-5 text-2xl font-black text-foreground">
+          <h3 class="mt-4 text-xl font-extrabold text-foreground">
             {{ project.title }}
           </h3>
-          <p class="mt-3 text-sm leading-7 text-muted">
+          <p class="mt-2 text-sm leading-7 text-muted">
             {{ project.shortDescription }}
           </p>
         </NuxtLink>

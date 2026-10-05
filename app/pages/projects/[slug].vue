@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { screenshotFor } from '~/utils/presentation';
+
 const route = useRoute();
 const localePath = useLocalePath();
 const { t, locale } = useI18n();
 const config = useRuntimeConfig();
 const { formatDigits } = useLocaleDigits();
-const { getProjectBySlug, getRelatedProjects } = usePortfolio();
+const { getProjectBySlug, getRelatedProjects, projects } = usePortfolio();
 
 const routeSlug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug;
 const slug = String(routeSlug || '');
@@ -21,6 +23,17 @@ const project = computed(() => getProjectBySlug(slug) || initialProject);
 const categoryLabel = computed(() => t(`portfolio.categories.${project.value.category}`));
 const serviceLabels = computed(() => project.value.services.map((service) => t(`home.services.items.${service}.title`)));
 const relatedProjects = computed(() => getRelatedProjects(project.value.raw, 3));
+const nextProject = computed(() => {
+  const list = projects.value;
+  const index = list.findIndex((item) => item.slug === project.value.slug);
+
+  if (index < 0 || list.length < 2) {
+    return undefined;
+  }
+
+  return list[(index + 1) % list.length];
+});
+const heroDevice = computed(() => project.value.category === 'mobileApps' ? 'phone' as const : 'laptop' as const);
 
 const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.studio').replace(/\/$/, ''));
 
@@ -103,12 +116,15 @@ usePublicSeo({
             </div>
           </div>
 
-          <PortfolioVisual
-            :visual="project.coverVisual"
-            :label="t('portfolio.detail.heroVisualLabel')"
-            :title="project.title"
-            class="motion-fade-up motion-delay-2 min-h-[24rem] sm:min-h-[30rem] lg:min-h-[42rem]"
-          />
+          <div class="motion-fade-up motion-delay-2 mx-auto w-full max-w-xl">
+            <DeviceFrame
+              :type="heroDevice"
+              :src="screenshotFor(project.media, heroDevice)"
+              :alt="project.title"
+              :title="project.title"
+              :caption="categoryLabel"
+            />
+          </div>
         </div>
       </BaseContainer>
     </section>
@@ -218,6 +234,25 @@ usePublicSeo({
             </li>
           </ul>
         </div>
+      </BaseContainer>
+    </section>
+
+    <section v-if="nextProject" class="border-t border-border">
+      <BaseContainer>
+        <NuxtLink :to="localePath(`/projects/${nextProject.slug}`)" class="group sazan-focus flex flex-col gap-3 py-10 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="sazan-meta text-primary">
+              {{ t('studio.work.next') }}
+            </p>
+            <p class="sazan-heading-lg mt-3 text-foreground">
+              {{ nextProject.title }}
+            </p>
+          </div>
+          <span class="text-sm font-semibold text-muted group-hover:text-primary">
+            {{ t(`portfolio.categories.${nextProject.category}`) }}
+            <span class="arrow-icon" aria-hidden="true">→</span>
+          </span>
+        </NuxtLink>
       </BaseContainer>
     </section>
 

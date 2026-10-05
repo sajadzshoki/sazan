@@ -140,7 +140,7 @@ usePublicSeo({
           </p>
         </div>
 
-        <TransitionGroup name="portfolio-grid" tag="div" class="grid gap-x-8 gap-y-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-16">
+        <TransitionGroup name="portfolio-grid" tag="div" class="grid gap-x-8 gap-y-14 md:grid-cols-2">
           <PortfolioProjectCard
             v-for="(project, index) in filteredProjects"
             :key="project.slug"

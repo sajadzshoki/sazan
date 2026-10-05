@@ -216,7 +216,6 @@ usePublicSeo({
             </div>
 
             <div class="relative overflow-hidden border border-border bg-foreground p-6 text-background shadow-[var(--shadow-soft)] sm:p-8">
-              <div class="absolute -end-20 -top-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl" aria-hidden="true" />
               <div class="relative z-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
                 <div>
                   <p class="sazan-meta text-background/58">

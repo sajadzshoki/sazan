@@ -1,39 +1,26 @@
 <script setup lang="ts">
-import { featuredProjects } from '~/data/home';
-
-const localePath = useLocalePath();
-const { t } = useI18n();
-const selectedWorkPath = computed(() => localePath('/projects'));
+const { featuredProjects, projects } = usePortfolio();
+const showcase = computed(() => featuredProjects.value.length ? featuredProjects.value : projects.value.slice(0, 6));
 </script>
 
 <template>
-  <section id="selected-work" class="sazan-section">
+  <section id="work" class="sazan-section border-t border-border bg-soft/70">
     <BaseContainer>
-      <div class="grid gap-8 lg:grid-cols-[0.7fr_0.3fr] lg:items-end">
-        <SectionHeading
-          :eyebrow="t('home.selectedWork.eyebrow')"
-          :title="t('home.selectedWork.title')"
-          :lead="t('home.selectedWork.lead')"
-        />
-
-        <div class="lg:justify-self-end">
-          <a :href="selectedWorkPath" class="sazan-text-link">
-            {{ t('common.viewAllProjects') }}
-          </a>
-          <p class="mt-4 max-w-xs text-sm leading-6 text-muted">
-            {{ t('home.selectedWork.note') }}
+      <div class="mb-10 grid gap-6 lg:grid-cols-[0.7fr_0.3fr] lg:items-end">
+        <div>
+          <p class="sazan-eyebrow">
+            {{ $t('studio.work.eyebrow') }}
           </p>
+          <h2 class="sazan-heading-xl mt-5 max-w-3xl text-balance text-foreground">
+            {{ $t('studio.work.title') }}
+          </h2>
         </div>
+        <p class="sazan-body-lg max-w-sm lg:justify-self-end">
+          {{ $t('studio.work.lead') }}
+        </p>
       </div>
 
-      <div class="mt-12 grid gap-x-8 gap-y-12 lg:mt-14 lg:grid-cols-2 lg:gap-y-14">
-        <HomeProjectCard
-          v-for="(project, index) in featuredProjects"
-          :key="project.key"
-          :project="project"
-          :index="index"
-        />
-      </div>
+      <ProjectCarousel :projects="showcase" />
     </BaseContainer>
   </section>
 </template>

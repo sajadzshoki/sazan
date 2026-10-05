@@ -26,10 +26,15 @@ const applyDocumentTheme = (theme: ResolvedTheme) => {
   root.dataset.theme = theme;
   root.classList.toggle('dark', theme === 'dark');
   root.style.colorScheme = theme;
+
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) {
+    themeColor.setAttribute('content', theme === 'dark' ? '#090d14' : '#f4f7fc');
+  }
 };
 
 export const useAppTheme = () => {
-  const preference = useState<ThemePreference>('sazan.theme.preference', () => 'system');
+  const preference = useState<ThemePreference>('sazan.theme.preference', () => 'light');
   const resolvedTheme = useState<ResolvedTheme>('sazan.theme.resolved', () => 'light');
 
   const resolvePreference = (themePreference: ThemePreference = preference.value): ResolvedTheme => {

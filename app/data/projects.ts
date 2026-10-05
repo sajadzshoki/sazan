@@ -31,10 +31,17 @@ export interface PortfolioResult {
   label: LocalizedString;
 }
 
+export interface PortfolioMedia {
+  desktop?: string;
+  tablet?: string;
+  mobile?: string;
+}
+
 export interface PortfolioProject {
   id: string;
   slug: string;
   title: LocalizedString;
+  media?: PortfolioMedia;
   shortDescription: LocalizedString;
   fullDescription: LocalizedString;
   category: PortfolioCategoryKey;

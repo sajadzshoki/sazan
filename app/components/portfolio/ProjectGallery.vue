@@ -1,49 +1,46 @@
 <script setup lang="ts">
 import type { LocalizedPortfolioGalleryItem } from '~/composables/usePortfolio';
 
-const props = defineProps<{
+defineProps<{
   items: LocalizedPortfolioGalleryItem[];
 }>();
 
 const { t } = useI18n();
 
-const getItemClass = (orientation: LocalizedPortfolioGalleryItem['orientation']) => {
-  return `gallery-item-${orientation}`;
+const deviceFor = (orientation: LocalizedPortfolioGalleryItem['orientation']) => {
+  return orientation === 'portrait' ? 'phone' as const : 'laptop' as const;
 };
 </script>
 
 <template>
-  <section v-if="props.items.length" class="sazan-section-tight">
+  <section v-if="items.length" class="sazan-section-tight border-t border-border">
     <BaseContainer>
-      <div class="grid gap-8 lg:grid-cols-[0.35fr_0.65fr] lg:items-end">
-        <SectionHeading
-          :eyebrow="t('portfolio.detail.gallery.eyebrow')"
-          :title="t('portfolio.detail.gallery.title')"
-          :lead="t('portfolio.detail.gallery.lead')"
-        />
+      <div class="max-w-2xl">
+        <p class="sazan-eyebrow">
+          {{ t('portfolio.detail.gallery.eyebrow') }}
+        </p>
+        <h2 class="sazan-heading-lg mt-5 text-balance text-foreground">
+          {{ t('portfolio.detail.gallery.title') }}
+        </h2>
+        <p class="sazan-body-lg mt-5 text-pretty">
+          {{ t('portfolio.detail.gallery.lead') }}
+        </p>
       </div>
 
-      <div class="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-12 lg:gap-8">
-        <article
-          v-for="item in props.items"
-          :key="item.id"
-          class="group scroll-reveal"
-          :class="getItemClass(item.orientation)"
-        >
-          <PortfolioVisual
-            :visual="item.visual"
-            :label="t('portfolio.detail.gallery.visualLabel')"
+      <div class="mt-10 grid gap-10 md:grid-cols-2">
+        <article v-for="item in items" :key="item.id">
+          <DeviceFrame
+            :type="deviceFor(item.orientation)"
             :title="item.title"
-            :class="item.orientation === 'portrait' ? 'min-h-[28rem] sm:min-h-[34rem] lg:min-h-[36rem]' : 'min-h-[21rem] sm:min-h-[25rem]'"
+            :caption="item.caption"
+            :alt="item.title"
           />
-          <div class="mt-4 grid gap-2 border-t border-border pt-4 md:grid-cols-[0.35fr_0.65fr]">
-            <h3 class="sazan-title-tight text-xl font-black text-foreground">
-              {{ item.title }}
-            </h3>
-            <p class="text-sm leading-7 text-muted">
-              {{ item.caption }}
-            </p>
-          </div>
+          <h3 class="mt-4 text-lg font-extrabold text-foreground">
+            {{ item.title }}
+          </h3>
+          <p class="mt-2 text-sm leading-7 text-muted">
+            {{ item.caption }}
+          </p>
         </article>
       </div>
     </BaseContainer>

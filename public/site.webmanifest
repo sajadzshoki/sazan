@@ -4,14 +4,14 @@
   "description": "Digital product agency",
   "start_url": "/fa",
   "display": "standalone",
-  "background_color": "#f8f7f3",
-  "theme_color": "#181714",
+  "background_color": "#f4f7fc",
+  "theme_color": "#f4f7fc",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "/favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

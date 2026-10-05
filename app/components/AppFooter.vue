@@ -13,7 +13,8 @@ const footerSocialLinks = computed(() => [
   { label: 'LinkedIn', href: publicContact.value?.social?.linkedin || '' },
   { label: 'Behance', href: publicContact.value?.social?.behance || '' },
   { label: 'Dribbble', href: publicContact.value?.social?.dribbble || '' }
-]);
+].filter((item) => item.href));
+
 const getNavPath = (item: { path?: string; hash?: string }) => {
   if (item.path) {
     return localePath(item.path);
@@ -24,74 +25,91 @@ const getNavPath = (item: { path?: string; hash?: string }) => {
 </script>
 
 <template>
-  <footer class="border-t border-border bg-foreground text-background">
+  <footer class="border-t border-border bg-soft text-foreground">
     <BaseContainer>
-      <div class="grid gap-12 py-14 lg:grid-cols-[1.1fr_1.6fr] lg:py-18">
+      <div class="grid gap-12 py-14 lg:grid-cols-[1.15fr_1.4fr] lg:py-16">
         <div class="max-w-md">
           <NuxtLink :to="homePath" class="sazan-focus inline-flex rounded-sm">
-            <SazanWordmark inverted />
+            <SazanWordmark />
           </NuxtLink>
-          <p class="mt-6 text-base leading-7 text-background/72">
+          <p class="mt-6 max-w-sm text-base leading-7 text-muted">
             {{ $t('footer.statement') }}
           </p>
-          <a :href="contactEmailHref" class="sazan-focus mt-7 inline-flex text-2xl font-black tracking-[-0.05em]">
+          <a :href="contactEmailHref" class="sazan-focus mt-6 inline-flex text-lg font-semibold text-foreground" dir="ltr">
             {{ contactEmail }}
           </a>
         </div>
 
         <div class="grid gap-8 sm:grid-cols-3">
           <div>
-            <h2 class="footer-column-title text-xs font-black tracking-[0.16em] text-background/50 uppercase">
+            <h2 class="footer-label">
               {{ $t('footer.navigation') }}
             </h2>
-            <ul class="mt-5 grid gap-3 text-sm text-background/75">
+            <ul class="mt-4 grid gap-2.5 text-sm text-muted">
               <li v-for="item in navItems" :key="item.key">
-                <a class="sazan-focus rounded-sm hover:text-background" :href="getNavPath(item)">
+                <NuxtLink class="sazan-focus rounded-sm hover:text-foreground" :to="getNavPath(item)">
                   {{ $t(`navigation.links.${item.key}`) }}
-                </a>
+                </NuxtLink>
               </li>
             </ul>
           </div>
 
           <div>
-            <h2 class="footer-column-title text-xs font-black tracking-[0.16em] text-background/50 uppercase">
+            <h2 class="footer-label">
               {{ $t('footer.services') }}
             </h2>
-            <ul class="mt-5 grid gap-3 text-sm text-background/75">
+            <ul class="mt-4 grid gap-2.5 text-sm text-muted">
               <li v-for="service in services" :key="service.key">
-                {{ $t(`home.services.items.${service.key}.title`) }}
+                <NuxtLink class="hover:text-foreground" :to="localePath(`/services#${service.key}`)">
+                  {{ $t(`home.services.items.${service.key}.title`) }}
+                </NuxtLink>
               </li>
             </ul>
           </div>
 
           <div>
-            <h2 class="footer-column-title text-xs font-black tracking-[0.16em] text-background/50 uppercase">
-              {{ $t('footer.social') }}
+            <h2 class="footer-label">
+              {{ $t('footer.connect') }}
             </h2>
-            <ul class="mt-5 grid gap-3 text-sm text-background/75">
+            <ul class="mt-4 grid gap-2.5 text-sm text-muted">
               <li v-for="social in footerSocialLinks" :key="social.label">
-                <a
-                  v-if="social.href"
-                  :href="social.href"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="sazan-focus rounded-sm hover:text-background"
-                >
+                <a :href="social.href" target="_blank" rel="noopener noreferrer" class="sazan-focus rounded-sm hover:text-foreground">
                   {{ social.label }}
                 </a>
-                <span v-else class="text-background/45">
-                  {{ social.label }} — {{ $t('contact.social.placeholder') }}
-                </span>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/contact')" class="hover:text-foreground">
+                  {{ $t('navigation.links.contact') }}
+                </NuxtLink>
               </li>
             </ul>
+            <div class="mt-5">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col gap-3 border-t border-background/12 py-6 text-xs text-background/55 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-col gap-3 border-t border-border py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>{{ $t('footer.copyright', { year }) }}</p>
         <p>{{ $t('footer.location') }}</p>
       </div>
     </BaseContainer>
   </footer>
 </template>
+
+<style scoped>
+.footer-label {
+  color: rgb(var(--color-muted));
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+html[dir='rtl'] .footer-label {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.84rem;
+}
+</style>

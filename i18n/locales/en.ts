@@ -1,8 +1,8 @@
 export default {
   brand: {
     name: 'SAZAN',
-    tagline: 'Digital product agency',
-    shortTagline: 'Product Lab'
+    tagline: 'Digital product studio',
+    shortTagline: 'Digital product studio'
   },
   common: {
     startProject: 'Start a Project',
@@ -25,8 +25,11 @@ export default {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     links: {
-      projects: 'Projects',
+      home: 'Home',
+      work: 'Work',
+      projects: 'Work',
       services: 'Services',
+      about: 'About',
       process: 'Process',
       contact: 'Contact'
     }
@@ -130,20 +133,24 @@ export default {
       lead: 'The process stays lean, collaborative, and transparent so momentum never comes at the cost of quality.',
       steps: {
         discover: {
-          title: 'Discover',
-          description: 'We clarify goals, users, constraints, and the product opportunity before deciding what should be built.'
+          title: 'Understand',
+          description: 'We learn the business, the people using it, and the constraint that actually matters before drawing a screen.'
         },
         design: {
           title: 'Design',
-          description: 'We turn strategy into flows, interfaces, content hierarchy, and a design system that can scale.'
+          description: 'Flows, interface, and content are decided together, so the product has a shape engineering can build.'
         },
         build: {
           title: 'Build',
-          description: 'We implement with modern architecture, clean code, performance discipline, and practical technical decisions.'
+          description: 'We implement the system: interface, data, and the paths between them, with the release in mind.'
         },
         launch: {
           title: 'Launch',
-          description: 'We prepare the release, test the details, and support iteration after real users start interacting.'
+          description: 'We ship, watch the first real use, and fix what only shows up outside the studio.'
+        },
+        evolve: {
+          title: 'Evolve',
+          description: 'After release we stay close enough to tighten the product where people actually get stuck.'
         }
       }
     },
@@ -176,8 +183,8 @@ export default {
     },
     hero: {
       eyebrow: 'Portfolio',
-      title: 'Selected work, built to be used.',
-      lead: 'A deeper look at digital products where interface craft, technical architecture, and business clarity work together.',
+      title: 'Work with a working surface.',
+      lead: 'Case studies across websites, applications, commerce, operations tools, and backend systems.',
       countLabel: 'public projects'
     },
     filters: {
@@ -185,7 +192,7 @@ export default {
     },
     listing: {
       showing: '{count} projects / {category}',
-      note: 'Each project is represented with local mock data now, structured so it can later be replaced by MongoDB-backed content.'
+      note: 'Open a project for the case study, the stack, and the live link when one exists.'
     },
     card: {
       openProject: 'Open {title} case study'
@@ -227,8 +234,8 @@ export default {
       },
       gallery: {
         eyebrow: 'Visual system',
-        title: 'Screens, states, and product moments.',
-        lead: 'Abstract project visuals stand in for final media while keeping the case study rhythm close to the future content model.',
+        title: 'Screens and states, shown in the device they belong to.',
+        lead: 'When a project file is attached, it sits inside the frame. Until then, the frame stays empty of invented interfaces.',
         visualLabel: 'Interface fragment'
       },
       video: {
@@ -254,8 +261,8 @@ export default {
     },
     hero: {
       eyebrow: 'Start light',
-      title: 'Tell us just enough to begin.',
-      lead: 'No perfect brief required. Choose what you know, skip what you do not, and we will turn the first conversation into a clear next step.'
+      title: 'Tell us what the product needs to become.',
+      lead: 'A short brief is enough. Share the type of build, the constraint, and how to reach you. We will answer with a clear next step.'
     },
     progress: {
       stepOf: 'Step {current} of {total}',
@@ -676,6 +683,117 @@ export default {
     }
   },
 
+  studio: {
+    hero: {
+      eyebrow: 'Digital product studio',
+      title: 'We build products\nthat have to work\nin the real business.',
+      lead: 'SAZAN designs and engineers websites, applications, commerce, and the systems underneath them. The interface and the build stay in one practice.',
+      secondaryCta: 'View Our Work'
+    },
+    tech: {
+      label: 'In the work'
+    },
+    intro: {
+      eyebrow: 'The studio',
+      title: 'One practice for the screen and the system under it.',
+      lead: 'A storefront, a mobile product, an operations panel, an API — we treat them as one build. From the first interface to the release, the decisions stay in the same room.',
+      parts: {
+        shop: 'Storefront',
+        mobile: 'Mobile',
+        panel: 'Operations',
+        api: 'API'
+      }
+    },
+    work: {
+      eyebrow: 'Selected work',
+      title: 'Real products. Real builds.',
+      lead: 'Browse the catalog in the device it was made for. Live preview opens the project when a public URL exists.',
+      count: '{current} / {total}',
+      carousel: 'Project carousel',
+      previous: 'Previous project',
+      next: 'Next project',
+      previousNamed: 'Show {title}',
+      nextNamed: 'Show {title}',
+      live: 'Live preview',
+      liveOn: 'Live preview on',
+      openLive: 'Open project',
+      devicesLabel: 'Preview size',
+      resize: 'Resize viewport',
+      devices: {
+        laptop: 'Desktop',
+        tablet: 'Tablet',
+        phone: 'Mobile'
+      }
+    },
+    services: {
+      eyebrow: 'What we build',
+      title: 'The product, and the system that keeps it running.',
+      lead: 'Six kinds of work. Each one is designed and engineered, not delivered as a picture of a product.',
+      all: 'All services'
+    },
+    servicesPage: {
+      seoTitle: 'Services',
+      seoDescription: 'Websites, web applications, mobile products, e-commerce, admin tools, and backend systems from SAZAN.',
+      eyebrow: 'Services',
+      title: 'What we actually build.',
+      lead: 'The list is specific on purpose. If the product needs more than one of these, we still treat it as a single system.',
+      close: 'If the shape is still unclear, start with the product conversation.',
+      tools: 'Tools we ship with',
+      builtWith: 'Built with'
+    },
+    process: {
+      eyebrow: 'How the work moves',
+      title: 'A full product cycle, kept small enough to stay sharp.',
+      lead: 'We stay with the work from the first questions through release, and after it meets real use.'
+    },
+    stack: {
+      eyebrow: 'Engineering',
+      title: 'A stack we can stand behind.',
+      lead: 'The tools change with the product. The standard does not: a clear interface, dependable data, and a release we can operate.',
+      groups: {
+        frontend: 'Frontend',
+        backend: 'Backend',
+        data: 'Data',
+        infrastructure: 'Infrastructure'
+      }
+    },
+    cta: {
+      eyebrow: 'A serious build',
+      title: 'If the product is worth building, let’s talk about what it has to become.',
+      lead: 'Tell us who it is for, what it has to do, and where it is stuck. We will say plainly whether we are the right studio, and what the first useful step is.',
+      points: {
+        who: 'Who it is for',
+        does: 'What it has to do',
+        stuck: 'Where it is stuck'
+      }
+    },
+    about: {
+      seoTitle: 'About',
+      seoDescription: 'SAZAN is a digital product studio for websites, applications, commerce, and the systems behind them.',
+      eyebrow: 'About',
+      title: 'A focused studio for products that need both taste and engineering.',
+      lead: 'SAZAN is not a campaign shop and not a body shop for tickets. We design and build digital products — the part people touch, and the part that has to keep working.',
+      practiceTitle: 'How we take the work',
+      practiceLead: 'Most projects need more than a homepage. We stay with the product through interface, implementation, and the unglamorous parts: permissions, data, checkout, release.',
+      languageTitle: 'Two languages, one system',
+      languageLead: 'The site is written in English and Persian. Layout, type, and navigation are designed for both directions, not mirrored as an afterthought.',
+      catalogLabel: 'The public catalog currently holds {count} projects.',
+      facets: {
+        touch: 'The part people touch',
+        system: 'The part that has to keep working',
+        notCampaign: 'Not a campaign shop',
+        notTickets: 'Not a ticket desk'
+      },
+      stays: {
+        interface: 'Interface',
+        data: 'Data',
+        access: 'Permissions',
+        checkout: 'Checkout',
+        release: 'Release'
+      }
+    }
+  },
+
   language: {
     label: 'Language',
     switchTo: 'Switch to {locale}'
@@ -685,15 +803,16 @@ export default {
     system: 'System',
     light: 'Light',
     dark: 'Dark',
-    switchTo: 'Switch theme. Current preference: {theme}'
+    switchTo: 'Switch to {theme} theme'
   },
   footer: {
-    statement: 'Premium digital products for teams that care about craft, clarity, and reliable execution.',
+    statement: 'A digital product studio for teams that need the interface and the system behind it.',
     email: "hello{'@'}sazan.studio",
     navigation: 'Navigation',
     services: 'Services',
     social: 'Social',
+    connect: 'Connect',
     copyright: '© {year} SAZAN. All rights reserved.',
-    location: 'Built for international and Persian-speaking audiences.'
+    location: 'English and Persian.'
   }
 } as const;

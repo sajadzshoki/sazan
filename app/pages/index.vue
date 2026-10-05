@@ -5,15 +5,15 @@ const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.st
 
 usePublicSeo({
   title: () => t('brand.tagline'),
-  description: () => t('home.hero.lead'),
+  description: () => t('studio.hero.lead'),
   structuredData: () => [
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'SAZAN',
       url: siteUrl.value,
-      logo: `${siteUrl.value}/favicon.svg`,
-      description: t('home.hero.lead'),
+      logo: `${siteUrl.value}/logo-nav.png`,
+      description: t('studio.hero.lead'),
       sameAs: [
         config.public.contact?.social?.linkedin,
         config.public.contact?.social?.behance,
@@ -34,10 +34,12 @@ usePublicSeo({
 <template>
   <div>
     <HomeHero />
+    <HomeTechStrip />
+    <HomeAgencyStatement />
     <HomeSelectedWork />
     <HomeServices />
     <HomeProcess />
-    <HomeAgencyStatement />
+    <HomeStack />
     <HomeProjectCta />
   </div>
 </template>
