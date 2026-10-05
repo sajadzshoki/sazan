@@ -226,6 +226,7 @@ export default {
         openDemo: 'Open Demo',
         visitWebsite: 'Visit Website'
       },
+      liveFrame: 'You can use the site inside the frame. If it does not open, the project image stays.',
       overview: {
         eyebrow: 'Project overview'
       },

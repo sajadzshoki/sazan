@@ -34,6 +34,8 @@ const nextProject = computed(() => {
   return list[(index + 1) % list.length];
 });
 const heroDevice = computed(() => project.value.category === 'mobileApps' ? 'phone' as const : 'laptop' as const);
+const liveUrl = computed(() => project.value.projectUrl || project.value.demoUrl || '');
+const { embeddable } = useFrameEmbed(liveUrl);
 
 const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.studio').replace(/\/$/, ''));
 
@@ -123,7 +125,12 @@ usePublicSeo({
               :alt="project.title"
               :title="project.title"
               :caption="categoryLabel"
+              :live-url="liveUrl"
+              :live="embeddable"
             />
+            <p v-if="liveUrl" class="mt-4 text-sm leading-7 text-muted">
+              {{ t('portfolio.detail.liveFrame') }}
+            </p>
           </div>
         </div>
       </BaseContainer>
@@ -211,7 +218,7 @@ usePublicSeo({
 
     <PortfolioProjectVideo v-if="project.video" :video="project.video" />
 
-    <section class="sazan-section-tight border-y border-border bg-surface/38">
+    <section v-if="project.technologies.length" class="sazan-section-tight border-y border-border bg-surface/38">
       <BaseContainer>
         <div class="grid gap-8 lg:grid-cols-[0.35fr_0.65fr] lg:gap-10">
           <div>

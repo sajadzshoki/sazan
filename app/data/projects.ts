@@ -80,1096 +80,519 @@ export const isPortfolioFilterKey = (value: unknown): value is PortfolioFilterKe
   return typeof value === 'string' && portfolioFilters.includes(value as PortfolioFilterKey);
 };
 
+const text = (en: string, fa: string): LocalizedString => ({ en, fa });
+
+const shot = (url: string): PortfolioMedia => ({
+  desktop: url,
+  tablet: url,
+  mobile: url
+});
+
 export const portfolioProjects = [
   {
-    id: 'proj_atlas_commerce',
-    slug: 'atlas-commerce-studio',
-    title: {
-      en: 'Atlas Commerce Studio',
-      fa: 'استودیو تجارت اطلس'
-    },
-    shortDescription: {
-      en: 'A premium storefront and checkout system for a multi-category lifestyle retailer.',
-      fa: 'یک فروشگاه و سیستم پرداخت ممتاز برای خرده‌فروشی سبک زندگی با چند دسته محصول.'
-    },
-    fullDescription: {
-      en: 'Atlas needed a commerce experience that felt editorial without slowing down product discovery. SAZAN shaped a storefront system, campaign pages, checkout logic, and analytics-friendly components for a growing retail team.',
-      fa: 'اطلس به تجربه فروشگاهی نیاز داشت که حس ادیتوریال داشته باشد اما کشف محصول را کند نکند. سازان سیستم فروشگاه، صفحات کمپین، منطق پرداخت و کامپوننت‌های آماده تحلیل را برای یک تیم در حال رشد شکل داد.'
-    },
-    category: 'ecommerce',
-    services: ['ecommerce', 'websites', 'backendSystems'],
-    technologies: ['Nuxt', 'Vue', 'TypeScript', 'MongoDB', 'Stripe'],
-    coverVisual: { tone: 'primary', composition: 'commerce' },
-    gallery: [
-      {
-        id: 'atlas-storefront',
-        title: { en: 'Editorial storefront', fa: 'ویترین ادیتوریال' },
-        caption: { en: 'Large campaign areas connect brand stories to shoppable product modules.', fa: 'فضاهای بزرگ کمپین، روایت برند را به ماژول‌های خریدنی محصول وصل می‌کنند.' },
-        orientation: 'wide',
-        visual: { tone: 'primary', composition: 'editorial' }
-      },
-      {
-        id: 'atlas-checkout',
-        title: { en: 'Checkout flow', fa: 'مسیر پرداخت' },
-        caption: { en: 'A clean sequence reduces decisions at the most important moment.', fa: 'یک مسیر تمیز، تصمیم‌های اضافه را در مهم‌ترین لحظه کم می‌کند.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'commerce' }
-      },
-      {
-        id: 'atlas-mobile',
-        title: { en: 'Mobile catalog', fa: 'کاتالوگ موبایل' },
-        caption: { en: 'Product discovery remains fast and tactile on smaller screens.', fa: 'کشف محصول روی صفحه‌های کوچک سریع و ملموس باقی می‌ماند.' },
-        orientation: 'portrait',
-        visual: { tone: 'warm', composition: 'mobile' }
-      }
-    ],
-    video: {
-      title: { en: 'Commerce interaction preview', fa: 'پیش‌نمایش تعامل فروشگاه' },
-      description: { en: 'A placeholder motion area prepared for future product walkthroughs.', fa: 'یک فضای موشن موقت که برای walkthroughهای محصول در آینده آماده شده است.' },
-      label: { en: 'Prototype reel', fa: 'ریل نمونه اولیه' }
-    },
-    demoUrl: 'https://example.com/atlas-demo',
-    projectUrl: 'https://example.com/atlas',
-    pricing: {
-      visibility: 'public',
-      currency: 'USD',
-      min: 45000,
-      max: 72000,
-      note: { en: 'Public range: $45k–$72k', fa: 'بازه عمومی: ۴۵ تا ۷۲ هزار دلار' }
-    },
-    timeline: {
-      durationWeeks: 12,
-      note: { en: '12-week strategy, design, and build', fa: '۱۲ هفته استراتژی، طراحی و توسعه' }
-    },
+    id: 'proj_ham_sakhteman',
+    slug: 'ham-sakhteman',
+    title: text('Ham Sakhteman', 'هم‌ساختمان'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/eeb89f83-5bf4-4e13-b648-ed7ca0255707.png'),
+    shortDescription: text(
+      'A building management app that stays simple, secure, and modern.',
+      'اپلیکیشن مدیریت ساختمان؛ ساده، امن و مدرن.'
+    ),
+    fullDescription: text(
+      'Ham Sakhteman is a building management product for day-to-day residential operations, with a live English and Persian experience.',
+      'هم‌ساختمان محصول مدیریت ساختمان برای کارهای روزمره مجتمع‌های مسکونی است و تجربه فارسی و انگلیسی دارد.'
+    ),
+    category: 'webApps',
+    services: ['webApps', 'adminPanels'],
+    technologies: [],
+    coverVisual: { tone: 'primary', composition: 'dashboard' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3001/en',
     year: '2026',
     featured: true,
     status: 'published',
-    overview: {
-      en: 'We built a modular commerce platform that combines brand storytelling with reliable conversion mechanics.',
-      fa: 'یک پلتفرم فروشگاهی ماژولار ساختیم که روایت برند را با سازوکارهای قابل اتکای تبدیل ترکیب می‌کند.'
-    },
-    challenge: {
-      en: 'The existing store treated every product category the same and made campaign launches dependent on engineering support.',
-      fa: 'فروشگاه قبلی با همه دسته‌های محصول یکسان برخورد می‌کرد و انتشار کمپین‌ها را به پشتیبانی فنی وابسته کرده بود.'
-    },
-    solution: {
-      en: 'SAZAN created reusable commerce sections, a cleaner checkout model, and a data structure that lets the team launch seasonal stories quickly.',
-      fa: 'سازان سکشن‌های قابل استفاده مجدد، مدل پرداخت تمیزتر و ساختار داده‌ای ساخت که تیم بتواند داستان‌های فصلی را سریع منتشر کند.'
-    },
+    overview: text(
+      'A focused product for running a building without a heavy operations tool.',
+      'محصولی متمرکز برای اداره ساختمان، بدون ابزار سنگین عملیاتی.'
+    ),
+    challenge: text(
+      'Building managers need a clear place for everyday work, not a generic dashboard.',
+      'مدیران ساختمان به جای داشبورد عمومی، به جایی روشن برای کارهای روزمره نیاز دارند.'
+    ),
+    solution: text(
+      'Ham Sakhteman keeps building management simple, secure, and available in both Persian and English.',
+      'هم‌ساختمان مدیریت ساختمان را ساده و امن نگه می‌دارد و به فارسی و انگلیسی در دسترس است.'
+    ),
     keyFeatures: [
-      { en: 'Composable campaign and product landing pages', fa: 'صفحات کمپین و محصول قابل ترکیب' },
-      { en: 'Checkout steps with fewer cognitive interruptions', fa: 'مراحل پرداخت با وقفه ذهنی کمتر' },
-      { en: 'Analytics events mapped to product discovery behavior', fa: 'رویدادهای تحلیلی متصل به رفتار کشف محصول' }
+      text('Building management workflows', 'جریان‌های مدیریت ساختمان'),
+      text('Persian and English experience', 'تجربه فارسی و انگلیسی'),
+      text('A live product people can open', 'محصول زنده که می‌شود بازش کرد')
     ],
-    results: [
-      { value: { en: '+18%', fa: '+۱۸٪' }, label: { en: 'checkout conversion', fa: 'رشد تبدیل پرداخت' } },
-      { value: { en: '2.1s', fa: '۲.۱ ثانیه' }, label: { en: 'median page load', fa: 'میانه بارگذاری صفحه' } },
-      { value: { en: '4x', fa: '۴ برابر' }, label: { en: 'faster campaign publishing', fa: 'انتشار سریع‌تر کمپین' } }
-    ],
+    results: [],
     layout: 'feature'
   },
   {
-    id: 'proj_nova_health',
-    slug: 'nova-health-portal',
-    title: {
-      en: 'Nova Health Portal',
-      fa: 'پورتال سلامت نوا'
-    },
-    shortDescription: {
-      en: 'A secure appointment, patient dashboard, and messaging portal for a private clinic network.',
-      fa: 'پورتال امن نوبت‌دهی، داشبورد بیمار و پیام‌رسانی برای شبکه‌ای از کلینیک‌های خصوصی.'
-    },
-    fullDescription: {
-      en: 'Nova wanted a calmer digital product for patients and a more practical workspace for coordinators. The portal balances privacy, scheduling speed, and a clear view of each patient journey.',
-      fa: 'نوا محصول دیجیتال آرام‌تری برای بیماران و فضای کاری کاربردی‌تری برای هماهنگ‌کنندگان می‌خواست. این پورتال حریم خصوصی، سرعت زمان‌بندی و دید روشن از مسیر هر بیمار را متعادل می‌کند.'
-    },
-    category: 'webApps',
-    services: ['webApps', 'adminPanels', 'backendSystems'],
-    technologies: ['Vue', 'TypeScript', 'Node.js', 'MongoDB', 'WebSockets'],
-    coverVisual: { tone: 'accent', composition: 'dashboard' },
-    gallery: [
-      {
-        id: 'nova-dashboard',
-        title: { en: 'Patient dashboard', fa: 'داشبورد بیمار' },
-        caption: { en: 'Appointments, messages, and care notes are grouped in a single calm view.', fa: 'نوبت‌ها، پیام‌ها و یادداشت‌های مراقبتی در یک نمای آرام کنار هم قرار گرفته‌اند.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      },
-      {
-        id: 'nova-booking',
-        title: { en: 'Booking flow', fa: 'جریان رزرو' },
-        caption: { en: 'The booking sequence emphasizes clarity and fewer abandoned requests.', fa: 'مسیر رزرو روی شفافیت و کاهش درخواست‌های نیمه‌کاره تمرکز دارد.' },
-        orientation: 'portrait',
-        visual: { tone: 'cool', composition: 'mobile' }
-      },
-      {
-        id: 'nova-ops',
-        title: { en: 'Coordinator view', fa: 'نمای هماهنگ‌کننده' },
-        caption: { en: 'Internal staff can triage requests without jumping between disconnected tools.', fa: 'تیم داخلی بدون جابه‌جایی بین ابزارهای جدا، درخواست‌ها را اولویت‌بندی می‌کند.' },
-        orientation: 'wide',
-        visual: { tone: 'mono', composition: 'system' }
-      }
-    ],
-    demoUrl: 'https://example.com/nova-demo',
-    pricing: {
-      visibility: 'on-request',
-      note: { en: 'Pricing shared after compliance scope', fa: 'قیمت پس از مشخص شدن دامنه الزامات محرمانه اعلام می‌شود' }
-    },
-    timeline: {
-      durationWeeks: 14,
-      note: { en: '14 weeks including privacy and workflow validation', fa: '۱۴ هفته همراه با بررسی حریم خصوصی و اعتبارسنجی فرآیند' }
-    },
-    year: '2025',
+    id: 'proj_sazan',
+    slug: 'sazan',
+    title: text('Sazan', 'سازان'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/8cc5320a-bf90-4db8-9f0a-e92d77876778.png'),
+    shortDescription: text(
+      'A bilingual agency site with portfolio, project requests, and a protected admin panel.',
+      'سایت دوزبانه آژانس با نمونه‌کار، درخواست پروژه و پنل مدیریت محافظت‌شده.'
+    ),
+    fullDescription: text(
+      'SAZAN is a bilingual Persian and English digital product agency website. It includes the public marketing site, portfolio and case studies, a guided project-request flow, a contact page, and a small protected admin panel.',
+      'سازان وب‌سایت دوزبانه یک آژانس محصول دیجیتال است. سایت عمومی، نمونه‌کار و کیس‌استادی، مسیر درخواست پروژه، صفحه تماس و یک پنل مدیریت داخلی کوچک را شامل می‌شود.'
+    ),
+    category: 'websites',
+    services: ['websites', 'webApps', 'adminPanels'],
+    technologies: ['Nuxt', 'Vue', 'TypeScript', 'UnoCSS', 'Nuxt UI', 'MongoDB'],
+    coverVisual: { tone: 'accent', composition: 'editorial' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3002',
+    year: '2026',
     featured: true,
     status: 'published',
-    overview: {
-      en: 'A healthcare portal designed to make patient actions obvious and internal coordination less fragmented.',
-      fa: 'پورتالی در حوزه سلامت که اقدام‌های بیمار را واضح و هماهنگی داخلی را کمتر پراکنده می‌کند.'
-    },
-    challenge: {
-      en: 'Patients were calling for status updates because the old digital experience hid the next step.',
-      fa: 'بیماران برای پیگیری وضعیت تماس می‌گرفتند چون تجربه دیجیتال قبلی قدم بعدی را پنهان می‌کرد.'
-    },
-    solution: {
-      en: 'We mapped the care journey into states, then designed patient and coordinator interfaces around those states.',
-      fa: 'مسیر مراقبت را به وضعیت‌های مشخص تبدیل کردیم و سپس رابط بیمار و هماهنگ‌کننده را حول همان وضعیت‌ها طراحی کردیم.'
-    },
+    overview: text(
+      'The public site and the internal tools that keep the studio’s work publishable.',
+      'سایت عمومی و ابزارهای داخلی که کار استودیو را قابل انتشار نگه می‌دارند.'
+    ),
+    challenge: text(
+      'The studio needed one bilingual place for marketing, case studies, and incoming project requests.',
+      'استودیو به یک جای دوزبانه برای معرفی، کیس‌استادی و درخواست‌های پروژه نیاز داشت.'
+    ),
+    solution: text(
+      'Sazan combines the marketing site, portfolio, request flow, and a protected admin panel in one Nuxt application.',
+      'سازان سایت معرفی، نمونه‌کار، مسیر درخواست و پنل مدیریت را در یک اپلیکیشن Nuxt جمع می‌کند.'
+    ),
     keyFeatures: [
-      { en: 'Role-aware portal for patients and staff', fa: 'پورتال نقش‌محور برای بیمار و تیم داخلی' },
-      { en: 'Secure message threads attached to appointments', fa: 'گفت‌وگوهای امن متصل به نوبت‌ها' },
-      { en: 'Operational queues for intake and follow-up', fa: 'صف‌های عملیاتی برای پذیرش و پیگیری' }
+      text('Persian and English marketing site', 'سایت معرفی فارسی و انگلیسی'),
+      text('Portfolio and case-study pages', 'صفحات نمونه‌کار و کیس‌استادی'),
+      text('Guided project requests and admin review', 'درخواست پروژه و بررسی در پنل مدیریت')
     ],
-    results: [
-      { value: { en: '-32%', fa: '-۳۲٪' }, label: { en: 'status update calls', fa: 'کاهش تماس‌های پیگیری' } },
-      { value: { en: '7 min', fa: '۷ دقیقه' }, label: { en: 'average booking time saved', fa: 'صرفه‌جویی میانگین در رزرو' } },
-      { value: { en: '99.9%', fa: '۹۹.۹٪' }, label: { en: 'tracked service uptime', fa: 'پایداری سرویس پایش‌شده' } }
-    ],
-    layout: 'portrait'
+    results: [],
+    layout: 'landscape'
   },
   {
-    id: 'proj_pulse_mobile',
-    slug: 'pulse-finance-mobile',
-    title: {
-      en: 'Pulse Finance Mobile',
-      fa: 'موبایل مالی پالس'
-    },
-    shortDescription: {
-      en: 'A mobile money companion for budget planning, recurring payments, and practical daily insight.',
-      fa: 'همراه مالی موبایل برای برنامه‌ریزی بودجه، پرداخت‌های تکرارشونده و بینش روزمره کاربردی.'
-    },
-    fullDescription: {
-      en: 'Pulse turns personal finance into a quieter routine. We designed a mobile product concept with compact dashboards, spending signals, and guidance that does not feel alarmist.',
-      fa: 'پالس مدیریت مالی شخصی را به عادتی آرام‌تر تبدیل می‌کند. یک کانسپت محصول موبایل با داشبوردهای فشرده، سیگنال‌های خرج‌کرد و راهنمایی بدون اضطراب طراحی کردیم.'
-    },
-    category: 'mobileApps',
-    services: ['mobileApps', 'webApps', 'backendSystems'],
-    technologies: ['Flutter', 'Dart', 'Node.js', 'MongoDB', 'Realtime API'],
-    coverVisual: { tone: 'mono', composition: 'mobile' },
-    gallery: [
-      {
-        id: 'pulse-overview',
-        title: { en: 'Daily pulse', fa: 'نبض روزانه' },
-        caption: { en: 'A compact first screen balances confidence and restraint.', fa: 'صفحه اول فشرده، حس کنترل و سادگی را متعادل می‌کند.' },
-        orientation: 'portrait',
-        visual: { tone: 'mono', composition: 'mobile' }
-      },
-      {
-        id: 'pulse-budgets',
-        title: { en: 'Budget planning', fa: 'برنامه‌ریزی بودجه' },
-        caption: { en: 'Budgets are framed as helpful boundaries instead of red warnings.', fa: 'بودجه‌ها به‌جای هشدارهای قرمز، مثل مرزهای کمک‌کننده نمایش داده می‌شوند.' },
-        orientation: 'portrait',
-        visual: { tone: 'primary', composition: 'mobile' }
-      },
-      {
-        id: 'pulse-insights',
-        title: { en: 'Insight system', fa: 'سیستم بینش' },
-        caption: { en: 'Signals are grouped by actionability, not by technical category.', fa: 'سیگنال‌ها براساس قابلیت اقدام دسته‌بندی می‌شوند، نه دسته فنی.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      }
-    ],
-    video: {
-      title: { en: 'Mobile prototype walkthrough', fa: 'نمایش نمونه اولیه موبایل' },
-      description: { en: 'Prepared as a lightweight embed placeholder for future prototype captures.', fa: 'به‌عنوان جایگاه سبک برای ویدئوهای نمونه اولیه آینده آماده شده است.' },
-      label: { en: 'Mobile motion study', fa: 'مطالعه حرکت موبایل' }
-    },
-    demoUrl: 'https://example.com/pulse-prototype',
-    timeline: {
-      durationWeeks: 8,
-      note: { en: '8-week product design sprint and prototype', fa: '۸ هفته اسپرینت طراحی محصول و نمونه اولیه' }
-    },
-    year: '2025',
+    id: 'proj_work_quest',
+    slug: 'work-quest',
+    title: text('Work Quest', 'ورک‌کوئست'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/f5745e4e-a58d-46ee-8e1b-cd6d920ae79c.png'),
+    shortDescription: text(
+      'A Persian-first, multi-tenant SaaS for employee performance, with a gamification layer.',
+      'نرم‌افزار چندمستأجری و فارسی‌محور برای عملکرد کارکنان، با لایه بازی‌وارسازی.'
+    ),
+    fullDescription: text(
+      'Work Quest is a Persian-first, multi-tenant employee performance management product. Teams track work and progress through a gamification layer instead of a plain score sheet.',
+      'ورک‌کوئست محصول چندمستأجری و فارسی‌محور برای مدیریت عملکرد کارکنان است. تیم‌ها کار و پیشرفت را از مسیر بازی‌وارسازی دنبال می‌کنند، نه یک برگه امتیاز ساده.'
+    ),
+    category: 'webApps',
+    services: ['webApps', 'adminPanels'],
+    technologies: [],
+    coverVisual: { tone: 'warm', composition: 'dashboard' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3009',
+    year: '2026',
     featured: true,
     status: 'published',
-    overview: {
-      en: 'A finance app concept focused on habit formation and clear daily decision-making.',
-      fa: 'کانسپت اپلیکیشن مالی با تمرکز بر شکل‌گیری عادت و تصمیم‌گیری روزانه روشن.'
-    },
-    challenge: {
-      en: 'Most finance interfaces over-explain the numbers and under-design the behavior change.',
-      fa: 'بیشتر رابط‌های مالی اعداد را بیش از حد توضیح می‌دهند و تغییر رفتار را کم‌طراحی می‌کنند.'
-    },
-    solution: {
-      en: 'We built the experience around rhythms: what users need today, this week, and before the next payment cycle.',
-      fa: 'تجربه را حول ریتم‌ها ساختیم: آنچه کاربر امروز، این هفته و پیش از چرخه پرداخت بعدی نیاز دارد.'
-    },
+    overview: text(
+      'Performance management built for Persian teams, with progress that feels like a quest.',
+      'مدیریت عملکرد برای تیم‌های فارسی، با پیشرفتی که حس مأموریت دارد.'
+    ),
+    challenge: text(
+      'Performance tools are often English-first and reduce people to a spreadsheet.',
+      'ابزارهای عملکرد معمولاً انگلیسی‌محورند و آدم‌ها را به یک جدول تقلیل می‌دهند.'
+    ),
+    solution: text(
+      'Work Quest gives each organization its own space and wraps performance in a gamification layer.',
+      'ورک‌کوئست به هر سازمان فضای خودش را می‌دهد و عملکرد را در یک لایه بازی‌وارسازی می‌پیچد.'
+    ),
     keyFeatures: [
-      { en: 'Daily spending pulse and confidence score', fa: 'نبض خرج روزانه و امتیاز اطمینان' },
-      { en: 'Recurring payment timeline', fa: 'خط زمانی پرداخت‌های تکرارشونده' },
-      { en: 'Behavior-first notifications', fa: 'اعلان‌های مبتنی بر رفتار' }
+      text('Multi-tenant organizations', 'سازمان‌های چندمستأجری'),
+      text('Persian-first interface', 'رابط فارسی‌محور'),
+      text('Gamified performance tracking', 'پیگیری عملکرد با بازی‌وارسازی')
     ],
-    results: [
-      { value: { en: '41', fa: '۴۱' }, label: { en: 'prototype screens', fa: 'صفحه نمونه اولیه' } },
-      { value: { en: '6', fa: '۶' }, label: { en: 'tested onboarding paths', fa: 'مسیر ورود اولیه تست‌شده' } },
-      { value: { en: '92%', fa: '۹۲٪' }, label: { en: 'task clarity in testing', fa: 'شفافیت وظیفه در تست' } }
-    ],
+    results: [],
     layout: 'standard'
   },
   {
-    id: 'proj_bazaar_editorial',
-    slug: 'bazaar-editorial-shop',
-    title: {
-      en: 'Bazaar Editorial Shop',
-      fa: 'فروشگاه ادیتوریال بازار'
-    },
-    shortDescription: {
-      en: 'A content-led shopping experience where discovery, story, and conversion share the same rhythm.',
-      fa: 'تجربه خرید مبتنی بر محتوا که کشف، روایت و تبدیل با یک ریتم مشترک حرکت می‌کنند.'
-    },
-    fullDescription: {
-      en: 'Bazaar needed to sell without losing the texture of an editorial brand. SAZAN created a magazine-like commerce experience with flexible publishing, curated product modules, and measurable journeys.',
-      fa: 'بازار می‌خواست بفروشد بدون اینکه بافت یک برند ادیتوریال را از دست بدهد. سازان تجربه‌ای شبیه مجله برای تجارت ساخت؛ با انتشار منعطف، ماژول‌های محصول منتخب و مسیرهای قابل اندازه‌گیری.'
-    },
-    category: 'websites',
-    services: ['websites', 'ecommerce'],
-    technologies: ['Nuxt', 'CMS', 'TypeScript', 'Analytics'],
-    coverVisual: { tone: 'primary', composition: 'editorial' },
-    gallery: [
-      {
-        id: 'bazaar-story',
-        title: { en: 'Story modules', fa: 'ماژول‌های روایت' },
-        caption: { en: 'Articles can carry product moments without feeling like banners.', fa: 'مقاله‌ها می‌توانند لحظه‌های محصول را بدون حس بنر تبلیغاتی حمل کنند.' },
-        orientation: 'wide',
-        visual: { tone: 'primary', composition: 'editorial' }
-      },
-      {
-        id: 'bazaar-product',
-        title: { en: 'Product rhythm', fa: 'ریتم محصول' },
-        caption: { en: 'Curated blocks give shoppers a direct next step inside long-form content.', fa: 'بلوک‌های منتخب در محتوای طولانی، قدم بعدی مستقیم به خریدار می‌دهند.' },
-        orientation: 'landscape',
-        visual: { tone: 'warm', composition: 'commerce' }
-      },
-      {
-        id: 'bazaar-mobile',
-        title: { en: 'Reading on mobile', fa: 'خواندن در موبایل' },
-        caption: { en: 'The mobile layout protects editorial pace and purchase clarity.', fa: 'چیدمان موبایل هم ریتم ادیتوریال را حفظ می‌کند و هم شفافیت خرید را.' },
-        orientation: 'portrait',
-        visual: { tone: 'accent', composition: 'mobile' }
-      }
-    ],
-    projectUrl: 'https://example.com/bazaar',
-    pricing: {
-      visibility: 'public',
-      currency: 'EUR',
-      min: 28000,
-      max: 44000,
-      note: { en: 'Public range: €28k–€44k', fa: 'بازه عمومی: ۲۸ تا ۴۴ هزار یورو' }
-    },
-    timeline: {
-      durationWeeks: 9,
-      note: { en: '9-week brand website and commerce layer', fa: '۹ هفته وب‌سایت برند و لایه فروشگاهی' }
-    },
-    year: '2024',
-    featured: true,
-    status: 'published',
-    overview: {
-      en: 'A publication-grade storefront that gives editorial teams control and gives shoppers a clearer route to purchase.',
-      fa: 'فروشگاهی در سطح انتشار حرفه‌ای که به تیم محتوا کنترل می‌دهد و مسیر خرید را برای مخاطب روشن‌تر می‌کند.'
-    },
-    challenge: {
-      en: 'Editorial and commerce were split across separate templates, making the brand feel inconsistent.',
-      fa: 'محتوا و فروشگاه در قالب‌های جدا بودند و برند حس یکپارچگی نداشت.'
-    },
-    solution: {
-      en: 'We designed a shared content-commerce system where products appear as part of the narrative instead of interrupting it.',
-      fa: 'یک سیستم مشترک محتوا-تجارت طراحی کردیم که محصول به‌عنوان بخشی از روایت ظاهر می‌شود، نه وقفه‌ای در آن.'
-    },
-    keyFeatures: [
-      { en: 'Modular editorial templates', fa: 'قالب‌های ادیتوریال ماژولار' },
-      { en: 'Curated product drop system', fa: 'سیستم معرفی محصول منتخب' },
-      { en: 'Analytics-ready content journeys', fa: 'مسیرهای محتوایی آماده تحلیل' }
-    ],
-    results: [
-      { value: { en: '+24%', fa: '+۲۴٪' }, label: { en: 'product discovery clicks', fa: 'کلیک‌های کشف محصول' } },
-      { value: { en: '3x', fa: '۳ برابر' }, label: { en: 'faster story publishing', fa: 'انتشار سریع‌تر روایت' } },
-      { value: { en: '0.9s', fa: '۰.۹ ثانیه' }, label: { en: 'interaction readiness', fa: 'آمادگی تعامل' } }
-    ],
-    layout: 'landscape'
-  },
-  {
-    id: 'proj_panelix_ops',
-    slug: 'panelix-operations-os',
-    title: {
-      en: 'Panelix Operations OS',
-      fa: 'سیستم عملیات پنلیکس'
-    },
-    shortDescription: {
-      en: 'A custom admin environment for teams managing orders, roles, reporting, and operational exceptions.',
-      fa: 'محیط مدیریتی سفارشی برای تیم‌هایی که سفارش‌ها، نقش‌ها، گزارش‌ها و استثناهای عملیاتی را مدیریت می‌کنند.'
-    },
-    fullDescription: {
-      en: 'Panelix replaces disconnected spreadsheets and fragile dashboards with a role-aware operating layer for internal teams.',
-      fa: 'پنلیکس صفحه‌گسترده‌های پراکنده و داشبوردهای شکننده را با یک لایه عملیاتی نقش‌محور برای تیم داخلی جایگزین می‌کند.'
-    },
-    category: 'adminPanels',
-    services: ['adminPanels', 'backendSystems', 'webApps'],
-    technologies: ['Vue', 'TypeScript', 'Node.js', 'MongoDB', 'RBAC'],
-    coverVisual: { tone: 'accent', composition: 'dashboard' },
-    gallery: [
-      {
-        id: 'panelix-queue',
-        title: { en: 'Operational queue', fa: 'صف عملیاتی' },
-        caption: { en: 'Critical work is sorted by urgency, ownership, and next action.', fa: 'کارهای مهم براساس فوریت، مالکیت و اقدام بعدی مرتب می‌شوند.' },
-        orientation: 'wide',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      },
-      {
-        id: 'panelix-permissions',
-        title: { en: 'Permission model', fa: 'مدل دسترسی' },
-        caption: { en: 'Role boundaries are visible and easier to maintain.', fa: 'مرزهای نقش‌ها قابل مشاهده و نگهداری آن‌ها ساده‌تر است.' },
-        orientation: 'landscape',
-        visual: { tone: 'mono', composition: 'system' }
-      },
-      {
-        id: 'panelix-reporting',
-        title: { en: 'Reporting surface', fa: 'سطح گزارش‌گیری' },
-        caption: { en: 'Managers can move from summary to exception without losing context.', fa: 'مدیران بدون از دست دادن زمینه، از خلاصه به استثناها می‌رسند.' },
-        orientation: 'landscape',
-        visual: { tone: 'primary', composition: 'dashboard' }
-      }
-    ],
-    demoUrl: 'https://example.com/panelix-demo',
-    pricing: {
-      visibility: 'private',
-      note: { en: 'Private enterprise engagement', fa: 'قرارداد سازمانی محرمانه' }
-    },
-    timeline: {
-      durationWeeks: 16,
-      note: { en: '16 weeks across discovery, build, and rollout', fa: '۱۶ هفته از کشف تا ساخت و انتشار عملیاتی' }
-    },
-    year: '2024',
-    featured: true,
-    status: 'published',
-    overview: {
-      en: 'An internal product that makes daily operations easier to trust, audit, and improve.',
-      fa: 'محصول داخلی که اعتماد، پایش و بهبود عملیات روزانه را ساده‌تر می‌کند.'
-    },
-    challenge: {
-      en: 'Teams were using multiple tools to understand the same order state, creating delays and ownership confusion.',
-      fa: 'تیم‌ها برای فهم وضعیت یک سفارش از چند ابزار استفاده می‌کردند و این موضوع تأخیر و ابهام مالکیت ایجاد می‌کرد.'
-    },
-    solution: {
-      en: 'We designed a unified operations model with role-aware views, clear queues, and reporting that connects to real workflows.',
-      fa: 'یک مدل عملیاتی یکپارچه با نماهای نقش‌محور، صف‌های روشن و گزارش‌گیری متصل به فرآیند واقعی طراحی کردیم.'
-    },
-    keyFeatures: [
-      { en: 'Role-based access and approvals', fa: 'دسترسی و تأیید نقش‌محور' },
-      { en: 'Exception queues for operational risk', fa: 'صف استثناها برای ریسک عملیاتی' },
-      { en: 'Performance dashboards grounded in workflow data', fa: 'داشبوردهای عملکرد مبتنی بر داده فرآیند' }
-    ],
-    results: [
-      { value: { en: '-46%', fa: '-۴۶٪' }, label: { en: 'manual reconciliation', fa: 'کاهش تطبیق دستی' } },
-      { value: { en: '18', fa: '۱۸' }, label: { en: 'role rules simplified', fa: 'قانون نقش ساده‌سازی‌شده' } },
-      { value: { en: '5 teams', fa: '۵ تیم' }, label: { en: 'operating from one system', fa: 'فعال در یک سیستم' } }
-    ],
-    layout: 'feature'
-  },
-  {
-    id: 'proj_orion_console',
-    slug: 'orion-cloud-console',
-    title: {
-      en: 'Orion Cloud Console',
-      fa: 'کنسول ابری اوریون'
-    },
-    shortDescription: {
-      en: 'A technical control surface for provisioning services, monitoring usage, and handling billing events.',
-      fa: 'سطح کنترل فنی برای ساخت سرویس‌ها، پایش مصرف و مدیریت رویدادهای مالی.'
-    },
-    fullDescription: {
-      en: 'Orion needed an interface for complex cloud operations without overwhelming small engineering teams. The result is an admin-like console with guided provisioning and careful technical hierarchy.',
-      fa: 'اوریون برای عملیات پیچیده ابری به رابطی نیاز داشت که تیم‌های مهندسی کوچک را خسته نکند. نتیجه، کنسولی شبیه ادمین با راه‌اندازی سرویس هدایت‌شده و سلسله‌مراتب فنی دقیق است.'
-    },
-    category: 'backendSystems',
-    services: ['backendSystems', 'adminPanels', 'webApps'],
-    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Prisma'],
-    coverVisual: { tone: 'cool', composition: 'backend' },
-    gallery: [
-      {
-        id: 'orion-services',
-        title: { en: 'Service topology', fa: 'توپولوژی سرویس' },
-        caption: { en: 'Teams can see dependencies before shipping risky changes.', fa: 'تیم‌ها پیش از انتشار تغییرات حساس، وابستگی‌ها را می‌بینند.' },
-        orientation: 'wide',
-        visual: { tone: 'cool', composition: 'backend' }
-      },
-      {
-        id: 'orion-usage',
-        title: { en: 'Usage intelligence', fa: 'هوشمندی مصرف' },
-        caption: { en: 'Usage, spend, and alerts share one focused interface.', fa: 'مصرف، هزینه و هشدارها در یک رابط متمرکز کنار هم هستند.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      }
-    ],
-    demoUrl: 'https://example.com/orion-console',
-    timeline: {
-      durationWeeks: 11,
-      note: { en: '11-week design system and console build', fa: '۱۱ هفته طراحی سیستم و ساخت کنسول' }
-    },
-    year: '2026',
-    featured: false,
-    status: 'published',
-    overview: {
-      en: 'A console for technical teams that makes infrastructure decisions more legible.',
-      fa: 'کنسولی برای تیم‌های فنی که تصمیم‌های زیرساختی را خواناتر می‌کند.'
-    },
-    challenge: {
-      en: 'The product had powerful backend capabilities but the interface made every action feel high-risk.',
-      fa: 'محصول قابلیت‌های بک‌اند قدرتمندی داشت اما رابط، هر اقدام را پرریسک نشان می‌داد.'
-    },
-    solution: {
-      en: 'We separated setup, monitoring, and billing into distinct workflows with shared technical primitives.',
-      fa: 'راه‌اندازی، پایش و مالی را به فرآیندهای جدا با الگوهای فنی مشترک تقسیم کردیم.'
-    },
-    keyFeatures: [
-      { en: 'Provisioning flows with dependency checks', fa: 'فرآیندهای راه‌اندازی سرویس با بررسی وابستگی' },
-      { en: 'Usage and billing event timeline', fa: 'خط زمانی مصرف و رویدادهای مالی' },
-      { en: 'Service health overview for engineering teams', fa: 'نمای سلامت سرویس برای تیم مهندسی' }
-    ],
-    results: [
-      { value: { en: '-28%', fa: '-۲۸٪' }, label: { en: 'support tickets during setup', fa: 'کاهش تیکت‌های راه‌اندازی' } },
-      { value: { en: '12', fa: '۱۲' }, label: { en: 'service states mapped', fa: 'وضعیت سرویس مدل‌شده' } }
-    ],
-    layout: 'landscape'
-  },
-  {
-    id: 'proj_lumin_architecture',
-    slug: 'lumin-architecture-website',
-    title: {
-      en: 'Lumin Architecture Website',
-      fa: 'وب‌سایت معماری لومین'
-    },
-    shortDescription: {
-      en: 'A quiet, image-forward website for an architecture practice with a precise editorial system.',
-      fa: 'وب‌سایتی آرام و تصویرمحور برای یک استودیوی معماری با سیستم ادیتوریال دقیق.'
-    },
-    fullDescription: {
-      en: 'Lumin needed a portfolio site that would not compete with the work. We developed a restrained editorial language, flexible project storytelling, and fast content structure.',
-      fa: 'لومین به وب‌سایت پورتفولیویی نیاز داشت که با خود آثار رقابت نکند. زبان ادیتوریال کنترل‌شده، روایت منعطف پروژه و ساختار محتوای سریع توسعه داده شد.'
-    },
+    id: 'proj_sajad_portfolio',
+    slug: 'sajad-portfolio',
+    title: text('Sajad Portfolio', 'پورتفولیو سجاد'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/f0d5ca58-bd1f-4688-ba2d-b9f67c88f4f7.png'),
+    shortDescription: text(
+      'A bilingual editorial portfolio with a Swiss grid and neo-brutalist edges.',
+      'پورتفولیوی ادیتوریال دوزبانه با گرید سوئیسی و لبه‌های نئوبروتالیست.'
+    ),
+    fullDescription: text(
+      'A bilingual English and Persian editorial portfolio built with Nuxt 4. The layout uses a Swiss grid and neo-brutalist edges.',
+      'یک پورتفولیوی ادیتوریال دوزبانه انگلیسی و فارسی با Nuxt 4. چیدمان روی گرید سوئیسی و لبه‌های نئوبروتالیست است.'
+    ),
     category: 'websites',
     services: ['websites'],
-    technologies: ['Nuxt', 'TypeScript', 'Content', 'SEO'],
+    technologies: ['Nuxt'],
     coverVisual: { tone: 'mono', composition: 'editorial' },
-    gallery: [
-      {
-        id: 'lumin-index',
-        title: { en: 'Project index', fa: 'فهرست پروژه' },
-        caption: { en: 'A sparse index gives each architectural project room to breathe.', fa: 'فهرست خلوت به هر پروژه معماری فضای کافی برای دیده شدن می‌دهد.' },
-        orientation: 'wide',
-        visual: { tone: 'mono', composition: 'editorial' }
-      },
-      {
-        id: 'lumin-case',
-        title: { en: 'Case study rhythm', fa: 'ریتم مطالعه موردی' },
-        caption: { en: 'Text, images, and technical notes create a gallery-like reading experience.', fa: 'متن، تصویر و یادداشت‌های فنی تجربه خواندنی شبیه گالری می‌سازند.' },
-        orientation: 'landscape',
-        visual: { tone: 'warm', composition: 'editorial' }
-      }
-    ],
-    projectUrl: 'https://example.com/lumin',
-    pricing: {
-      visibility: 'public',
-      currency: 'EUR',
-      min: 18000,
-      max: 30000,
-      note: { en: 'Public range: €18k–€30k', fa: 'بازه عمومی: ۱۸ تا ۳۰ هزار یورو' }
-    },
-    timeline: {
-      durationWeeks: 7,
-      note: { en: '7-week website design and build', fa: '۷ هفته طراحی و توسعه وب‌سایت' }
-    },
-    year: '2025',
-    featured: false,
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3003/',
+    year: '2026',
+    featured: true,
     status: 'published',
-    overview: {
-      en: 'A portfolio website with a strong editorial structure and almost invisible interface behavior.',
-      fa: 'وب‌سایت پورتفولیو با ساختار ادیتوریال قوی و رفتار رابط تقریباً نامرئی.'
-    },
-    challenge: {
-      en: 'The studio wanted a site that felt premium without adding visual noise around photography and plans.',
-      fa: 'استودیو سایتی ممتاز می‌خواست بدون اضافه کردن نویز بصری اطراف عکس‌ها و پلان‌ها.'
-    },
-    solution: {
-      en: 'We built a typography-led grid, minimal navigation, and project templates that support both visual and technical narratives.',
-      fa: 'گرید متکی بر تایپوگرافی، ناوبری مینیمال و قالب‌های پروژه برای روایت تصویری و فنی ساختیم.'
-    },
+    overview: text(
+      'A personal portfolio that treats layout as part of the work.',
+      'پورتفولیوی شخصی که چیدمان را بخشی از خود کار می‌داند.'
+    ),
+    challenge: text(
+      'A personal site had to feel editorial in both English and Persian without losing a strict grid.',
+      'سایت شخصی باید در انگلیسی و فارسی حس ادیتوریال داشته باشد و گرید سخت‌گیرش را از دست ندهد.'
+    ),
+    solution: text(
+      'The portfolio pairs a Swiss grid with neo-brutalist edges on a bilingual Nuxt site.',
+      'پورتفولیو گرید سوئیسی را با لبه‌های نئوبروتالیست روی یک سایت دوزبانه Nuxt کنار هم می‌گذارد.'
+    ),
     keyFeatures: [
-      { en: 'Editorial project templates', fa: 'قالب‌های ادیتوریال پروژه' },
-      { en: 'Fast image-conscious frontend', fa: 'فرانت‌اند سریع و حساس به تصویر' },
-      { en: 'SEO-ready practice and project structure', fa: 'ساختار آماده سئو برای استودیو و پروژه‌ها' }
+      text('English and Persian pages', 'صفحات انگلیسی و فارسی'),
+      text('Swiss grid layout', 'چیدمان گرید سوئیسی'),
+      text('Neo-brutalist editorial edges', 'لبه‌های ادیتوریال نئوبروتالیست')
     ],
-    results: [
-      { value: { en: '96', fa: '۹۶' }, label: { en: 'performance score', fa: 'امتیاز عملکرد' } },
-      { value: { en: '2x', fa: '۲ برابر' }, label: { en: 'longer project reading', fa: 'زمان مطالعه پروژه' } }
-    ],
+    results: [],
     layout: 'portrait'
   },
   {
-    id: 'proj_craftline_booking',
-    slug: 'craftline-booking-platform',
-    title: {
-      en: 'Craftline Booking Platform',
-      fa: 'پلتفرم رزرو کرافت‌لاین'
-    },
-    shortDescription: {
-      en: 'A booking and inventory web app for workshops, instructors, ticketing, and customer reminders.',
-      fa: 'وب‌اپ رزرو و موجودی برای کارگاه‌ها، مربیان، بلیت‌ها و یادآوری مشتریان.'
-    },
-    fullDescription: {
-      en: 'Craftline coordinates physical workshops across multiple venues. SAZAN shaped the booking logic, instructor workspace, and customer-facing schedule experience.',
-      fa: 'کرافت‌لاین کارگاه‌های حضوری را در چند مکان هماهنگ می‌کند. سازان منطق رزرو، فضای کاری مربی و تجربه برنامه زمان‌بندی مشتری را شکل داد.'
-    },
+    id: 'proj_artivo',
+    slug: 'artivo',
+    title: text('Artivo', 'آرتیوو'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/2a7aa534-3964-4125-81ed-b4668de61fb7.png'),
+    shortDescription: text(
+      'A creativity marketplace that connects clients with graphic designers and photographers.',
+      'مارکت‌پلیس خلاقیت برای وصل کردن کارفرماها به طراحان گرافیک و عکاسان.'
+    ),
+    fullDescription: text(
+      'Artivo is a creativity platform and marketplace. It connects clients with graphic designers and photographers.',
+      'آرتیوو پلتفرم خلاقیت و مارکت‌پلیس اتصال کارفرماها به طراحان گرافیک و عکاسان است.'
+    ),
     category: 'webApps',
-    services: ['webApps', 'adminPanels', 'backendSystems'],
-    technologies: ['Vue', 'Node.js', 'MongoDB', 'Calendars', 'Email API'],
-    coverVisual: { tone: 'primary', composition: 'system' },
-    gallery: [
-      {
-        id: 'craftline-schedule',
-        title: { en: 'Schedule builder', fa: 'سازنده برنامه' },
-        caption: { en: 'Workshops, inventory, rooms, and instructors are planned in one surface.', fa: 'کارگاه‌ها، موجودی، اتاق‌ها و مربیان در یک سطح برنامه‌ریزی می‌شوند.' },
-        orientation: 'wide',
-        visual: { tone: 'primary', composition: 'system' }
-      },
-      {
-        id: 'craftline-ticket',
-        title: { en: 'Ticket state', fa: 'وضعیت بلیت' },
-        caption: { en: 'Ticket capacity and reminders update without manual spreadsheet work.', fa: 'ظرفیت بلیت و یادآوری‌ها بدون کار دستی در صفحه‌گسترده به‌روزرسانی می‌شوند.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      }
-    ],
-    demoUrl: 'https://example.com/craftline-demo',
-    timeline: {
-      durationWeeks: 10,
-      note: { en: '10-week MVP build', fa: '۱۰ هفته ساخت نسخه اولیه' }
-    },
-    year: '2025',
-    featured: false,
+    services: ['webApps', 'websites'],
+    technologies: ['Nuxt'],
+    coverVisual: { tone: 'primary', composition: 'editorial' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3005',
+    year: '2026',
+    featured: true,
     status: 'published',
-    overview: {
-      en: 'A booking platform that connects customer schedules with operational realities.',
-      fa: 'پلتفرم رزروی که زمان‌بندی مشتری را به واقعیت‌های عملیاتی متصل می‌کند.'
-    },
-    challenge: {
-      en: 'Availability depended on venue, teacher, inventory, and ticket capacity — but those rules lived in separate places.',
-      fa: 'ظرفیت به مکان، مربی، موجودی و تعداد بلیت وابسته بود؛ اما این قوانین در جاهای جدا قرار داشتند.'
-    },
-    solution: {
-      en: 'We created a shared booking model and designed interfaces around conflicts, capacity, and reminder timing.',
-      fa: 'مدل رزرو مشترک ساختیم و رابط‌ها را حول تداخل‌ها، ظرفیت و زمان‌بندی یادآوری طراحی کردیم.'
-    },
+    overview: text(
+      'A marketplace for commissioning graphic design and photography.',
+      'مارکت‌پلیسی برای سفارش طراحی گرافیک و عکاسی.'
+    ),
+    challenge: text(
+      'Clients and independent visual creators did not have a shared place to find each other.',
+      'کارفرماها و خالقان مستقل تصویر جای مشترکی برای پیدا کردن هم نداشتند.'
+    ),
+    solution: text(
+      'Artivo is the marketplace layer between clients, graphic designers, and photographers.',
+      'آرتیوو لایه مارکت‌پلیس بین کارفرما، طراح گرافیک و عکاس است.'
+    ),
     keyFeatures: [
-      { en: 'Multi-venue booking logic', fa: 'منطق رزرو چندمکانه' },
-      { en: 'Instructor and staff workspace', fa: 'فضای کاری مربی و تیم' },
-      { en: 'Automated customer reminder sequences', fa: 'زنجیره یادآوری خودکار مشتری' }
+      text('Client and creator matching', 'وصل شدن کارفرما و خالق'),
+      text('Graphic design commissions', 'سفارش طراحی گرافیک'),
+      text('Photography commissions', 'سفارش عکاسی')
     ],
-    results: [
-      { value: { en: '-11h', fa: '-۱۱ ساعت' }, label: { en: 'weekly admin effort', fa: 'کاهش کار هفتگی ادمین' } },
-      { value: { en: '+21%', fa: '+۲۱٪' }, label: { en: 'completed bookings', fa: 'رزروهای کامل‌شده' } }
-    ],
-    layout: 'standard'
+    results: [],
+    layout: 'landscape'
   },
   {
-    id: 'proj_seedlink_marketplace',
-    slug: 'seedlink-marketplace',
-    title: {
-      en: 'Seedlink Marketplace',
-      fa: 'مارکت‌پلیس سیدلینک'
-    },
-    shortDescription: {
-      en: 'A niche B2B marketplace for producers, buyers, approvals, and order negotiation.',
-      fa: 'مارکت‌پلیس تخصصی B2B برای تولیدکنندگان، خریداران، تأییدها و مذاکره سفارش.'
-    },
-    fullDescription: {
-      en: 'Seedlink needed trust and negotiation built into the marketplace experience. We designed listing tools, verified buyer flows, and a backend model for staged orders.',
-      fa: 'سیدلینک به اعتماد و مذاکره درون تجربه مارکت‌پلیس نیاز داشت. ابزارهای ثبت محصول، مسیر خریدار تأییدشده و مدل بک‌اند سفارش مرحله‌ای طراحی شد.'
-    },
-    category: 'ecommerce',
-    services: ['ecommerce', 'webApps', 'backendSystems'],
-    technologies: ['Nuxt', 'Node.js', 'MongoDB', 'Search', 'Payments'],
-    coverVisual: { tone: 'warm', composition: 'commerce' },
-    gallery: [
-      {
-        id: 'seedlink-listing',
-        title: { en: 'Verified listings', fa: 'لیستینگ‌های تأییدشده' },
-        caption: { en: 'Producer listings carry enough detail for buyer confidence.', fa: 'لیستینگ تولیدکننده جزئیات کافی برای اعتماد خریدار دارد.' },
-        orientation: 'wide',
-        visual: { tone: 'warm', composition: 'commerce' }
-      },
-      {
-        id: 'seedlink-negotiation',
-        title: { en: 'Negotiation flow', fa: 'جریان مذاکره' },
-        caption: { en: 'Orders can move through terms, revisions, and approvals without leaving the product.', fa: 'سفارش‌ها از شرایط، بازبینی و تأیید بدون خروج از محصول عبور می‌کنند.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      }
-    ],
-    projectUrl: 'https://example.com/seedlink',
-    pricing: {
-      visibility: 'on-request',
-      note: { en: 'Scoped by marketplace rules and integrations', fa: 'براساس قوانین مارکت‌پلیس و یکپارچه‌سازی‌ها برآورد می‌شود' }
-    },
-    timeline: {
-      durationWeeks: 15,
-      note: { en: '15-week marketplace MVP', fa: '۱۵ هفته ساخت نسخه اولیه مارکت‌پلیس' }
-    },
+    id: 'proj_chapkhaneh',
+    slug: 'chapkhaneh',
+    title: text('Chapkhaneh', 'چاپخانه'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/6da54e1e-5355-4912-845e-88c38cabf946.png'),
+    shortDescription: text(
+      'A Persian-first website product for large professional printing companies.',
+      'محصول وب فارسی‌محور برای چاپخانه‌های بزرگ و حرفه‌ای.'
+    ),
+    fullDescription: text(
+      'Chapkhaneh is a production-oriented website product for large professional printing companies. It is Persian-first and RTL by default, with full English support. The current demo brand is Mobin Bartar.',
+      'چاپخانه محصول وب تولیدی برای چاپخانه‌های بزرگ و حرفه‌ای است. پیش‌فرض فارسی و راست‌به‌چپ است و انگلیسی کامل هم دارد. برند دموی فعلی مبین برتر است.'
+    ),
+    category: 'websites',
+    services: ['websites', 'webApps'],
+    technologies: ['Nuxt', 'Drizzle'],
+    coverVisual: { tone: 'cool', composition: 'editorial' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3004',
     year: '2026',
-    featured: false,
+    featured: true,
     status: 'published',
-    overview: {
-      en: 'A marketplace foundation that balances product discovery with B2B trust mechanics.',
-      fa: 'زیرساخت مارکت‌پلیس که کشف محصول را با سازوکارهای اعتماد B2B متعادل می‌کند.'
-    },
-    challenge: {
-      en: 'B2B buyers needed context before committing, while producers needed a faster way to manage qualified interest.',
-      fa: 'خریداران B2B پیش از تعهد به زمینه نیاز داشتند و تولیدکنندگان راه سریع‌تری برای مدیریت علاقه‌مندی معتبر می‌خواستند.'
-    },
-    solution: {
-      en: 'We built a staged order model and marketplace interface that makes trust signals visible before negotiation starts.',
-      fa: 'مدل سفارش مرحله‌ای و رابط مارکت‌پلیسی ساختیم که نشانه‌های اعتماد را پیش از شروع مذاکره قابل مشاهده می‌کند.'
-    },
+    overview: text(
+      'A website system made for how a large print shop actually sells and presents work.',
+      'سیستم وب برای این‌که یک چاپخانه بزرگ کارش را واقعاً معرفی و بفروشد.'
+    ),
+    challenge: text(
+      'Large print companies need a production-minded site, not a generic brochure template.',
+      'چاپخانه‌های بزرگ به سایت تولیدی نیاز دارند، نه یک قالب معرفی عمومی.'
+    ),
+    solution: text(
+      'Chapkhaneh ships Persian-first and RTL, with English support and a demo brand for Mobin Bartar.',
+      'چاپخانه فارسی‌محور و راست‌به‌چپ است، انگلیسی دارد و با برند دموی مبین برتر ارائه می‌شود.'
+    ),
     keyFeatures: [
-      { en: 'Verified producer profiles', fa: 'پروفایل تولیدکننده تأییدشده' },
-      { en: 'Staged quote and order negotiation', fa: 'مذاکره مرحله‌ای قیمت و سفارش' },
-      { en: 'Search filters designed for procurement intent', fa: 'فیلترهای جست‌وجو متناسب با هدف خرید سازمانی' }
+      text('Persian-first, RTL by default', 'فارسی‌محور و راست‌به‌چپ'),
+      text('Full English support', 'پشتیبانی کامل انگلیسی'),
+      text('Built for professional print production', 'ساخته‌شده برای تولید چاپ حرفه‌ای')
     ],
-    results: [
-      { value: { en: '34%', fa: '۳۴٪' }, label: { en: 'higher qualified inquiries', fa: 'افزایش درخواست معتبر' } },
-      { value: { en: '5', fa: '۵' }, label: { en: 'order states unified', fa: 'وضعیت سفارش یکپارچه' } }
-    ],
+    results: [],
     layout: 'feature'
   },
   {
-    id: 'proj_rhythm_learning',
-    slug: 'rhythm-learning-app',
-    title: {
-      en: 'Rhythm Learning App',
-      fa: 'اپلیکیشن آموزشی ریتم'
-    },
-    shortDescription: {
-      en: 'A mobile-first learning experience for short lessons, practice loops, and progress confidence.',
-      fa: 'تجربه آموزشی موبایل‌محور برای درس‌های کوتاه، حلقه‌های تمرین و اطمینان از پیشرفت.'
-    },
-    fullDescription: {
-      en: 'Rhythm makes learning feel less like a course archive and more like a daily practice. The design emphasizes small wins, repeatable exercises, and gentle progress feedback.',
-      fa: 'ریتم یادگیری را کمتر شبیه آرشیو دوره و بیشتر شبیه تمرین روزانه می‌کند. طراحی روی موفقیت‌های کوچک، تمرین‌های تکرارپذیر و بازخورد آرام پیشرفت تمرکز دارد.'
-    },
+    id: 'proj_trado',
+    slug: 'trado',
+    title: text('Trado', 'ترادو'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/62285a70-bc66-493e-9169-2b03de6d3eb6.png'),
+    shortDescription: text(
+      'A personal spot-trading journal for recording crypto buys, sells, capital, and profit or loss.',
+      'ژورنال شخصی معاملات اسپات برای ثبت خرید و فروش رمزارز، سرمایه و سود یا زیان.'
+    ),
+    fullDescription: text(
+      'Trado is a personal spot trading journal and portfolio tracker. It is not an exchange. You record cryptocurrency buys and sells yourself, group them into trades, and review capital and profit or loss in USD and Toman.',
+      'ترادو ژورنال شخصی معاملات اسپات و ردیاب پورتفولیو است. صرافی نیست. خرید و فروش رمزارز را خودتان ثبت می‌کنید، در معامله گروه‌بندی می‌کنید و سرمایه و سود یا زیان را به دلار و تومان می‌بینید.'
+    ),
+    category: 'webApps',
+    services: ['webApps'],
+    technologies: [],
+    coverVisual: { tone: 'mono', composition: 'dashboard' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3010',
+    year: '2026',
+    featured: false,
+    status: 'published',
+    overview: text(
+      'A private ledger for spot trades, counted in USD and Toman.',
+      'دفتر خصوصی معاملات اسپات، با محاسبه دلار و تومان.'
+    ),
+    challenge: text(
+      'Traders needed a record of their own buys and sells without turning the tool into an exchange.',
+      'معامله‌گرها به ثبت خرید و فروش خودشان نیاز داشتند، بدون این‌که ابزار تبدیل به صرافی شود.'
+    ),
+    solution: text(
+      'Trado groups manual entries into trades and shows capital and profit or loss in USD and Toman.',
+      'ترادو ثبت‌های دستی را در معامله جمع می‌کند و سرمایه و سود یا زیان را به دلار و تومان نشان می‌دهد.'
+    ),
+    keyFeatures: [
+      text('Manual buy and sell records', 'ثبت دستی خرید و فروش'),
+      text('Trades grouped from entries', 'گروه‌بندی معامله از روی ثبت‌ها'),
+      text('USD and Toman profit and loss', 'سود و زیان دلار و تومان')
+    ],
+    results: [],
+    layout: 'standard'
+  },
+  {
+    id: 'proj_tuneroom',
+    slug: 'tuneroom',
+    title: text('TuneRoom', 'تیون‌روم'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/ef520726-dd07-4e81-b5fe-ef1138c44a9c.png'),
+    shortDescription: text(
+      'A shared music room where a small group drops in tracks and each person controls their own playback.',
+      'اتاق موسیقی مشترک برای یک گروه کوچک؛ هر کس آهنگ می‌گذارد و پخش خودش را کنترل می‌کند.'
+    ),
+    fullDescription: text(
+      'TuneRoom is a shared music room for a small group. Create a room, share the link, and let everyone add their own tracks. Each person controls their own playback. There are no accounts, feeds, recommendations, or synchronized watch parties.',
+      'تیون‌روم اتاق موسیقی مشترک برای یک گروه کوچک است. اتاق می‌سازید، لینک را می‌فرستید و هر کس آهنگ خودش را می‌گذارد. پخش برای هر نفر جداست. حساب کاربری، فید، پیشنهاد و مهمانی هم‌زمان ندارد.'
+    ),
+    category: 'webApps',
+    services: ['webApps'],
+    technologies: [],
+    coverVisual: { tone: 'warm', composition: 'system' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3008',
+    year: '2026',
+    featured: false,
+    status: 'published',
+    overview: text(
+      'A room, a shared library, and a player that keeps going while you move around.',
+      'یک اتاق، یک کتابخانه مشترک و پخش‌کننده‌ای که موقع جابه‌جایی قطع نمی‌شود.'
+    ),
+    challenge: text(
+      'Listening together usually means accounts, feeds, or forcing everyone onto the same playback.',
+      'با هم گوش دادن معمولاً یعنی حساب کاربری، فید، یا اجبار همه به یک پخش واحد.'
+    ),
+    solution: text(
+      'TuneRoom is only a room and a library. People add tracks and keep their own playback.',
+      'تیون‌روم فقط یک اتاق و یک کتابخانه است. آدم‌ها آهنگ می‌گذارند و پخش خودشان را دارند.'
+    ),
+    keyFeatures: [
+      text('Shareable room link', 'لینک قابل اشتراک اتاق'),
+      text('A library built by the group', 'کتابخانه‌ای که گروه می‌سازد'),
+      text('Independent playback for each person', 'پخش مستقل برای هر نفر')
+    ],
+    results: [],
+    layout: 'landscape'
+  },
+  {
+    id: 'proj_invoicer',
+    slug: 'invoicer',
+    title: text('Invoicer', 'اینوویسر'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/228f932b-3f65-483a-87ed-db042beeeeac.png'),
+    shortDescription: text(
+      'A Persian accounting app for small businesses: RTL, mobile-first, and deliberately polished.',
+      'اپ حسابداری فارسی برای کسب‌وکارهای کوچک؛ راست‌به‌چپ، موبایل‌فرست و با طراحی دقیق.'
+    ),
+    fullDescription: text(
+      'Invoicer, also called Dayan, is a Persian accounting application for small businesses. It is right-to-left, mobile-first, and designed to feel modern and premium.',
+      'اینوویسر، یا دایان، اپلیکیشن حسابداری فارسی برای کسب‌وکارهای کوچک است. راست‌به‌چپ و موبایل‌فرست است و طراحی مدرن و ممتاز دارد.'
+    ),
     category: 'mobileApps',
     services: ['mobileApps', 'webApps'],
-    technologies: ['Flutter', 'Firebase', 'TypeScript', 'Design System'],
-    coverVisual: { tone: 'accent', composition: 'mobile' },
-    gallery: [
-      {
-        id: 'rhythm-lesson',
-        title: { en: 'Lesson loop', fa: 'حلقه درس' },
-        caption: { en: 'Lessons are short enough to complete and specific enough to remember.', fa: 'درس‌ها آن‌قدر کوتاه‌اند که کامل شوند و آن‌قدر مشخص‌اند که در ذهن بمانند.' },
-        orientation: 'portrait',
-        visual: { tone: 'accent', composition: 'mobile' }
-      },
-      {
-        id: 'rhythm-progress',
-        title: { en: 'Progress confidence', fa: 'اطمینان از پیشرفت' },
-        caption: { en: 'Progress feedback rewards consistency instead of pressure.', fa: 'بازخورد پیشرفت به جای فشار، پیوستگی را تقویت می‌کند.' },
-        orientation: 'landscape',
-        visual: { tone: 'primary', composition: 'dashboard' }
-      }
-    ],
-    demoUrl: 'https://example.com/rhythm-demo',
-    timeline: {
-      durationWeeks: 9,
-      note: { en: '9-week UX and prototype engagement', fa: '۹ هفته طراحی تجربه و نمونه اولیه' }
-    },
-    year: '2024',
-    featured: false,
-    status: 'published',
-    overview: {
-      en: 'A mobile learning product designed around repeat behavior and clear practice structure.',
-      fa: 'محصول یادگیری موبایل که حول رفتار تکرارشونده و ساختار تمرین روشن طراحی شده است.'
-    },
-    challenge: {
-      en: 'The existing product had content depth but weak day-to-day motivation.',
-      fa: 'محصول موجود عمق محتوایی داشت اما انگیزه روزمره ضعیف بود.'
-    },
-    solution: {
-      en: 'We reframed lessons as practice loops with short feedback moments and a lighter mobile navigation model.',
-      fa: 'درس‌ها را به حلقه‌های تمرین با بازخوردهای کوتاه و مدل ناوبری سبک‌تر موبایل تبدیل کردیم.'
-    },
-    keyFeatures: [
-      { en: 'Daily practice loops', fa: 'حلقه‌های تمرین روزانه' },
-      { en: 'Progress signals without gamification clutter', fa: 'سیگنال‌های پیشرفت بدون شلوغی گیمیفیکیشن' },
-      { en: 'Mobile-first content structure', fa: 'ساختار محتوای موبایل‌محور' }
-    ],
-    results: [
-      { value: { en: '+37%', fa: '+۳۷٪' }, label: { en: 'prototype lesson completion', fa: 'تکمیل درس در نمونه اولیه' } },
-      { value: { en: '22', fa: '۲۲' }, label: { en: 'learning components', fa: 'کامپوننت یادگیری' } }
-    ],
-    layout: 'standard'
-  },
-  {
-    id: 'proj_caspian_logistics',
-    slug: 'caspian-logistics-backend',
-    title: {
-      en: 'Caspian Logistics Backend',
-      fa: 'بک‌اند لجستیک کاسپین'
-    },
-    shortDescription: {
-      en: 'A backend system for routing, shipment states, partner integrations, and operational reliability.',
-      fa: 'سیستم بک‌اند برای مسیریابی، وضعیت‌های ارسال، یکپارچه‌سازی شرکا و پایداری عملیاتی.'
-    },
-    fullDescription: {
-      en: 'Caspian required a more dependable backend foundation before expanding its logistics product. We mapped shipment states, API boundaries, partner events, and internal monitoring surfaces.',
-      fa: 'کاسپین پیش از گسترش محصول لجستیک، به زیرساخت بک‌اند قابل اتکاتری نیاز داشت. وضعیت‌های ارسال، مرزهای API، رویدادهای شرکا و سطوح پایش داخلی مدل‌سازی شد.'
-    },
-    category: 'backendSystems',
-    services: ['backendSystems', 'adminPanels'],
-    technologies: ['Node.js', 'MongoDB', 'Queues', 'REST API', 'Observability'],
-    coverVisual: { tone: 'mono', composition: 'backend' },
-    gallery: [
-      {
-        id: 'caspian-states',
-        title: { en: 'Shipment states', fa: 'وضعیت‌های ارسال' },
-        caption: { en: 'The state model clarifies what can happen and who needs to know.', fa: 'مدل وضعیت روشن می‌کند چه اتفاقی می‌تواند بیفتد و چه کسی باید بداند.' },
-        orientation: 'wide',
-        visual: { tone: 'mono', composition: 'backend' }
-      },
-      {
-        id: 'caspian-monitoring',
-        title: { en: 'Monitoring view', fa: 'نمای پایش' },
-        caption: { en: 'Operations can spot partner delays and retry failures faster.', fa: 'عملیات تأخیر شریک و خطاهای تلاش مجدد را سریع‌تر تشخیص می‌دهد.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'dashboard' }
-      }
-    ],
-    pricing: {
-      visibility: 'private',
-      note: { en: 'Private infrastructure scope', fa: 'دامنه زیرساختی محرمانه' }
-    },
-    timeline: {
-      durationWeeks: 13,
-      note: { en: '13-week backend architecture and operations layer', fa: '۱۳ هفته معماری بک‌اند و لایه عملیات' }
-    },
-    year: '2025',
-    featured: false,
-    status: 'published',
-    overview: {
-      en: 'A backend engagement focused on service reliability and operational visibility.',
-      fa: 'پروژه بک‌اند با تمرکز بر پایداری سرویس و دید عملیاتی.'
-    },
-    challenge: {
-      en: 'Partner integrations produced inconsistent events, making shipment status hard to trust.',
-      fa: 'یکپارچه‌سازی شرکا رویدادهای ناسازگار تولید می‌کرد و اعتماد به وضعیت ارسال سخت شده بود.'
-    },
-    solution: {
-      en: 'We normalized event handling, clarified API ownership, and created operational views for the states that matter.',
-      fa: 'پردازش رویدادها را استاندارد، مالکیت API را روشن و نماهای عملیاتی برای وضعیت‌های مهم ایجاد کردیم.'
-    },
-    keyFeatures: [
-      { en: 'Normalized shipment state machine', fa: 'ماشین وضعیت استاندارد ارسال' },
-      { en: 'Partner integration retry model', fa: 'مدل تلاش مجدد برای یکپارچه‌سازی شرکا' },
-      { en: 'Operational monitoring surface', fa: 'سطح پایش عملیاتی' }
-    ],
-    results: [
-      { value: { en: '-52%', fa: '-۵۲٪' }, label: { en: 'manual status corrections', fa: 'کاهش اصلاح دستی وضعیت' } },
-      { value: { en: '8', fa: '۸' }, label: { en: 'partner events normalized', fa: 'رویداد شریک استاندارد' } }
-    ],
-    layout: 'landscape'
-  },
-  {
-    id: 'proj_northstar_studio',
-    slug: 'northstar-studio-website',
-    title: {
-      en: 'Northstar Studio Website',
-      fa: 'وب‌سایت استودیو نورث‌استار'
-    },
-    shortDescription: {
-      en: 'A high-contrast brand website for a creative studio with strong typography and fast case-study browsing.',
-      fa: 'وب‌سایت برند با کنتراست بالا برای استودیوی خلاق با تایپوگرافی قوی و مرور سریع مطالعه موردی.'
-    },
-    fullDescription: {
-      en: 'Northstar wanted a website that felt confident without becoming loud. We created a typographic system, bold case-study entry points, and compact service storytelling.',
-      fa: 'نورث‌استار وب‌سایتی می‌خواست که مطمئن باشد اما پر سر و صدا نشود. سیستم تایپوگرافی، ورودی‌های جسورانه مطالعه موردی و روایت فشرده خدمات طراحی شد.'
-    },
-    category: 'websites',
-    services: ['websites'],
-    technologies: ['Nuxt', 'UnoCSS', 'TypeScript', 'SEO'],
-    coverVisual: { tone: 'primary', composition: 'editorial' },
-    gallery: [
-      {
-        id: 'northstar-hero',
-        title: { en: 'Typographic hero', fa: 'هیروی تایپوگرافیک' },
-        caption: { en: 'The homepage leads with a strong verbal and visual position.', fa: 'صفحه اصلی با موضع کلامی و بصری قوی شروع می‌شود.' },
-        orientation: 'wide',
-        visual: { tone: 'primary', composition: 'editorial' }
-      },
-      {
-        id: 'northstar-cases',
-        title: { en: 'Case-study shelf', fa: 'قفسه مطالعه موردی' },
-        caption: { en: 'Selected work is scannable without flattening the identity.', fa: 'نمونه‌کارها قابل مرورند بدون اینکه هویت بصری تخت شود.' },
-        orientation: 'landscape',
-        visual: { tone: 'mono', composition: 'system' }
-      }
-    ],
-    projectUrl: 'https://example.com/northstar',
-    timeline: {
-      durationWeeks: 6,
-      note: { en: '6-week brand website launch', fa: '۶ هفته تا انتشار وب‌سایت برند' }
-    },
-    year: '2024',
-    featured: false,
-    status: 'published',
-    overview: {
-      en: 'A compact brand website that uses editorial confidence instead of decorative excess.',
-      fa: 'وب‌سایت برند فشرده‌ای که به جای تزئینات اضافه، از اعتماد ادیتوریال استفاده می‌کند.'
-    },
-    challenge: {
-      en: 'The studio had strong work but a generic digital presence that made every project feel similar.',
-      fa: 'استودیو آثار قوی داشت اما حضور دیجیتال عمومی باعث می‌شد همه پروژه‌ها شبیه هم به نظر برسند.'
-    },
-    solution: {
-      en: 'We introduced a sharper typography system and a project browsing rhythm that gives each case a distinct point of view.',
-      fa: 'سیستم تایپوگرافی تیزتر و ریتم مرور پروژه ساختیم که به هر نمونه‌کار زاویه دید مستقل می‌دهد.'
-    },
-    keyFeatures: [
-      { en: 'High-impact typographic homepage', fa: 'صفحه اصلی تایپوگرافیک و اثرگذار' },
-      { en: 'Fast case-study browsing', fa: 'مرور سریع مطالعه موردی' },
-      { en: 'Service narrative without marketing clutter', fa: 'روایت خدمات بدون شلوغی بازاریابی' }
-    ],
-    results: [
-      { value: { en: '5', fa: '۵' }, label: { en: 'signature layouts', fa: 'چیدمان شاخص' } },
-      { value: { en: '+29%', fa: '+۲۹٪' }, label: { en: 'inquiry quality', fa: 'کیفیت درخواست‌ها' } }
-    ],
-    layout: 'standard'
-  },
-  {
-    id: 'proj_mina_analytics',
-    slug: 'mina-analytics-admin',
-    title: {
-      en: 'Mina Analytics Admin',
-      fa: 'ادمین تحلیل مینا'
-    },
-    shortDescription: {
-      en: 'An analytics admin panel for performance reports, stakeholder exports, and data quality review.',
-      fa: 'پنل مدیریتی تحلیل برای گزارش عملکرد، خروجی ذی‌نفعان و بررسی کیفیت داده.'
-    },
-    fullDescription: {
-      en: 'Mina needed to make analytics useful to non-technical operators. We designed a reporting system that moves from business questions to data evidence without dashboard sprawl.',
-      fa: 'مینا باید تحلیل داده را برای اپراتورهای غیرفنی کاربردی می‌کرد. سیستم گزارشی طراحی شد که از سوال کسب‌وکار به شواهد داده‌ای می‌رسد بدون رشد بی‌رویه داشبورد.'
-    },
-    category: 'adminPanels',
-    services: ['adminPanels', 'webApps'],
-    technologies: ['Vue', 'Charts', 'TypeScript', 'Node.js', 'Exports'],
-    coverVisual: { tone: 'cool', composition: 'dashboard' },
-    gallery: [
-      {
-        id: 'mina-reports',
-        title: { en: 'Report builder', fa: 'سازنده گزارش' },
-        caption: { en: 'Reports are organized by questions, not by chart type.', fa: 'گزارش‌ها براساس سوال‌ها سازمان‌دهی شده‌اند، نه نوع نمودار.' },
-        orientation: 'wide',
-        visual: { tone: 'cool', composition: 'dashboard' }
-      },
-      {
-        id: 'mina-quality',
-        title: { en: 'Data quality review', fa: 'بررسی کیفیت داده' },
-        caption: { en: 'Quality warnings explain what changed and why it matters.', fa: 'هشدارهای کیفیت توضیح می‌دهند چه چیزی تغییر کرده و چرا مهم است.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'system' }
-      }
-    ],
-    demoUrl: 'https://example.com/mina-demo',
-    pricing: {
-      visibility: 'public',
-      currency: 'USD',
-      min: 22000,
-      max: 38000,
-      note: { en: 'Public range: $22k–$38k', fa: 'بازه عمومی: ۲۲ تا ۳۸ هزار دلار' }
-    },
-    timeline: {
-      durationWeeks: 8,
-      note: { en: '8-week reporting admin product', fa: '۸ هفته محصول ادمین گزارش‌گیری' }
-    },
-    year: '2025',
-    featured: false,
-    status: 'published',
-    overview: {
-      en: 'An admin panel that turns analytics into practical decisions for operators and stakeholders.',
-      fa: 'پنل ادمینی که تحلیل داده را برای اپراتورها و ذی‌نفعان به تصمیم کاربردی تبدیل می‌کند.'
-    },
-    challenge: {
-      en: 'The team had many charts but few answers, and exporting reports required repeated manual cleanup.',
-      fa: 'تیم نمودارهای زیادی داشت اما جواب‌های کمی می‌گرفت و خروجی گزارش‌ها پاکسازی دستی تکراری می‌خواست.'
-    },
-    solution: {
-      en: 'We designed report templates around recurring business questions and added quality states before export.',
-      fa: 'قالب‌های گزارش را حول سوال‌های تکرارشونده کسب‌وکار طراحی کردیم و پیش از خروجی، وضعیت‌های کیفیت اضافه شد.'
-    },
-    keyFeatures: [
-      { en: 'Question-led report templates', fa: 'قالب‌های گزارش بر اساس سوال' },
-      { en: 'Export-ready stakeholder views', fa: 'نماهای آماده خروجی برای ذی‌نفعان' },
-      { en: 'Data quality warnings and review states', fa: 'هشدارها و وضعیت‌های بررسی کیفیت داده' }
-    ],
-    results: [
-      { value: { en: '-64%', fa: '-۶۴٪' }, label: { en: 'manual report cleanup', fa: 'کاهش پاکسازی دستی گزارش' } },
-      { value: { en: '11', fa: '۱۱' }, label: { en: 'recurring questions modeled', fa: 'سوال تکراری مدل‌شده' } }
-    ],
-    layout: 'portrait'
-  },
-  {
-    id: 'proj_verdant_mobile',
-    slug: 'verdant-commerce-mobile',
-    title: {
-      en: 'Verdant Commerce Mobile',
-      fa: 'موبایل فروشگاهی وردنت'
-    },
-    shortDescription: {
-      en: 'A mobile commerce experience for subscription produce boxes, delivery windows, and flexible preferences.',
-      fa: 'تجربه تجارت موبایل برای اشتراک جعبه محصولات، بازه ارسال و ترجیح‌های منعطف.'
-    },
-    fullDescription: {
-      en: 'Verdant needed mobile commerce that felt fresh and practical. We designed subscription flows, preference controls, and delivery visibility for weekly produce customers.',
-      fa: 'وردنت به تجارت موبایلی نیاز داشت که هم تازه و هم کاربردی باشد. جریان‌های اشتراک، کنترل ترجیح‌ها و شفافیت ارسال برای مشتریان هفتگی طراحی شد.'
-    },
-    category: 'mobileApps',
-    services: ['mobileApps', 'ecommerce'],
-    technologies: ['Flutter', 'Commerce API', 'Subscriptions', 'Push'],
-    coverVisual: { tone: 'warm', composition: 'mobile' },
-    gallery: [
-      {
-        id: 'verdant-subscription',
-        title: { en: 'Subscription rhythm', fa: 'ریتم اشتراک' },
-        caption: { en: 'Customers can adjust the next box without fighting account settings.', fa: 'مشتری می‌تواند جعبه بعدی را بدون درگیری با تنظیمات حساب تغییر دهد.' },
-        orientation: 'portrait',
-        visual: { tone: 'warm', composition: 'mobile' }
-      },
-      {
-        id: 'verdant-delivery',
-        title: { en: 'Delivery clarity', fa: 'شفافیت ارسال' },
-        caption: { en: 'Delivery windows and preferences stay visible at the moments they matter.', fa: 'بازه ارسال و ترجیح‌ها در لحظه‌های مهم قابل مشاهده می‌مانند.' },
-        orientation: 'landscape',
-        visual: { tone: 'accent', composition: 'commerce' }
-      }
-    ],
-    demoUrl: 'https://example.com/verdant-mobile',
-    timeline: {
-      durationWeeks: 10,
-      note: { en: '10-week mobile commerce prototype', fa: '۱۰ هفته نمونه اولیه تجارت موبایل' }
-    },
-    year: '2024',
-    featured: false,
-    status: 'published',
-    overview: {
-      en: 'A mobile commerce concept built around recurring purchase behavior and delivery clarity.',
-      fa: 'کانسپت تجارت موبایل براساس رفتار خرید تکرارشونده و شفافیت ارسال.'
-    },
-    challenge: {
-      en: 'Subscription customers needed flexibility, but too many settings made weekly changes feel tedious.',
-      fa: 'مشتریان اشتراکی انعطاف می‌خواستند اما تنظیمات زیاد، تغییرات هفتگی را خسته‌کننده می‌کرد.'
-    },
-    solution: {
-      en: 'We surfaced preference controls directly inside the next-delivery context and simplified subscription states.',
-      fa: 'کنترل‌های ترجیح را مستقیماً در زمینه ارسال بعدی آوردیم و وضعیت‌های اشتراک را ساده کردیم.'
-    },
-    keyFeatures: [
-      { en: 'Next-box preference controls', fa: 'کنترل ترجیح‌های جعبه بعدی' },
-      { en: 'Subscription state clarity', fa: 'شفافیت وضعیت اشتراک' },
-      { en: 'Delivery window communication', fa: 'اطلاع‌رسانی بازه ارسال' }
-    ],
-    results: [
-      { value: { en: '3', fa: '۳' }, label: { en: 'subscription states', fa: 'وضعیت اشتراک' } },
-      { value: { en: '+19%', fa: '+۱۹٪' }, label: { en: 'prototype preference updates', fa: 'به‌روزرسانی ترجیح در نمونه اولیه' } }
-    ],
-    layout: 'standard'
-  },
-  {
-    id: 'proj_helio_api',
-    slug: 'helio-api-platform',
-    title: {
-      en: 'Helio API Platform',
-      fa: 'پلتفرم API هلیو'
-    },
-    shortDescription: {
-      en: 'A developer-facing API portal with documentation patterns, keys, usage states, and onboarding flows.',
-      fa: 'پورتال API برای توسعه‌دهندگان با الگوهای مستندات، کلیدها، وضعیت مصرف و مسیر ورود اولیه.'
-    },
-    fullDescription: {
-      en: 'Helio had strong APIs but weak developer onboarding. SAZAN designed a portal that makes setup, credentials, usage limits, and examples easier to understand.',
-      fa: 'هلیو APIهای قوی داشت اما ورود اولیه توسعه‌دهنده ضعیف بود. سازان پورتالی طراحی کرد که راه‌اندازی، دسترسی‌ها، محدودیت مصرف و مثال‌ها را قابل فهم‌تر می‌کند.'
-    },
-    category: 'backendSystems',
-    services: ['backendSystems', 'webApps', 'websites'],
-    technologies: ['Nuxt', 'Node.js', 'OpenAPI', 'MongoDB', 'Docs'],
-    coverVisual: { tone: 'primary', composition: 'backend' },
-    gallery: [
-      {
-        id: 'helio-docs',
-        title: { en: 'Documentation system', fa: 'سیستم مستندات' },
-        caption: { en: 'Guides, examples, and reference docs share the same navigation model.', fa: 'راهنماها، مثال‌ها و مرجع API یک مدل ناوبری مشترک دارند.' },
-        orientation: 'wide',
-        visual: { tone: 'primary', composition: 'backend' }
-      },
-      {
-        id: 'helio-keys',
-        title: { en: 'Key management', fa: 'مدیریت کلید' },
-        caption: { en: 'Credentials and usage states are explicit without exposing operational complexity.', fa: 'دسترسی‌ها و وضعیت مصرف روشن‌اند بدون اینکه پیچیدگی عملیات آشکار شود.' },
-        orientation: 'landscape',
-        visual: { tone: 'mono', composition: 'system' }
-      }
-    ],
-    demoUrl: 'https://example.com/helio-portal',
-    pricing: {
-      visibility: 'on-request',
-      note: { en: 'Depends on documentation depth and API complexity', fa: 'وابسته به عمق مستندات و پیچیدگی API' }
-    },
-    timeline: {
-      durationWeeks: 9,
-      note: { en: '9-week developer portal foundation', fa: '۹ هفته زیرساخت پورتال توسعه‌دهنده' }
-    },
+    technologies: [],
+    coverVisual: { tone: 'cool', composition: 'mobile' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3011',
     year: '2026',
     featured: false,
     status: 'published',
-    overview: {
-      en: 'A developer portal that treats technical clarity as part of the product experience.',
-      fa: 'پورتال توسعه‌دهنده‌ای که شفافیت فنی را بخشی از تجربه محصول می‌داند.'
-    },
-    challenge: {
-      en: 'Developers could not quickly understand which API path, key, and limit applied to their use case.',
-      fa: 'توسعه‌دهندگان سریع نمی‌فهمیدند کدام مسیر API، کلید و محدودیت به کاربردشان مربوط است.'
-    },
-    solution: {
-      en: 'We connected documentation, onboarding, credential management, and usage states into one developer journey.',
-      fa: 'مستندات، ورود اولیه، مدیریت دسترسی و وضعیت مصرف را به یک مسیر توسعه‌دهنده متصل کردیم.'
-    },
+    overview: text(
+      'Small-business accounting that starts on the phone and reads naturally in Persian.',
+      'حسابداری کسب‌وکار کوچک که از گوشی شروع می‌شود و فارسی را طبیعی می‌خواند.'
+    ),
+    challenge: text(
+      'Small businesses needed accounting that fits a phone and a right-to-left reading order.',
+      'کسب‌وکارهای کوچک به حسابداری‌ای نیاز داشتند که با گوشی و خواندن راست‌به‌چپ جور باشد.'
+    ),
+    solution: text(
+      'Invoicer is a mobile-first Persian accounting app with a more considered visual design.',
+      'اینوویسر اپ حسابداری فارسی و موبایل‌فرست است و طراحی بصری دقیق‌تری دارد.'
+    ),
     keyFeatures: [
-      { en: 'OpenAPI-powered documentation structure', fa: 'ساختار مستندات مبتنی بر OpenAPI' },
-      { en: 'Credential and usage management', fa: 'مدیریت دسترسی و مصرف' },
-      { en: 'Developer onboarding flows', fa: 'مسیر ورود اولیه توسعه‌دهنده' }
+      text('Persian, right-to-left accounting', 'حسابداری فارسی و راست‌به‌چپ'),
+      text('Mobile-first screens', 'صفحه‌های موبایل‌فرست'),
+      text('Made for small businesses', 'ساخته‌شده برای کسب‌وکار کوچک')
     ],
-    results: [
-      { value: { en: '-38%', fa: '-۳۸٪' }, label: { en: 'integration questions', fa: 'کاهش سوال‌های یکپارچه‌سازی' } },
-      { value: { en: '14', fa: '۱۴' }, label: { en: 'API examples documented', fa: 'مثال API مستندسازی‌شده' } }
+    results: [],
+    layout: 'portrait'
+  },
+  {
+    id: 'proj_waqtino',
+    slug: 'waqtino',
+    title: text('Waqtino', 'وقتینو'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/a380eeb9-3a91-4a87-bf04-4cc80ca50431.png'),
+    shortDescription: text(
+      'A mobile-first Persian appointment booking app, prepared to ship as Android with Capacitor.',
+      'اپ رزرو نوبت فارسی و موبایل‌محور، آماده تبدیل به اندروید با Capacitor.'
+    ),
+    fullDescription: text(
+      'Waqtino is the frontend for a Persian, mobile-first appointment booking app. It uses Nuxt 4, TypeScript, and Nuxt UI, and is intended to become an Android app with Capacitor. The AdonisJS backend stays separate and connects later through a service layer.',
+      'وقتینو فرانت‌اند اپلیکیشن رزرو نوبت است؛ موبایل‌محور، فارسی‌محور و راست‌به‌چپ، با Nuxt 4 و TypeScript و Nuxt UI. در نهایت با Capacitor به اپ اندروید تبدیل می‌شود. بک‌اند AdonisJS جداست و بعداً از لایه سرویس وصل می‌شود.'
+    ),
+    category: 'mobileApps',
+    services: ['mobileApps', 'webApps'],
+    technologies: ['Nuxt', 'TypeScript', 'Nuxt UI', 'Capacitor'],
+    coverVisual: { tone: 'accent', composition: 'mobile' },
+    gallery: [],
+    year: '2026',
+    featured: false,
+    status: 'published',
+    overview: text(
+      'Appointment booking that is built as a phone interface first.',
+      'رزرو نوبت که اول به شکل رابط گوشی ساخته شده است.'
+    ),
+    challenge: text(
+      'Booking had to feel like a Persian mobile app, while the backend remained a separate service.',
+      'رزرو باید حس اپ موبایل فارسی بدهد و بک‌اند جدا بماند.'
+    ),
+    solution: text(
+      'Waqtino is a Nuxt frontend aimed at Capacitor on Android, with a later connection to AdonisJS.',
+      'وقتینو فرانت Nuxt است که برای Capacitor روی اندروید ساخته می‌شود و بعداً به AdonisJS وصل می‌شود.'
+    ),
+    keyFeatures: [
+      text('Persian, RTL, mobile-first booking', 'رزرو فارسی، راست‌به‌چپ و موبایل‌محور'),
+      text('Nuxt 4 and Nuxt UI interface', 'رابط Nuxt 4 و Nuxt UI'),
+      text('Path to an Android app via Capacitor', 'مسیر اپ اندروید با Capacitor')
     ],
-    layout: 'feature'
+    results: [],
+    layout: 'portrait'
+  },
+  {
+    id: 'proj_motomeet',
+    slug: 'motomeet',
+    title: text('MotoMeet', 'موتومیت'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/2305f788-b928-43bf-b92b-65bfff4bb4a2.png'),
+    shortDescription: text(
+      'A Persian social platform for motorcycle riders: rides, clubs, and community.',
+      'شبکه اجتماعی فارسی برای موتورسوارها؛ تور، کلاب و انجمن.'
+    ),
+    fullDescription: text(
+      'MotoMeet is a Persian, right-to-left social platform for motorcycle riders. It is built around rides, clubs, and community.',
+      'موتومیت شبکه اجتماعی فارسی و راست‌به‌چپ برای موتورسوارهاست و حول تور، کلاب و انجمن ساخته شده است.'
+    ),
+    category: 'webApps',
+    services: ['webApps', 'mobileApps'],
+    technologies: [],
+    coverVisual: { tone: 'primary', composition: 'mobile' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3006',
+    year: '2026',
+    featured: false,
+    status: 'published',
+    overview: text(
+      'A rider community organized around going out together.',
+      'انجمن موتورسوارها که حول با هم بیرون رفتن شکل گرفته است.'
+    ),
+    challenge: text(
+      'Riders needed a Persian place for rides and clubs, not a general social feed.',
+      'موتورسوارها به جای فارسی برای تور و کلاب نیاز داشتند، نه یک فید اجتماعی عمومی.'
+    ),
+    solution: text(
+      'MotoMeet centers the product on rides, clubs, and the rider community.',
+      'موتومیت محصول را روی تور، کلاب و انجمن موتورسوارها متمرکز می‌کند.'
+    ),
+    keyFeatures: [
+      text('Ride planning', 'برنامه‌ریزی تور'),
+      text('Rider clubs', 'کلاب‌های موتورسواری'),
+      text('Persian, right-to-left community', 'انجمن فارسی و راست‌به‌چپ')
+    ],
+    results: [],
+    layout: 'standard'
+  },
+  {
+    id: 'proj_motofix',
+    slug: 'motofix',
+    title: text('MotoFix', 'موتوفیکس'),
+    media: shot('http://188.121.107.118:9000/projects-hub/covers/c9cffca9-cecc-4932-bbd2-4464b4936468.png'),
+    shortDescription: text(
+      'A way to find nearby motorcycle services: repair, electrical, tires, oil, parts, and roadside help.',
+      'پیدا کردن خدمات موتورسیکلت در نزدیکی: تعمیر، برق، لاستیک، روغن، قطعه و امداد.'
+    ),
+    fullDescription: text(
+      'MotoFix helps riders find motorcycle services nearby: workshops, motorcycle electrical work, tires and puncture repair, oil changes, spare parts, helmets, tuning, and roadside assistance.',
+      'موتوفیکس برای پیدا کردن خدمات موتورسیکلت در نزدیکی است: تعمیرگاه، برق موتور، لاستیک و پنچرگیری، تعویض روغن، قطعات یدکی، کلاه کاسکت، تیونینگ و امداد.'
+    ),
+    category: 'webApps',
+    services: ['webApps', 'mobileApps'],
+    technologies: [],
+    coverVisual: { tone: 'accent', composition: 'system' },
+    gallery: [],
+    projectUrl: 'http://188.121.107.118:3007',
+    year: '2026',
+    featured: false,
+    status: 'published',
+    overview: text(
+      'Nearby motorcycle help, listed as the services riders actually search for.',
+      'کمک موتورسیکلت در نزدیکی، با همان خدماتی که موتورسوار واقعاً جستجو می‌کند.'
+    ),
+    challenge: text(
+      'Service search is useless if it does not speak the jobs a rider needs that day.',
+      'جستجوی خدمات بی‌فایده است اگر کارهای همان روز موتورسوار را بلد نباشد.'
+    ),
+    solution: text(
+      'MotoFix organizes nearby results around repair, electrical work, tires, oil, parts, gear, tuning, and assistance.',
+      'موتوفیکس نتایج نزدیک را حول تعمیر، برق، لاستیک، روغن، قطعه، تجهیزات، تیونینگ و امداد می‌چیند.'
+    ),
+    keyFeatures: [
+      text('Nearby motorcycle workshops', 'تعمیرگاه‌های موتور نزدیک'),
+      text('Tires, oil, parts, and gear', 'لاستیک، روغن، قطعه و تجهیزات'),
+      text('Tuning and roadside assistance', 'تیونینگ و امداد جاده‌ای')
+    ],
+    results: [],
+    layout: 'landscape'
   }
-] as const satisfies readonly PortfolioProject[];
+] satisfies readonly PortfolioProject[];
 
 export const getPortfolioProjectBySlug = (slug: string) => {
   return portfolioProjects.find((project) => project.slug === slug);

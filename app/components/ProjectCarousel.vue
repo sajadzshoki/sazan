@@ -12,7 +12,7 @@ const { isRtl } = useAppDirection();
 const { formatDigits } = useLocaleDigits();
 
 const activeIndex = ref(0);
-const live = ref(false);
+const live = ref(true);
 const device = ref<DeviceType>('laptop');
 const viewportScale = ref(100);
 const stageRef = ref<HTMLElement | null>(null);
@@ -63,9 +63,14 @@ const go = (delta: number) => {
 
   slideDirection.value = delta >= 0 ? 1 : -1;
   activeIndex.value = (activeIndex.value + delta + count.value) % count.value;
-  live.value = false;
   userPaused.value = true;
 };
+
+const { embeddable } = useFrameEmbed(liveUrl);
+
+watch(embeddable, (value) => {
+  live.value = value;
+}, { immediate: true });
 
 const selectDevice = (nextDevice: DeviceType) => {
   device.value = nextDevice;
@@ -227,13 +232,13 @@ watch(current, (project) => {
           <button
             type="button"
             class="sazan-focus inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold tracking-[0.12em] uppercase"
-            :class="live ? 'border-primary bg-primary text-onPrimary' : 'border-border bg-surface text-foreground'"
-            :aria-pressed="live"
-            :disabled="!liveUrl"
+            :class="live && embeddable ? 'border-primary bg-primary text-onPrimary' : 'border-border bg-surface text-foreground'"
+            :aria-pressed="live && embeddable"
+            :disabled="!embeddable"
             @click="live = !live"
           >
-            <span class="h-1.5 w-1.5 rounded-full" :class="live ? 'bg-onPrimary' : 'bg-primary'" />
-            {{ live ? t('studio.work.liveOn') : t('studio.work.live') }}
+            <span class="h-1.5 w-1.5 rounded-full" :class="live && embeddable ? 'bg-onPrimary' : 'bg-primary'" />
+            {{ live && embeddable ? t('studio.work.liveOn') : t('studio.work.live') }}
           </button>
 
           <div v-if="devices.length > 1" class="flex rounded-full border border-border bg-surface p-1" role="group" :aria-label="t('studio.work.devicesLabel')">
@@ -260,7 +265,7 @@ watch(current, (project) => {
               :title="current.title"
               :caption="t(`portfolio.categories.${current.category}`)"
               :live-url="liveUrl"
-              :live="live"
+              :live="live && embeddable"
             />
           </div>
         </Transition>

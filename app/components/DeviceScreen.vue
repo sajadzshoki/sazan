@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { DeviceType } from '~/utils/presentation';
-
 const props = withDefaults(defineProps<{
   src?: string | undefined;
   alt?: string | undefined;
@@ -14,9 +12,65 @@ const props = withDefaults(defineProps<{
   assetName: 'screenshot'
 });
 
-const showLive = computed(() => Boolean(props.live && props.liveUrl));
-const showImage = computed(() => Boolean(props.src) && !showLive.value);
+const frameReady = ref(false);
+const frameFailed = ref(false);
+let frameTimer: ReturnType<typeof setTimeout> | undefined;
+
+const showLive = computed(() => Boolean(props.live && props.liveUrl) && !frameFailed.value);
+const showImage = computed(() => Boolean(props.src) && !frameReady.value);
 const isDev = import.meta.dev;
+
+const resetFrame = () => {
+  frameReady.value = false;
+  frameFailed.value = false;
+  if (frameTimer) {
+    clearTimeout(frameTimer);
+    frameTimer = undefined;
+  }
+};
+
+const markFailed = () => {
+  frameFailed.value = true;
+  frameReady.value = false;
+};
+
+watch(() => [props.live, props.liveUrl] as const, () => {
+  resetFrame();
+
+  if (!import.meta.client || !props.live || !props.liveUrl) {
+    return;
+  }
+
+  frameTimer = setTimeout(() => {
+    if (!frameReady.value) {
+      markFailed();
+    }
+  }, 12000);
+}, { immediate: true });
+
+const onFrameLoad = (event: Event) => {
+  const frame = event.target as HTMLIFrameElement;
+
+  try {
+    const href = frame.contentDocument?.URL || frame.contentWindow?.location.href || '';
+
+    if (!href || href === 'about:blank') {
+      markFailed();
+      return;
+    }
+  } catch {
+    frameReady.value = true;
+    return;
+  }
+
+  frameReady.value = true;
+};
+
+onBeforeUnmount(() => {
+  if (frameTimer) {
+    clearTimeout(frameTimer);
+  }
+});
 </script>
 
 <template>
@@ -30,15 +84,16 @@ const isDev = import.meta.dev;
       decoding="async"
     >
     <iframe
-      v-else-if="showLive"
-      class="screen-media"
+      v-if="showLive"
+      class="screen-media screen-frame"
+      :class="{ 'is-ready': frameReady }"
       :src="liveUrl"
       :title="alt || title || 'Live preview'"
-      loading="lazy"
       referrerpolicy="no-referrer"
-      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+      @load="onFrameLoad"
     />
-    <div v-else class="screen-fallback" role="img" :aria-label="alt || title || caption">
+    <div v-if="!showImage && !showLive" class="screen-fallback" role="img" :aria-label="alt || title || caption">
       <div class="screen-fallback-bar" aria-hidden="true">
         <span />
         <span />
@@ -74,6 +129,21 @@ const isDev = import.meta.dev;
   border: 0;
   object-fit: cover;
   object-position: top center;
+}
+
+.screen-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(var(--color-background));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.screen-frame.is-ready {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .screen-fallback {
