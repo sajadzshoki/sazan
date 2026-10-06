@@ -195,7 +195,14 @@ export default {
       note: 'Open a project for the case study, the stack, and the live link when one exists.'
     },
     card: {
-      openProject: 'Open {title} case study'
+      openProject: 'Open {title} case study',
+      orderSimilar: 'Order a similar product'
+    },
+    similar: {
+      eyebrow: 'A similar product',
+      title: 'Want something like this?',
+      lead: 'Say what should feel like {title}. Then continue through the same project request. Nothing is filled in for you.',
+      action: 'Order a similar product'
     },
     empty: {
       title: 'No projects in this category yet.',
@@ -264,6 +271,10 @@ export default {
       eyebrow: 'Start light',
       title: 'What should this product become?',
       lead: 'A short brief is enough. Most questions are optional.'
+    },
+    similar: {
+      eyebrow: 'Similar product',
+      note: 'This request is for a product like the one above. The form is empty. Add your description and continue through the same steps.'
     },
     progress: {
       stepOf: 'Step {current} of {total}',
@@ -403,7 +414,8 @@ export default {
         features: 'Requested capabilities',
         budget: 'Budget range',
         timeline: 'Timeline',
-        contact: 'Contact information'
+        contact: 'Contact information',
+        similarProject: 'Source project'
       }
     },
     validation: {
@@ -590,7 +602,8 @@ export default {
     requests: {
       title: 'Project requests',
       description: 'Review incoming project requests, update status, archive, or delete.',
-      selectEmpty: 'Select a request to see its details.'
+      selectEmpty: 'Select a request to see its details.',
+      similarBadge: 'Similar product'
     },
     settings: {
       title: 'Public contact settings',
@@ -652,6 +665,7 @@ export default {
       projectTypes: 'Project types',
       features: 'Features',
       businessDescription: 'Business description',
+      similarProject: 'Source project',
       whatsapp: 'WhatsApp',
       telegram: 'Telegram',
       linkedin: 'LinkedIn',

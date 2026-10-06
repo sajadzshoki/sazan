@@ -24,9 +24,9 @@ const { t } = useI18n();
           </p>
         </div>
 
-        <div class="relative min-h-[18rem] overflow-hidden border border-border bg-background shadow-[var(--shadow-soft)] sm:min-h-[22rem]">
+        <div class="relative min-h-[18rem] overflow-hidden rounded-[1.35rem] border border-border bg-background shadow-[var(--shadow-soft)] sm:min-h-[22rem]">
           <div class="portfolio-grain absolute inset-0 opacity-50" aria-hidden="true" />
-          <div class="absolute inset-6 border border-border" aria-hidden="true" />
+          <div class="absolute inset-6 rounded-[1rem] border border-border" aria-hidden="true" />
           <div class="absolute inset-0 grid place-items-center p-8 text-center">
             <div class="grid justify-items-center gap-5">
               <span class="grid h-20 w-20 place-items-center rounded-full border border-primary bg-primary/10 text-2xl text-primary" aria-hidden="true">

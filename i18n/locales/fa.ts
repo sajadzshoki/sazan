@@ -195,7 +195,14 @@ export default {
       note: 'پروژه را باز کنید تا شرح کار و تکنولوژی را ببینید. اگر لینک زنده داشته باشد، همان‌جا هست.'
     },
     card: {
-      openProject: 'باز کردن {title}'
+      openProject: 'باز کردن {title}',
+      orderSimilar: 'سفارش محصول مشابه'
+    },
+    similar: {
+      eyebrow: 'سفارش محصول مشابه',
+      title: 'محصولی شبیه این می‌خواهید؟',
+      lead: 'بگویید چه چیزی باید شبیه {title} باشد. بعد همان مراحل ثبت پروژه را جلو می‌روید؛ هیچ فیلدی از قبل پر نمی‌شود.',
+      action: 'سفارش محصول مشابه'
     },
     empty: {
       title: 'هنوز پروژه‌ای در این دسته نیست.',
@@ -264,6 +271,10 @@ export default {
       eyebrow: 'شروع ساده',
       title: 'این محصول قرار است چه شود؟',
       lead: 'یک توضیح کوتاه کافی است. بیشتر سؤال‌ها اختیاری است.'
+    },
+    similar: {
+      eyebrow: 'سفارش محصول مشابه',
+      note: 'این درخواست برای محصولی شبیه پروژهٔ بالا است. فرم خالی است؛ توضیح را بنویسید و همان مراحل را ادامه دهید.'
     },
     progress: {
       stepOf: 'مرحله {current} از {total}',
@@ -403,7 +414,8 @@ export default {
         features: 'قابلیت‌های لازم',
         budget: 'حدود بودجه',
         timeline: 'زمان',
-        contact: 'اطلاعات تماس'
+        contact: 'اطلاعات تماس',
+        similarProject: 'پروژه مبدأ'
       }
     },
     validation: {
@@ -590,7 +602,8 @@ export default {
     requests: {
       title: 'درخواست‌های پروژه',
       description: 'درخواست‌های ورودی را ببینید، وضعیت را عوض کنید، بایگانی یا حذف کنید.',
-      selectEmpty: 'یک درخواست را انتخاب کنید.'
+      selectEmpty: 'یک درخواست را انتخاب کنید.',
+      similarBadge: 'مشابه پروژه'
     },
     settings: {
       title: 'اطلاعات تماس سایت',
@@ -652,6 +665,7 @@ export default {
       projectTypes: 'نوع پروژه',
       features: 'قابلیت‌ها',
       businessDescription: 'توضیح کسب‌وکار',
+      similarProject: 'پروژه مبدأ',
       whatsapp: 'واتساپ',
       telegram: 'تلگرام',
       linkedin: 'لینکدین',

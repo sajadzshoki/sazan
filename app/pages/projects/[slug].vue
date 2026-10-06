@@ -38,6 +38,11 @@ const { embeddable } = useFrameEmbed(liveUrl);
 
 const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.studio').replace(/\/$/, ''));
 
+const similarPath = computed(() => localePath({
+  path: '/start-a-project',
+  query: { similar: project.value.slug }
+}));
+
 const projectLinks = computed(() => {
   const links: Array<{ label: string; url: string }> = [];
 
@@ -128,7 +133,10 @@ usePublicSeo({
                 </li>
               </ul>
 
-              <div v-if="projectLinks.length" class="flex flex-wrap gap-3">
+              <div class="flex flex-wrap gap-3">
+                <NuxtLink :to="similarPath" class="sazan-button-primary">
+                  {{ t('portfolio.similar.action') }}
+                </NuxtLink>
                 <a
                   v-for="link in projectLinks"
                   :key="link.url"
@@ -259,7 +267,7 @@ usePublicSeo({
             <li
               v-for="technology in project.technologies"
               :key="technology"
-              class="flex items-center justify-between border border-border bg-background px-4 py-4 text-sm font-bold text-foreground"
+              class="flex items-center justify-between rounded-2xl border border-border bg-background px-4 py-4 text-sm font-bold text-foreground"
             >
               <span>{{ technology }}</span>
               <span class="text-primary" aria-hidden="true">+</span>
@@ -285,6 +293,27 @@ usePublicSeo({
             <span class="arrow-icon" aria-hidden="true">→</span>
           </span>
         </NuxtLink>
+      </BaseContainer>
+    </section>
+
+    <section class="sazan-section-tight border-t border-border">
+      <BaseContainer>
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,0.7fr)_auto] lg:items-end">
+          <div>
+            <p class="sazan-eyebrow">
+              {{ t('portfolio.similar.eyebrow') }}
+            </p>
+            <h2 class="sazan-heading-lg mt-4 max-w-3xl text-balance text-foreground">
+              {{ t('portfolio.similar.title') }}
+            </h2>
+            <p class="mt-4 max-w-2xl text-base leading-8 text-muted">
+              {{ t('portfolio.similar.lead', { title: project.title }) }}
+            </p>
+          </div>
+          <NuxtLink :to="similarPath" class="sazan-button-primary w-full sm:w-max">
+            {{ t('portfolio.similar.action') }}
+          </NuxtLink>
+        </div>
       </BaseContainer>
     </section>
 

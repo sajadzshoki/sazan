@@ -128,7 +128,7 @@ usePublicSeo({
           />
         </TransitionGroup>
 
-        <div v-if="filteredProjects.length === 0" class="border border-border bg-surface p-8 text-center">
+        <div v-if="filteredProjects.length === 0" class="rounded-[1.35rem] border border-border bg-surface p-8 text-center shadow-[var(--shadow-soft)]">
           <h2 class="text-2xl font-black text-foreground">
             {{ t('portfolio.empty.title') }}
           </h2>

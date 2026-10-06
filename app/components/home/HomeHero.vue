@@ -456,7 +456,7 @@ watch(stageHovered, (hovered) => {
   top: 0;
   max-width: 100%;
   overflow: hidden;
-  color: rgb(var(--color-primary) / 0.22);
+  color: rgb(var(--color-foreground) / 0.62);
   font-size: clamp(1.35rem, 7.4cqi, 1.85rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -483,6 +483,7 @@ watch(stageHovered, (hovered) => {
 }
 
 .hero-mark-brand {
+  color: rgb(var(--color-primary));
   letter-spacing: 0.12em;
 }
 

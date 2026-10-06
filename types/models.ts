@@ -122,6 +122,11 @@ export interface ProjectRequestContact {
   preferredContactMethod?: PreferredContactMethod;
 }
 
+export interface SimilarProjectRef {
+  slug: string;
+  title: LocalizedString;
+}
+
 export interface ProjectRequest extends TimestampedEntity {
   selectedProjectTypes: ProjectRequestProjectType[];
   businessDescription?: string;
@@ -130,6 +135,7 @@ export interface ProjectRequest extends TimestampedEntity {
   timeline?: ProjectRequestTimeline;
   contact: ProjectRequestContact;
   preferredLocale: LocaleCode;
+  similarProject?: SimilarProjectRef;
   source?: string;
   status: ProjectRequestStatus;
   notificationStatus?: 'pending' | 'sent' | 'skipped' | 'failed';

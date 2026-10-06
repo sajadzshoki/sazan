@@ -58,7 +58,7 @@ const details = computed(() => {
 </script>
 
 <template>
-  <aside class="sazan-surface p-5 shadow-[var(--shadow-soft)] lg:p-6">
+  <aside class="sazan-surface rounded-[1.35rem] p-5 shadow-[var(--shadow-soft)] lg:p-6">
     <h2 class="sazan-meta text-foreground">
       {{ t('portfolio.detail.projectDetails') }}
     </h2>

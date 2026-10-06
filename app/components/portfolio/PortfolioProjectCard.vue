@@ -12,6 +12,10 @@ const { t } = useI18n();
 const { formatDigits } = useLocaleDigits();
 
 const projectPath = computed(() => localePath(`/projects/${props.project.slug}`));
+const similarPath = computed(() => localePath({
+  path: '/start-a-project',
+  query: { similar: props.project.slug }
+}));
 const displayIndex = computed(() => formatDigits(String(props.index + 1).padStart(2, '0')));
 const displayYear = computed(() => formatDigits(props.project.year));
 const projectCategoryLabel = computed(() => t(`portfolio.categories.${props.project.category}`));
@@ -49,6 +53,9 @@ const device = computed(() => props.project.category === 'mobileApps' ? 'phone' 
           </li>
         </ul>
       </div>
+    </NuxtLink>
+    <NuxtLink :to="similarPath" class="sazan-button-secondary mt-4">
+      {{ t('portfolio.similar.action') }}
     </NuxtLink>
   </article>
 </template>

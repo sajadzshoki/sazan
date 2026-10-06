@@ -32,10 +32,26 @@ type ServerIssue = {
 const stepKeys: readonly StepKey[] = ['projectTypes', 'idea', 'features', 'budget', 'timeline', 'contact', 'review'];
 const optionalSteps: readonly StepKey[] = ['projectTypes', 'idea', 'features', 'budget', 'timeline'];
 
+const route = useRoute();
 const localePath = useLocalePath();
 const { t, locale } = useI18n();
 const { formatDigits } = useLocaleDigits();
 const { direction } = useAppDirection();
+const { getProjectBySlug } = usePortfolio();
+
+const similarSlug = computed(() => {
+  const value = route.query.similar;
+  return typeof value === 'string' ? value : '';
+});
+const similarProject = computed(() => {
+  if (!similarSlug.value) {
+    return undefined;
+  }
+
+  const project = getProjectBySlug(similarSlug.value);
+
+  return project?.status === 'published' ? project : undefined;
+});
 
 const currentStepIndex = ref(0);
 const maxVisitedStepIndex = ref(0);
@@ -361,7 +377,8 @@ async function submitRequest() {
           company: form.contact.company.trim() || undefined,
           preferredContactMethod: form.contact.preferredContactMethod
         },
-        preferredLocale: locale.value === 'en' ? 'en' : 'fa'
+        preferredLocale: locale.value === 'en' ? 'en' : 'fa',
+        ...(similarProject.value ? { similarProjectSlug: similarProject.value.slug } : {})
       }
     });
 
@@ -450,6 +467,17 @@ usePublicSeo({
           <p class="page-intro-lead">
             {{ t('startProject.hero.lead') }}
           </p>
+          <div v-if="similarProject" class="mt-8 max-w-3xl rounded-[1.35rem] border border-border bg-surface px-5 py-4 shadow-[var(--shadow-soft)]">
+            <p class="sazan-meta text-primary">
+              {{ t('startProject.similar.eyebrow') }}
+            </p>
+            <p class="mt-2 text-lg font-black text-foreground">
+              {{ similarProject.title }}
+            </p>
+            <p class="mt-2 text-sm leading-7 text-muted">
+              {{ t('startProject.similar.note') }}
+            </p>
+          </div>
         </header>
 
         <div class="brief-panel">
@@ -711,6 +739,14 @@ usePublicSeo({
                 </div>
 
                 <div v-else class="choice-grid">
+                  <article v-if="similarProject" class="border border-border bg-background/68 p-4">
+                    <p class="sazan-meta text-primary">
+                      {{ t('startProject.review.labels.similarProject') }}
+                    </p>
+                    <p class="mt-3 text-base font-bold leading-7 text-foreground">
+                      {{ similarProject.title }}
+                    </p>
+                  </article>
                   <div v-if="reviewItems.length" class="grid gap-3">
                     <article
                       v-for="item in reviewItems"
@@ -808,7 +844,7 @@ usePublicSeo({
 .brief-panel {
   margin-top: 1.1rem;
   border: 1px solid rgb(var(--color-border));
-  border-radius: var(--radius-lg);
+  border-radius: 1.35rem;
   background: rgb(var(--color-surface));
   box-shadow: var(--shadow-soft);
 }
@@ -946,7 +982,7 @@ html[dir='rtl'] .brief-question {
 
 .choice-card,
 .brief-body :is(input, textarea, fieldset, article) {
-  border-radius: var(--radius-md);
+  border-radius: 1rem;
 }
 
 .choice-card {

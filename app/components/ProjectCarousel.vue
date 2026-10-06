@@ -374,6 +374,12 @@ watch(current, (project) => {
           {{ t('common.viewCaseStudy') }}
           <span class="arrow-icon" aria-hidden="true">→</span>
         </NuxtLink>
+        <NuxtLink
+          :to="localePath({ path: '/start-a-project', query: { similar: current.slug } })"
+          class="sazan-text-link text-sm"
+        >
+          {{ t('portfolio.similar.action') }}
+        </NuxtLink>
         <a
           v-if="externalUrl"
           :href="externalUrl"

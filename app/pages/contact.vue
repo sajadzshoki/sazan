@@ -157,7 +157,7 @@ usePublicSeo({
               <div
                 v-for="channel in channels"
                 :key="channel.key"
-                class="group border border-border bg-surface p-5 shadow-sm transition hover:border-primary/45"
+                class="contact-card"
               >
                 <p class="sazan-meta text-primary">
                   {{ channel.label }}
@@ -179,7 +179,7 @@ usePublicSeo({
               </div>
             </div>
 
-            <div class="grid gap-4 border border-border bg-background/68 p-5 md:grid-cols-[0.35fr_0.65fr] md:items-center">
+            <div class="contact-social">
               <div>
                 <p class="sazan-meta text-primary">
                   {{ t('contact.social.eyebrow') }}
@@ -196,12 +196,12 @@ usePublicSeo({
                     :href="social.href"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="sazan-focus border border-border bg-surface px-4 py-4 text-sm transition hover:border-primary/45 hover:text-primary"
+                    class="contact-social-item sazan-focus"
                   >
                     <span class="block font-black text-foreground">{{ social.label }}</span>
                     <span class="mt-2 block truncate text-muted">{{ social.value }}</span>
                   </a>
-                  <div v-else class="border border-border bg-surface px-4 py-4 text-sm">
+                  <div v-else class="contact-social-item">
                     <span class="block font-black text-foreground">{{ social.label }}</span>
                     <span class="mt-2 block truncate text-muted">{{ social.value }}</span>
                   </div>
@@ -209,16 +209,17 @@ usePublicSeo({
               </div>
             </div>
 
-            <div class="relative overflow-hidden border border-border bg-foreground p-6 text-background shadow-[var(--shadow-soft)] sm:p-8">
+            <div class="contact-cta">
+              <div class="contact-cta-mark" aria-hidden="true" />
               <div class="relative z-10 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
                 <div>
-                  <p class="sazan-meta text-background/58">
+                  <p class="sazan-eyebrow">
                     {{ t('contact.cta.eyebrow') }}
                   </p>
-                  <h2 class="sazan-heading-lg mt-4 max-w-3xl text-balance">
+                  <h2 class="sazan-heading-lg mt-4 max-w-3xl text-balance text-foreground">
                     {{ t('contact.cta.title') }}
                   </h2>
-                  <p class="mt-5 max-w-2xl text-base leading-8 text-background/72">
+                  <p class="mt-5 max-w-2xl text-base leading-8 text-muted">
                     {{ t('contact.cta.lead') }}
                   </p>
                 </div>
@@ -226,8 +227,9 @@ usePublicSeo({
                 <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
                   <NuxtLink :to="startProjectPath" class="sazan-button-primary">
                     {{ t('common.startProject') }}
+                    <span class="arrow-icon" aria-hidden="true">→</span>
                   </NuxtLink>
-                  <NuxtLink :to="projectsPath" class="sazan-button-secondary border-background/24 bg-background/10 text-background hover:bg-background/20">
+                  <NuxtLink :to="projectsPath" class="sazan-button-secondary">
                     {{ t('common.exploreProjects') }}
                   </NuxtLink>
                 </div>
@@ -239,3 +241,89 @@ usePublicSeo({
     </section>
   </div>
 </template>
+
+<style scoped>
+.contact-card,
+.contact-social,
+.contact-cta {
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 1.35rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-card,
+.contact-social-item {
+  background: rgb(var(--color-surface));
+  transition: border-color 200ms var(--ease-studio), transform 200ms var(--ease-studio);
+}
+
+.contact-card {
+  padding: 1.25rem;
+}
+
+.contact-card:hover,
+.contact-social-item:hover {
+  border-color: rgb(var(--color-primary) / 0.45);
+}
+
+.contact-social {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  background:
+    radial-gradient(420px 180px at 100% 0%, rgb(var(--color-primary) / 0.08), transparent 62%),
+    rgb(var(--color-background) / 0.72);
+}
+
+.contact-social-item {
+  display: block;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+.contact-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  background:
+    radial-gradient(520px 240px at 100% 0%, rgb(var(--color-primary) / 0.18), transparent 58%),
+    linear-gradient(165deg, rgb(var(--color-surface-elevated)), rgb(var(--color-surface)));
+}
+
+.contact-cta-mark {
+  position: absolute;
+  inset-inline-end: -3.5rem;
+  bottom: -4.5rem;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 999px;
+  background: rgb(var(--color-primary) / 0.12);
+}
+
+html[dir='rtl'] .contact-social {
+  background:
+    radial-gradient(420px 180px at 0% 0%, rgb(var(--color-primary) / 0.08), transparent 62%),
+    rgb(var(--color-background) / 0.72);
+}
+
+html[dir='rtl'] .contact-cta {
+  background:
+    radial-gradient(520px 240px at 0% 0%, rgb(var(--color-primary) / 0.18), transparent 58%),
+    linear-gradient(195deg, rgb(var(--color-surface-elevated)), rgb(var(--color-surface)));
+}
+
+@media (min-width: 768px) {
+  .contact-social {
+    grid-template-columns: 0.35fr 0.65fr;
+    align-items: center;
+  }
+}
+
+@media (min-width: 640px) {
+  .contact-cta {
+    padding: 2rem;
+  }
+}
+</style>

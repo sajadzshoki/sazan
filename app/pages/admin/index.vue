@@ -91,6 +91,9 @@ useHead({ title: () => t('admin.nav.dashboard') });
               <div>
                 <p class="font-black">{{ request.contact.fullName }}</p>
                 <p class="mt-1 text-xs text-muted">{{ request.contact.email }} · {{ formatDate(request.createdAt) }}</p>
+                <p v-if="request.similarProject" class="mt-2 text-xs font-bold text-primary">
+                  {{ t('admin.requests.similarBadge') }} · {{ localize(request.similarProject.title) }}
+                </p>
               </div>
               <span class="admin-badge" :class="requestStatusClass(request.status)">
                 {{ requestStatusLabel(request.status) }}

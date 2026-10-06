@@ -29,7 +29,7 @@ withDefaults(defineProps<{
       </span>
     </div>
 
-    <div class="absolute inset-x-5 bottom-5 z-10 grid gap-3 border border-border bg-background/82 p-4 backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:p-5">
+    <div class="absolute inset-x-5 bottom-5 z-10 grid gap-3 rounded-2xl border border-border bg-background/82 p-4 backdrop-blur-sm sm:inset-x-6 sm:bottom-6 sm:p-5">
       <p class="sazan-title-tight max-w-sm text-xl font-black text-foreground sm:text-2xl">
         {{ title }}
       </p>

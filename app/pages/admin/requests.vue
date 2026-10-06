@@ -6,7 +6,7 @@ defineI18nRoute(false);
 definePageMeta({ layout: 'admin' });
 
 const { t } = useI18n();
-const { formatDate, requestStatusLabel, requestStatusClass } = useAdminHelpers();
+const { formatDate, localize, requestStatusLabel, requestStatusClass } = useAdminHelpers();
 
 const { data, pending, error, refresh } = await useFetch<{ requests: ProjectRequest[] }>('/api/admin/requests');
 const requests = computed(() => data.value?.requests || []);
@@ -146,6 +146,10 @@ useHead({ title: () => t('admin.nav.requests') });
               <td>
                 <p class="font-black">{{ request.contact.fullName }}</p>
                 <p class="mt-1 text-xs text-muted">{{ request.contact.email }}</p>
+                <p v-if="request.similarProject" class="mt-2 flex flex-wrap items-center gap-2">
+                  <span class="admin-badge border-primary/35 bg-primary/10 text-primary">{{ t('admin.requests.similarBadge') }}</span>
+                  <span class="text-xs font-bold">{{ localize(request.similarProject.title) }}</span>
+                </p>
               </td>
               <td><span class="admin-badge" :class="requestStatusClass(request.status)">{{ requestStatusLabel(request.status) }}</span></td>
               <td>{{ labelFor(budgetOptions, request.budgetRange) }}</td>
@@ -206,6 +210,13 @@ useHead({ title: () => t('admin.nav.requests') });
             <dt>{{ t('admin.fields.features') }}</dt>
             <dd class="flex flex-wrap gap-2">
               <span v-for="label in labelsFor(featureOptions, selectedRequest.requestedFeatures)" :key="label" class="sazan-chip">{{ label }}</span>
+            </dd>
+          </div>
+          <div v-if="selectedRequest.similarProject" class="admin-detail-box">
+            <dt>{{ t('admin.fields.similarProject') }}</dt>
+            <dd class="flex flex-wrap items-center gap-2">
+              <span class="admin-badge border-primary/35 bg-primary/10 text-primary">{{ t('admin.requests.similarBadge') }}</span>
+              <span class="font-black">{{ localize(selectedRequest.similarProject.title) }}</span>
             </dd>
           </div>
           <div class="admin-detail-box">

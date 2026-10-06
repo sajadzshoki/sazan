@@ -26,6 +26,12 @@ const toSafeNotificationSummary = (request: ProjectRequest, context: Notificatio
   requestedFeatures: request.requestedFeatures,
   budgetRange: request.budgetRange,
   timeline: request.timeline,
+  similarProject: request.similarProject
+    ? {
+        slug: request.similarProject.slug,
+        title: request.similarProject.title
+      }
+    : undefined,
   contact: {
     fullName: request.contact.fullName,
     email: request.contact.email,

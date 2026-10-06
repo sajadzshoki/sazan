@@ -6,7 +6,9 @@ import {
   projectTypeValues,
   timelineValues
 } from '../../app/data/lead';
+import { getPortfolioProjectBySlug } from '../../app/data/projects';
 import { createProjectRequestRecord, updateAdminProjectRequest } from '../utils/admin-data';
+import { sanitizeSlug } from '../utils/admin-input';
 import { notifyProjectRequest } from '../utils/notifications';
 import type {
   LocaleCode,
@@ -15,7 +17,8 @@ import type {
   ProjectRequestBudgetRange,
   ProjectRequestFeature,
   ProjectRequestProjectType,
-  ProjectRequestTimeline
+  ProjectRequestTimeline,
+  SimilarProjectRef
 } from '~~/types';
 
 type ValidationIssue = {
@@ -37,6 +40,7 @@ type ProjectRequestPayload = {
     preferredContactMethod?: unknown;
   };
   preferredLocale?: unknown;
+  similarProjectSlug?: unknown;
 };
 
 const maxLengths = {
@@ -118,6 +122,24 @@ export default defineEventHandler(async (event) => {
   const phone = sanitizeString(payload.contact?.phone, maxLengths.phone);
   const company = sanitizeString(payload.contact?.company, maxLengths.company);
   const preferredLocale = normalizeLocale(payload.preferredLocale);
+  let similarProject: SimilarProjectRef | undefined;
+
+  if (payload.similarProjectSlug !== undefined && payload.similarProjectSlug !== null && payload.similarProjectSlug !== '') {
+    const slug = sanitizeSlug(payload.similarProjectSlug);
+    const sourceProject = slug ? getPortfolioProjectBySlug(slug) : undefined;
+
+    if (!sourceProject || sourceProject.status !== 'published') {
+      issues.push({ field: 'similarProjectSlug', code: 'invalidOption' });
+    } else {
+      similarProject = {
+        slug: sourceProject.slug,
+        title: {
+          fa: sourceProject.title.fa,
+          en: sourceProject.title.en
+        }
+      };
+    }
+  }
 
   if (hasInvalidSelection<ProjectRequestProjectType>(payload.selectedProjectTypes, projectTypeValues)) {
     issues.push({ field: 'selectedProjectTypes', code: 'invalidOption' });
@@ -168,11 +190,12 @@ export default defineEventHandler(async (event) => {
       ...(preferredContactMethod ? { preferredContactMethod } : {})
     },
     preferredLocale,
-    source: 'website-start-a-project',
+    source: similarProject ? 'website-similar-product' : 'website-start-a-project',
     status: 'new',
     notificationStatus: 'pending',
     createdAt: now,
     updatedAt: now,
+    ...(similarProject ? { similarProject } : {}),
     ...(businessDescription ? { businessDescription } : {}),
     ...(budgetRange ? { budgetRange } : {}),
     ...(timeline ? { timeline } : {}),
