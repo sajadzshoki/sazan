@@ -407,16 +407,16 @@ usePublicSeo({
 
 <template>
   <div>
-    <section v-if="isSuccess" class="sazan-section-tight">
+    <section v-if="isSuccess" class="brief">
       <BaseContainer>
-        <div class="mx-auto max-w-4xl border border-border bg-surface p-6 text-center shadow-[var(--shadow-soft)] sm:p-10 lg:p-14">
+        <div class="brief-panel mx-auto max-w-3xl p-6 text-center sm:p-8">
           <p class="sazan-eyebrow justify-center">
             {{ t('startProject.success.eyebrow') }}
           </p>
-          <h1 class="sazan-heading-xl mt-7 text-balance text-foreground">
+          <h1 class="page-intro-title mx-auto">
             {{ t('startProject.success.title') }}
           </h1>
-          <p class="sazan-body-lg mx-auto mt-6 max-w-2xl text-pretty">
+          <p class="page-intro-lead mx-auto">
             {{ t('startProject.success.lead') }}
           </p>
           <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted">
@@ -438,79 +438,71 @@ usePublicSeo({
       </BaseContainer>
     </section>
 
-    <section v-else class="sazan-section-tight">
+    <section v-else class="brief">
       <BaseContainer>
-        <div class="grid gap-10 lg:grid-cols-[0.36fr_0.64fr] lg:gap-12">
-          <aside class="lg:sticky lg:top-28 lg:self-start">
-            <p class="sazan-eyebrow motion-fade-up">
-              {{ t('startProject.hero.eyebrow') }}
-            </p>
-            <h1 class="sazan-heading-xl motion-fade-up motion-delay-1 mt-7 max-w-4xl text-balance text-foreground">
-              {{ t('startProject.hero.title') }}
-            </h1>
-            <p class="sazan-body-lg motion-fade-up motion-delay-2 mt-6 max-w-xl text-pretty">
-              {{ t('startProject.hero.lead') }}
-            </p>
+        <header class="brief-intro">
+          <p class="sazan-eyebrow">
+            {{ t('startProject.hero.eyebrow') }}
+          </p>
+          <h1 class="page-intro-title">
+            {{ t('startProject.hero.title') }}
+          </h1>
+          <p class="page-intro-lead">
+            {{ t('startProject.hero.lead') }}
+          </p>
+        </header>
 
-            <div class="mt-8 border border-border bg-surface p-5 shadow-[var(--shadow-soft)]">
-              <div class="flex items-center justify-between gap-4">
-                <p class="sazan-meta text-foreground">
-                  {{ progressText }}
-                </p>
-                <p class="text-xs font-bold text-muted">
-                  {{ t('startProject.progress.optionalReminder') }}
-                </p>
-              </div>
-              <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-border/70" aria-hidden="true">
-                <div class="h-full rounded-full bg-primary transition-all duration-300" :style="{ width: progressPercent }" />
-              </div>
-
-              <ol class="mt-6 grid gap-2">
-                <li v-for="step in stepMeta" :key="step.key">
-                  <button
-                    type="button"
-                    class="sazan-focus flex w-full items-center justify-between gap-4 border px-3 py-3 text-start transition"
-                    :class="step.isCurrent
-                      ? 'border-primary bg-background text-foreground'
-                      : step.isReachable
-                        ? 'border-border text-muted hover:bg-background/72 hover:text-foreground'
-                        : 'border-transparent text-muted/55'"
-                    :disabled="!step.isReachable"
-                    :aria-current="step.isCurrent ? 'step' : undefined"
-                    @click="goToStep(step.index)"
-                  >
-                    <span class="flex items-center gap-3">
-                      <span class="service-index text-sm">{{ step.number }}</span>
-                      <span class="text-sm font-bold">{{ step.title }}</span>
-                    </span>
-                    <span v-if="step.index < currentStepIndex" class="text-primary" aria-hidden="true">✓</span>
-                  </button>
-                </li>
-              </ol>
-            </div>
-
-            <div class="mt-5 border border-border bg-background/70 p-5">
-              <p class="sazan-meta text-primary">
-                {{ t('startProject.guidance.eyebrow') }}
+        <div class="brief-panel">
+          <div class="brief-head">
+            <div class="flex items-center justify-between gap-4">
+              <p class="sazan-meta text-foreground">
+                {{ progressText }}
               </p>
-              <p class="mt-3 text-sm leading-7 text-muted">
-                {{ acknowledgement }}
+              <p class="text-xs font-bold text-muted">
+                {{ t('startProject.progress.optionalReminder') }}
               </p>
             </div>
-          </aside>
+            <div class="brief-meter" aria-hidden="true">
+              <span :style="{ width: progressPercent }" />
+            </div>
+            <ol class="brief-steps">
+              <li v-for="step in stepMeta" :key="step.key">
+                <button
+                  type="button"
+                  class="sazan-focus brief-step"
+                  :class="{
+                    'is-current': step.isCurrent,
+                    'is-done': step.index < currentStepIndex,
+                    'is-open': step.isReachable && !step.isCurrent
+                  }"
+                  :disabled="!step.isReachable"
+                  :aria-current="step.isCurrent ? 'step' : undefined"
+                  @click="goToStep(step.index)"
+                >
+                  <span class="brief-step-index">
+                    {{ step.index < currentStepIndex ? '✓' : step.number }}
+                  </span>
+                  <span class="brief-step-label">{{ step.title }}</span>
+                </button>
+              </li>
+            </ol>
+            <p class="brief-note">
+              {{ acknowledgement }}
+            </p>
+          </div>
 
-          <form class="sazan-surface overflow-hidden shadow-[var(--shadow-soft)]" novalidate @submit.prevent="handlePrimaryAction">
+          <form novalidate @submit.prevent="handlePrimaryAction">
             <Transition name="lead-step" mode="out-in">
-              <div :key="currentStepKey" class="p-5 sm:p-7 lg:p-9">
-                <div class="flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-start sm:justify-between">
+              <div :key="currentStepKey" class="brief-body">
+                <div class="flex flex-col gap-3 border-b border-border pb-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <p class="sazan-meta text-primary">
                       {{ t(`startProject.steps.${currentStepKey}.eyebrow`) }}
                     </p>
-                    <h2 class="sazan-heading-lg mt-4 max-w-3xl text-balance text-foreground">
+                    <h2 class="brief-question">
                       {{ t(`startProject.steps.${currentStepKey}.title`) }}
                     </h2>
-                    <p class="mt-4 max-w-2xl text-base leading-7 text-muted">
+                    <p class="brief-lead">
                       {{ t(`startProject.steps.${currentStepKey}.lead`) }}
                     </p>
                   </div>
@@ -526,34 +518,34 @@ usePublicSeo({
                   </span>
                 </div>
 
-                <div v-if="currentStepKey === 'projectTypes'" class="mt-7 grid gap-3 sm:grid-cols-2">
+                <div v-if="currentStepKey === 'projectTypes'" class="choice-grid">
                   <button
                     v-for="option in projectTypeOptions"
                     :key="option.value"
                     type="button"
-                    class="sazan-focus min-h-28 border p-4 text-start transition"
+                    class="sazan-focus choice-card border text-start transition"
                     :class="getChoiceClass(form.selectedProjectTypes.includes(option.value))"
                     :aria-pressed="form.selectedProjectTypes.includes(option.value)"
                     @click="toggleProjectType(option.value)"
                   >
                     <span class="flex items-start justify-between gap-4">
-                      <span class="text-lg font-black leading-6">{{ t(option.labelKey) }}</span>
+                      <span class="choice-title">{{ t(option.labelKey) }}</span>
                       <span class="text-primary" aria-hidden="true">{{ form.selectedProjectTypes.includes(option.value) ? '✓' : '+' }}</span>
                     </span>
-                    <span class="mt-3 block text-sm leading-6 text-muted">{{ t(option.descriptionKey) }}</span>
+                    <span class="choice-copy">{{ t(option.descriptionKey) }}</span>
                   </button>
                 </div>
 
-                <div v-else-if="currentStepKey === 'idea'" class="mt-7">
+                <div v-else-if="currentStepKey === 'idea'" class="choice-grid">
                   <label for="business-description" class="sazan-meta text-foreground">
                     {{ t('startProject.fields.businessDescription') }}
                   </label>
                   <textarea
                     id="business-description"
                     v-model="form.businessDescription"
-                    rows="9"
+                    rows="6"
                     maxlength="3000"
-                    class="sazan-focus mt-4 min-h-64 w-full resize-y border border-border bg-background p-4 text-base leading-8 text-foreground placeholder:text-muted/70"
+                    class="sazan-focus mt-3 min-h-40 w-full resize-y border border-border bg-background p-3 text-sm leading-6 text-foreground placeholder:text-muted/70"
                     :placeholder="t('startProject.placeholders.businessDescription')"
                   />
                   <div class="mt-3 flex flex-col gap-2 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
@@ -562,61 +554,61 @@ usePublicSeo({
                   </div>
                 </div>
 
-                <div v-else-if="currentStepKey === 'features'" class="mt-7 grid gap-3 sm:grid-cols-2">
+                <div v-else-if="currentStepKey === 'features'" class="choice-grid">
                   <button
                     v-for="option in featureOptions"
                     :key="option.value"
                     type="button"
-                    class="sazan-focus min-h-24 border p-4 text-start transition"
+                    class="sazan-focus choice-card border text-start transition"
                     :class="getChoiceClass(form.requestedFeatures.includes(option.value))"
                     :aria-pressed="form.requestedFeatures.includes(option.value)"
                     @click="toggleFeature(option.value)"
                   >
                     <span class="flex items-start justify-between gap-4">
-                      <span class="text-lg font-black leading-6">{{ t(option.labelKey) }}</span>
+                      <span class="choice-title">{{ t(option.labelKey) }}</span>
                       <span class="text-primary" aria-hidden="true">{{ form.requestedFeatures.includes(option.value) ? '✓' : '+' }}</span>
                     </span>
-                    <span class="mt-3 block text-sm leading-6 text-muted">{{ t(option.descriptionKey) }}</span>
+                    <span class="choice-copy">{{ t(option.descriptionKey) }}</span>
                   </button>
                 </div>
 
-                <div v-else-if="currentStepKey === 'budget'" class="mt-7 grid gap-3 sm:grid-cols-2">
+                <div v-else-if="currentStepKey === 'budget'" class="choice-grid">
                   <button
                     v-for="option in budgetOptions"
                     :key="option.value"
                     type="button"
-                    class="sazan-focus border p-4 text-start transition"
+                    class="sazan-focus choice-card border text-start transition"
                     :class="getChoiceClass(form.budgetRange === option.value)"
                     :aria-pressed="form.budgetRange === option.value"
                     @click="selectBudget(option.value)"
                   >
                     <span class="flex items-start justify-between gap-4">
-                      <span class="text-lg font-black leading-6">{{ t(option.labelKey) }}</span>
+                      <span class="choice-title">{{ t(option.labelKey) }}</span>
                       <span class="text-primary" aria-hidden="true">{{ form.budgetRange === option.value ? '✓' : '+' }}</span>
                     </span>
-                    <span class="mt-3 block text-sm leading-6 text-muted">{{ t(option.descriptionKey) }}</span>
+                    <span class="choice-copy">{{ t(option.descriptionKey) }}</span>
                   </button>
                 </div>
 
-                <div v-else-if="currentStepKey === 'timeline'" class="mt-7 grid gap-3 sm:grid-cols-2">
+                <div v-else-if="currentStepKey === 'timeline'" class="choice-grid">
                   <button
                     v-for="option in timelineOptions"
                     :key="option.value"
                     type="button"
-                    class="sazan-focus border p-4 text-start transition"
+                    class="sazan-focus choice-card border text-start transition"
                     :class="getChoiceClass(form.timeline === option.value)"
                     :aria-pressed="form.timeline === option.value"
                     @click="selectTimeline(option.value)"
                   >
                     <span class="flex items-start justify-between gap-4">
-                      <span class="text-lg font-black leading-6">{{ t(option.labelKey) }}</span>
+                      <span class="choice-title">{{ t(option.labelKey) }}</span>
                       <span class="text-primary" aria-hidden="true">{{ form.timeline === option.value ? '✓' : '+' }}</span>
                     </span>
-                    <span class="mt-3 block text-sm leading-6 text-muted">{{ t(option.descriptionKey) }}</span>
+                    <span class="choice-copy">{{ t(option.descriptionKey) }}</span>
                   </button>
                 </div>
 
-                <div v-else-if="currentStepKey === 'contact'" class="mt-7 grid gap-5">
+                <div v-else-if="currentStepKey === 'contact'" class="choice-grid gap-4">
                   <div class="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label for="full-name" class="sazan-meta text-foreground">
@@ -718,7 +710,7 @@ usePublicSeo({
                   </fieldset>
                 </div>
 
-                <div v-else class="mt-7 grid gap-6">
+                <div v-else class="choice-grid">
                   <div v-if="reviewItems.length" class="grid gap-3">
                     <article
                       v-for="item in reviewItems"
@@ -764,7 +756,7 @@ usePublicSeo({
                   {{ submitError }}
                 </p>
 
-                <div class="mt-8 flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div class="mt-5 flex flex-col-reverse gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
                   <button
                     type="button"
                     class="sazan-button-secondary"
@@ -808,6 +800,184 @@ usePublicSeo({
 </template>
 
 <style scoped>
+.brief {
+  padding-top: clamp(1.25rem, 2.2vw, 1.85rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+.brief-panel {
+  margin-top: 1.1rem;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--radius-lg);
+  background: rgb(var(--color-surface));
+  box-shadow: var(--shadow-soft);
+}
+
+.brief-head {
+  padding: 0.85rem 1rem 0.95rem;
+  border-bottom: 1px solid rgb(var(--color-border));
+}
+
+.brief-meter {
+  position: relative;
+  height: 2px;
+  margin-top: 0.65rem;
+  background: rgb(var(--color-border));
+}
+
+.brief-meter span {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  background: rgb(var(--color-primary));
+  transition: width 280ms var(--ease-studio);
+}
+
+.brief-steps {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(5.6rem, 1fr);
+  gap: 0.35rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+}
+
+.brief-step {
+  display: flex;
+  width: 100%;
+  min-height: 3rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.12rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  padding: 0.4rem 0.55rem;
+  color: rgb(var(--color-muted));
+  text-align: start;
+}
+
+.brief-step.is-open:hover {
+  border-color: rgb(var(--color-border));
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+}
+
+.brief-step.is-done {
+  color: rgb(var(--color-foreground));
+}
+
+.brief-step.is-current {
+  border-color: rgb(var(--color-primary));
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+}
+
+.brief-step:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+
+.brief-step-index {
+  color: rgb(var(--color-primary));
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.brief-step-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brief-note {
+  max-width: 46rem;
+  margin-top: 0.7rem;
+  color: rgb(var(--color-muted));
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.brief-body {
+  padding: 1rem 1rem 1.05rem;
+}
+
+.brief-question {
+  margin-top: 0.3rem;
+  max-width: 40rem;
+  color: rgb(var(--color-foreground));
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+html[dir='rtl'] .brief-question,
+html[dir='rtl'] .brief-step-index {
+  letter-spacing: 0;
+}
+
+html[dir='rtl'] .brief-question {
+  line-height: 1.45;
+}
+
+.brief-lead {
+  max-width: 40rem;
+  margin-top: 0.35rem;
+  color: rgb(var(--color-muted));
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.choice-grid {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.95rem;
+}
+
+.choice-grid:has(.choice-card) {
+  grid-template-columns: 1fr;
+}
+
+.choice-card,
+.brief-body :is(input, textarea, fieldset, article) {
+  border-radius: var(--radius-md);
+}
+
+.choice-card {
+  padding: 0.75rem 0.85rem;
+}
+
+.choice-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.choice-copy {
+  display: block;
+  margin-top: 0.28rem;
+  color: rgb(var(--color-muted));
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 640px) {
+  .brief-head,
+  .brief-body {
+    padding-inline: 1.25rem;
+  }
+
+  .choice-grid:has(.choice-card) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .lead-step-enter-active,
 .lead-step-leave-active {
   transition: opacity 220ms ease, transform 220ms ease;

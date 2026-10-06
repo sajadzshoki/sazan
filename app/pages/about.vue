@@ -7,11 +7,6 @@ const { projects } = usePortfolio();
 const { formatDigits } = useLocaleDigits();
 const catalogCount = computed(() => formatDigits(projects.value.length));
 
-const facets = [
-  { key: 'touch', icon: 'M4 6h16v10H4zM8 19h8' },
-  { key: 'system', icon: 'M5 4h14v4.5H5zM5 10h14v4.5H5zM5 16h14v4H5z' }
-] as const;
-
 const stays = ['interface', 'data', 'access', 'checkout', 'release'] as const;
 
 const serviceIcons: Record<(typeof services)[number]['key'], string> = {
@@ -31,30 +26,19 @@ usePublicSeo({
 
 <template>
   <div>
-    <section class="border-b border-border pt-12 pb-10 sm:pt-16">
+    <section class="page-intro border-b border-border">
       <BaseContainer>
         <p class="sazan-eyebrow">
           {{ t('studio.about.eyebrow') }}
         </p>
-        <h1 class="about-title mt-5 max-w-3xl text-balance text-foreground">
+        <h1 class="page-intro-title">
           {{ t('studio.about.title') }}
         </h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-pretty text-muted">
+        <p class="page-intro-lead">
           {{ t('studio.about.lead') }}
         </p>
 
-        <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          <article v-for="facet in facets" :key="facet.key" class="facet-card">
-            <span class="facet-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path :d="facet.icon" />
-              </svg>
-            </span>
-            <p>{{ t(`studio.about.facets.${facet.key}`) }}</p>
-          </article>
-        </div>
-
-        <ul class="mt-4 flex flex-wrap gap-2">
+        <ul class="mt-3 flex flex-wrap gap-2">
           <li class="about-chip">{{ t('studio.about.facets.notCampaign') }}</li>
           <li class="about-chip">{{ t('studio.about.facets.notTickets') }}</li>
         </ul>

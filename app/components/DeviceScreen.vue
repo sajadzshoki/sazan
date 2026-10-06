@@ -7,9 +7,11 @@ const props = withDefaults(defineProps<{
   liveUrl?: string | undefined;
   live?: boolean;
   assetName?: string;
+  priority?: boolean;
 }>(), {
   live: false,
-  assetName: 'screenshot'
+  assetName: 'screenshot',
+  priority: false
 });
 
 const frameReady = ref(false);
@@ -78,9 +80,10 @@ onBeforeUnmount(() => {
     <img
       v-if="showImage"
       :src="src"
-      :alt="alt || title || ''"
+      :alt="alt ?? title ?? ''"
       class="screen-media"
-      loading="lazy"
+      :loading="priority ? 'eager' : 'lazy'"
+      :fetchpriority="priority ? 'high' : 'auto'"
       decoding="async"
     >
     <iframe

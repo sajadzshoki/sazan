@@ -23,22 +23,22 @@ usePublicSeo({
 
 <template>
   <div>
-    <section class="border-b border-border pt-12 pb-10 sm:pt-16">
+    <section class="page-intro border-b border-border">
       <BaseContainer>
         <p class="sazan-eyebrow">
           {{ t('studio.servicesPage.eyebrow') }}
         </p>
-        <h1 class="sazan-display mt-5 max-w-4xl whitespace-pre-line text-foreground">
+        <h1 class="page-intro-title">
           {{ t('studio.servicesPage.title') }}
         </h1>
-        <p class="sazan-body-lg mt-5 max-w-2xl text-pretty">
+        <p class="page-intro-lead">
           {{ t('studio.servicesPage.lead') }}
         </p>
 
-        <p class="kicker mt-10">
+        <p class="kicker mt-5">
           {{ t('studio.servicesPage.tools') }}
         </p>
-        <ul class="mt-4 flex flex-wrap gap-2">
+        <ul class="mt-2.5 flex flex-wrap gap-2">
           <li v-for="tech in studioTechKeys" :key="tech">
             <TechMark :tech="tech" />
           </li>

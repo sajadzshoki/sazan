@@ -65,42 +65,21 @@ usePublicSeo({
 
 <template>
   <div>
-    <section class="sazan-section-tight border-b border-border">
+    <section class="page-intro border-b border-border">
       <BaseContainer>
-        <div class="grid gap-9 lg:grid-cols-[0.68fr_0.32fr] lg:items-end lg:gap-10">
-          <div>
-            <p class="sazan-eyebrow motion-fade-up">
-              {{ t('portfolio.hero.eyebrow') }}
-            </p>
-            <h1 class="sazan-display motion-fade-up motion-delay-1 mt-7 max-w-5xl text-balance text-foreground sm:mt-8">
-              {{ t('portfolio.hero.title') }}
-            </h1>
-          </div>
-
-          <div class="motion-fade-up motion-delay-2 grid gap-6 lg:justify-items-end lg:gap-7 lg:text-end">
-            <p class="sazan-body-lg max-w-md text-pretty">
-              {{ t('portfolio.hero.lead') }}
-            </p>
-            <div class="grid w-full max-w-xs grid-cols-2 border border-border bg-surface shadow-[var(--shadow-soft)]">
-              <div class="border-e border-border p-4">
-                <p class="text-3xl font-black tracking-[-0.06em] text-foreground">
-                  {{ totalProjectCount }}
-                </p>
-                <p class="mt-1 text-xs font-bold text-muted">
-                  {{ t('portfolio.hero.countLabel') }}
-                </p>
-              </div>
-              <div class="p-4">
-                <p class="text-3xl font-black tracking-[-0.06em] text-primary">
-                  {{ projectCount }}
-                </p>
-                <p class="mt-1 text-xs font-bold text-muted">
-                  {{ activeCategoryLabel }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="sazan-eyebrow">
+          {{ t('portfolio.hero.eyebrow') }}
+        </p>
+        <h1 class="page-intro-title">
+          {{ t('portfolio.hero.title') }}
+        </h1>
+        <p class="page-intro-lead">
+          {{ t('portfolio.hero.lead') }}
+        </p>
+        <p class="page-intro-meta">
+          {{ totalProjectCount }}
+          {{ t('portfolio.hero.countLabel') }}
+        </p>
       </BaseContainer>
     </section>
 

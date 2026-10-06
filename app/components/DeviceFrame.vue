@@ -9,9 +9,11 @@ withDefaults(defineProps<{
   caption?: string | undefined;
   liveUrl?: string | undefined;
   live?: boolean;
+  priority?: boolean;
 }>(), {
   type: 'laptop',
-  live: false
+  live: false,
+  priority: false
 });
 </script>
 
@@ -24,6 +26,7 @@ withDefaults(defineProps<{
       :caption="caption"
       :live-url="liveUrl"
       :live="live"
+      :priority="priority"
       asset-name="desktop screenshot"
     />
   </DeviceLaptop>
@@ -35,6 +38,7 @@ withDefaults(defineProps<{
       :caption="caption"
       :live-url="liveUrl"
       :live="live"
+      :priority="priority"
       asset-name="tablet screenshot"
     />
   </DeviceTablet>
@@ -46,6 +50,7 @@ withDefaults(defineProps<{
       :caption="caption"
       :live-url="liveUrl"
       :live="live"
+      :priority="priority"
       asset-name="mobile screenshot"
     />
   </DevicePhone>

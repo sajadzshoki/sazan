@@ -119,27 +119,21 @@ usePublicSeo({
 
 <template>
   <div>
-    <section class="sazan-section-tight border-b border-border">
+    <section class="page-intro border-b border-border">
       <BaseContainer>
-        <div class="grid gap-10 lg:grid-cols-[0.62fr_0.38fr] lg:items-end lg:gap-12">
-          <div>
-            <p class="sazan-eyebrow motion-fade-up">
-              {{ t('contact.hero.eyebrow') }}
-            </p>
-            <h1 class="sazan-display motion-fade-up motion-delay-1 mt-7 max-w-5xl text-balance text-foreground sm:mt-8">
-              {{ t('contact.hero.title') }}
-            </h1>
-          </div>
-
-          <div class="motion-fade-up motion-delay-2 grid gap-6 lg:justify-items-end lg:text-end">
-            <p class="sazan-body-lg max-w-md text-pretty">
-              {{ t('contact.hero.lead') }}
-            </p>
-            <NuxtLink :to="startProjectPath" class="sazan-button-primary w-full sm:w-max">
-              {{ t('common.startProject') }}
-            </NuxtLink>
-          </div>
-        </div>
+        <p class="sazan-eyebrow">
+          {{ t('contact.hero.eyebrow') }}
+        </p>
+        <h1 class="page-intro-title">
+          {{ t('contact.hero.title') }}
+        </h1>
+        <p class="page-intro-lead">
+          {{ t('contact.hero.lead') }}
+        </p>
+        <NuxtLink :to="startProjectPath" class="sazan-button-primary mt-4 w-full sm:w-max">
+          {{ t('common.startProject') }}
+          <span class="arrow-icon" aria-hidden="true">→</span>
+        </NuxtLink>
       </BaseContainer>
     </section>
 

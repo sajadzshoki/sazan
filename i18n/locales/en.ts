@@ -184,7 +184,7 @@ export default {
     hero: {
       eyebrow: 'Portfolio',
       title: 'Work with a working surface.',
-      lead: 'Case studies across websites, applications, commerce, operations tools, and backend systems.',
+      lead: 'Websites, applications, commerce, and systems.',
       countLabel: 'public projects'
     },
     filters: {
@@ -262,8 +262,8 @@ export default {
     },
     hero: {
       eyebrow: 'Start light',
-      title: 'Tell us what the product needs to become.',
-      lead: 'A short brief is enough. Share the type of build, the constraint, and how to reach you. We will answer with a clear next step.'
+      title: 'What should this product become?',
+      lead: 'A short brief is enough. Most questions are optional.'
     },
     progress: {
       stepOf: 'Step {current} of {total}',
@@ -429,8 +429,8 @@ export default {
     },
     hero: {
       eyebrow: 'Contact',
-      title: 'A good product conversation starts small.',
-      lead: 'Send a note, start a guided request, or keep exploring the work. We are ready when the idea is ready enough to discuss.'
+      title: 'A small conversation is enough.',
+      lead: 'Send a note, or start a project request.'
     },
     directory: {
       eyebrow: 'Direct lines',
@@ -687,9 +687,22 @@ export default {
   studio: {
     hero: {
       eyebrow: 'Digital product studio',
-      title: 'We build products\nthat have to work\nin the real business.',
-      lead: 'SAZAN designs and engineers websites, applications, commerce, and the systems underneath them. The interface and the build stay in one practice.',
-      secondaryCta: 'View Our Work'
+      title: 'Digital products,\nbuilt to work.',
+      lead: 'Websites, applications and business systems — designed and engineered as one product.',
+      secondaryCta: 'Explore Work',
+      showcaseLabel: 'Studio products',
+      trace: {
+        design: 'Design',
+        build: 'Build',
+        product: 'Product'
+      },
+      marks: {
+        brand: 'SAZAN',
+        web: 'web',
+        apps: 'apps',
+        commerce: 'commerce',
+        systems: 'systems'
+      }
     },
     tech: {
       label: 'In the work'
@@ -737,7 +750,7 @@ export default {
       seoDescription: 'Websites, web applications, mobile products, e-commerce, admin tools, and backend systems from SAZAN.',
       eyebrow: 'Services',
       title: 'What we actually build.',
-      lead: 'The list is specific on purpose. If the product needs more than one of these, we still treat it as a single system.',
+      lead: 'Specific on purpose. Several of these together are still one system.',
       close: 'If the shape is still unclear, start with the product conversation.',
       tools: 'Tools we ship with',
       builtWith: 'Built with'
@@ -772,8 +785,8 @@ export default {
       seoTitle: 'About',
       seoDescription: 'SAZAN is a digital product studio for websites, applications, commerce, and the systems behind them.',
       eyebrow: 'About',
-      title: 'A focused studio for products that need both taste and engineering.',
-      lead: 'SAZAN is not a campaign shop and not a body shop for tickets. We design and build digital products — the part people touch, and the part that has to keep working.',
+      title: 'Taste and engineering, together.',
+      lead: 'The part people touch, and the part that has to keep working.',
       practiceTitle: 'How we take the work',
       practiceLead: 'Most projects need more than a homepage. We stay with the product through interface, implementation, and the unglamorous parts: permissions, data, checkout, release.',
       languageTitle: 'Two languages, one system',

@@ -40,9 +40,8 @@
 
 :root {
   /* Change --sazan-primary to recolor CTAs, links, labels, and interactive states. */
-  /* --sazan-primary: 255 90 31; */
-  --sazan-primary: 0 195 201;
-  --sazan-primary-hover: 0 150 156;
+  --sazan-primary: 255 90 31;
+  --sazan-primary-hover: 230 70 14;
   --sazan-primary-soft: 255 236 226;
 
   --color-background: 244 247 252;
@@ -198,6 +197,41 @@ button {
 .sazan-section-tight {
   position: relative;
   padding-block: var(--space-section-tight);
+}
+
+.page-intro {
+  padding-top: clamp(1.25rem, 2.2vw, 1.85rem);
+  padding-bottom: clamp(1.05rem, 1.8vw, 1.45rem);
+}
+
+.page-intro-title {
+  max-width: 34rem;
+  margin-top: 0.4rem;
+  color: rgb(var(--color-foreground));
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+html[dir='rtl'] .page-intro-title {
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.page-intro-lead {
+  max-width: 32rem;
+  margin-top: 0.45rem;
+  color: rgb(var(--color-muted));
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.page-intro-meta {
+  margin-top: 0.7rem;
+  color: rgb(var(--color-subtle));
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .sazan-eyebrow {
