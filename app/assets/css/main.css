@@ -40,8 +40,9 @@
 
 :root {
   /* Change --sazan-primary to recolor CTAs, links, labels, and interactive states. */
-  --sazan-primary: 255 90 31;
-  --sazan-primary-hover: 230 70 14;
+  /* --sazan-primary: 255 90 31; */
+  --sazan-primary: 0 195 201;
+  --sazan-primary-hover: 0 150 156;
   --sazan-primary-soft: 255 236 226;
 
   --color-background: 244 247 252;

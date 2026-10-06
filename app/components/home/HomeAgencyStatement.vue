@@ -10,7 +10,7 @@ const icons: Record<(typeof parts)[number], string> = {
 </script>
 
 <template>
-  <section class="sazan-section">
+  <section class="intro-band">
     <BaseContainer>
       <div class="intro-panel">
         <div class="max-w-xl">
@@ -44,6 +44,10 @@ const icons: Record<(typeof parts)[number], string> = {
 </template>
 
 <style scoped>
+.intro-band {
+  padding-block: clamp(2.4rem, 4.2vw, 3.6rem);
+}
+
 .intro-panel {
   display: grid;
   gap: 2rem;
@@ -67,6 +71,8 @@ const icons: Record<(typeof parts)[number], string> = {
 }
 
 .intro-node {
+  position: relative;
+  z-index: 1;
   display: grid;
   width: 2.7rem;
   height: 2.7rem;
@@ -74,9 +80,11 @@ const icons: Record<(typeof parts)[number], string> = {
   place-items: center;
   border: 1px solid rgb(var(--color-primary) / 0.35);
   border-radius: 999px;
-  background: rgb(var(--color-background));
+  background:
+    radial-gradient(circle at 50% 40%, rgb(var(--color-primary) / 0.16), transparent 62%),
+    rgb(var(--color-surface));
   color: rgb(var(--color-primary));
-  box-shadow: 0 0 0 5px rgb(var(--color-surface));
+  box-shadow: 0 0 0 6px rgb(var(--color-surface));
 }
 
 .intro-node svg {
@@ -116,9 +124,10 @@ const icons: Record<(typeof parts)[number], string> = {
   .intro-path::before {
     content: '';
     position: absolute;
-    inset-inline-start: 1.3rem;
-    top: 1.2rem;
-    bottom: 1.2rem;
+    z-index: 0;
+    inset-inline-start: calc(0.15rem + 1.35rem - 1px);
+    top: 1.35rem;
+    bottom: 1.35rem;
     width: 2px;
     background: linear-gradient(rgb(var(--color-primary)), rgb(var(--color-border)));
   }

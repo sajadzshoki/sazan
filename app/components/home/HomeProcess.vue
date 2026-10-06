@@ -13,16 +13,16 @@ const icons: Record<string, string> = {
 </script>
 
 <template>
-  <section id="process" class="border-t border-border py-12 sm:py-16">
+  <section id="process" class="process-band border-t border-border">
     <BaseContainer>
-      <div class="max-w-2xl">
+      <div class="max-w-xl">
         <p class="sazan-eyebrow">
           {{ $t('studio.process.eyebrow') }}
         </p>
-        <h2 class="sazan-heading-lg mt-4 max-w-xl text-balance text-foreground">
+        <h2 class="process-title">
           {{ $t('studio.process.title') }}
         </h2>
-        <p class="mt-3 max-w-xl text-base leading-7 text-muted">
+        <p class="mt-2 max-w-lg text-sm leading-6 text-muted">
           {{ $t('studio.process.lead') }}
         </p>
       </div>
@@ -49,11 +49,31 @@ const icons: Record<string, string> = {
 </template>
 
 <style scoped>
+.process-band {
+  padding-block: clamp(2.4rem, 4.2vw, 3.6rem);
+}
+
+.process-title {
+  margin-top: 0.55rem;
+  max-width: 34rem;
+  color: rgb(var(--color-foreground));
+  font-size: clamp(1.65rem, 2.7vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+
+html[dir='rtl'] .process-title {
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
 .roadmap {
   position: relative;
   display: grid;
-  gap: 1.35rem;
-  margin-top: 2.25rem;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .roadmap::before {
@@ -127,8 +147,8 @@ const icons: Record<string, string> = {
 @media (min-width: 1024px) {
   .roadmap {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin-top: 2.75rem;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
   }
 
   .roadmap::before {

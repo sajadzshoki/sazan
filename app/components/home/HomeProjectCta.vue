@@ -18,17 +18,17 @@ const points = [
 </script>
 
 <template>
-  <section class="sazan-section">
+  <section class="cta-band">
     <BaseContainer>
       <div class="cta-panel">
         <div>
           <p class="sazan-eyebrow">
             {{ $t('studio.cta.eyebrow') }}
           </p>
-          <h2 class="mt-4 max-w-xl text-3xl font-extrabold tracking-[-0.03em] text-balance text-foreground sm:text-4xl">
+          <h2 class="mt-3 max-w-xl text-2xl font-extrabold tracking-[-0.03em] text-balance text-foreground sm:text-3xl">
             {{ $t('studio.cta.title') }}
           </h2>
-          <p class="mt-4 max-w-xl text-base leading-7 text-pretty text-muted">
+          <p class="mt-3 max-w-xl text-sm leading-6 text-pretty text-muted">
             {{ $t('studio.cta.lead') }}
           </p>
 
@@ -74,6 +74,10 @@ const points = [
 </template>
 
 <style scoped>
+.cta-band {
+  padding-block: clamp(2.4rem, 4.2vw, 3.6rem);
+}
+
 .cta-panel {
   display: grid;
   gap: 1.5rem;

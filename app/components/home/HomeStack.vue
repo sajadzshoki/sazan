@@ -16,17 +16,17 @@ const logoFor: Record<string, TechKey> = {
 </script>
 
 <template>
-  <section class="sazan-section border-t border-border">
+  <section class="stack-band border-t border-border">
     <BaseContainer>
-      <div class="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-12">
-        <div>
+      <div class="grid gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-start lg:gap-8">
+        <div class="max-w-md">
           <p class="sazan-eyebrow">
             {{ $t('studio.stack.eyebrow') }}
           </p>
-          <h2 class="mt-4 max-w-md text-3xl font-extrabold tracking-[-0.03em] text-balance text-foreground sm:text-4xl">
+          <h2 class="mt-3 text-2xl font-extrabold tracking-[-0.03em] text-balance text-foreground sm:text-3xl">
             {{ $t('studio.stack.title') }}
           </h2>
-          <p class="mt-4 max-w-md text-base leading-7 text-muted">
+          <p class="mt-3 text-sm leading-6 text-muted">
             {{ $t('studio.stack.lead') }}
           </p>
         </div>
@@ -48,6 +48,10 @@ const logoFor: Record<string, TechKey> = {
 </template>
 
 <style scoped>
+.stack-band {
+  padding-block: clamp(2.4rem, 4.2vw, 3.6rem);
+}
+
 .stack-card {
   padding: 1rem 1rem 0.9rem;
   border: 1px solid rgb(var(--color-border));
