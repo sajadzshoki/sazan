@@ -1,40 +1,50 @@
 <template>
   <div class="phone">
-    <span class="phone-island" aria-hidden="true" />
     <div class="phone-screen">
       <slot />
     </div>
+    <img
+      class="phone-frame"
+      src="/mobile.png"
+      alt=""
+      width="1681"
+      height="3386"
+      draggable="false"
+      decoding="async"
+    >
   </div>
 </template>
 
 <style scoped>
 .phone {
   position: relative;
-  width: min(100%, 17.5rem);
+  width: 17.5rem;
+  max-width: 100%;
   margin-inline: auto;
-  padding: 0.62rem;
-  border: 1px solid rgb(255 255 255 / 0.14);
-  border-radius: 2.15rem;
-  background: linear-gradient(180deg, #2a303b 0%, #12151b 100%);
-  box-shadow: var(--shadow-device);
-}
-
-.phone-island {
-  position: absolute;
-  z-index: 2;
-  top: 0.95rem;
-  left: 50%;
-  width: 28%;
-  height: 0.85rem;
-  border-radius: 999px;
-  background: #0d1015;
-  transform: translateX(-50%);
+  aspect-ratio: 0.48887;
+  filter: drop-shadow(var(--shadow-device));
 }
 
 .phone-screen {
+  position: absolute;
+  z-index: 1;
+  left: 4.492%;
+  top: 2.165%;
+  width: 90.705%;
+  height: 95.7%;
   overflow: hidden;
-  aspect-ratio: 9 / 19.2;
-  border-radius: 1.6rem;
-  background: rgb(var(--color-surface));
+  background: #0c0e12;
+}
+
+.phone-frame {
+  position: absolute;
+  z-index: 2;
+  left: -2.807%;
+  top: -1.067%;
+  width: 104.866%;
+  height: 103.263%;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
 }
 </style>

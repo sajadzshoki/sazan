@@ -720,3 +720,23 @@ html[dir='rtl'] .admin-table th {
     clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 0));
   }
 }
+
+html.dark .laptop {
+  aspect-ratio: 1.40944;
+  --screen-x: 10.592%;
+  --screen-y: 3.842%;
+  --screen-w: 78.66%;
+  --screen-h: 72.448%;
+  --frame-x: -24.688%;
+  --frame-y: -16.026%;
+  --frame-w: 149.533%;
+  --frame-h: 118.551%;
+}
+
+html.dark .laptop-frame-light {
+  display: none;
+}
+
+html.dark .laptop-frame-dark {
+  display: block;
+}
