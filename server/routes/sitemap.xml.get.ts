@@ -22,11 +22,14 @@ const localizedPath = (locale: typeof locales[number], path: string) => `/${loca
 const createUrlEntry = (siteUrl: string, path: string, priority: string) => {
   const loc = `${siteUrl}${path}`;
   const basePath = path.replace(/^\/(fa|en)/, '') || '/';
-  const alternateLinks = locales.map((locale) => {
-    const href = `${siteUrl}${localizedPath(locale, basePath)}`;
+  const alternateLinks = [
+    ...locales.map((locale) => {
+      const href = `${siteUrl}${localizedPath(locale, basePath)}`;
 
-    return `    <xhtml:link rel="alternate" hreflang="${locale === 'fa' ? 'fa-IR' : 'en-US'}" href="${escapeXml(href)}" />`;
-  }).join('\n');
+      return `    <xhtml:link rel="alternate" hreflang="${locale === 'fa' ? 'fa-IR' : 'en-US'}" href="${escapeXml(href)}" />`;
+    }),
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${siteUrl}${localizedPath('fa', basePath)}`)}" />`
+  ].join('\n');
 
   return [
     '  <url>',

@@ -22,13 +22,6 @@ useHead({
     }
   ]
 });
-
-useSeoMeta({
-  title: () => t('brand.tagline'),
-  ogTitle: () => t('brand.tagline'),
-  description: () => t('studio.hero.lead'),
-  ogDescription: () => t('studio.hero.lead')
-});
 </script>
 
 <template>

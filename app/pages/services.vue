@@ -4,7 +4,9 @@ import { studioTechKeys } from '~/data/tech';
 
 const { t } = useI18n();
 const localePath = useLocalePath();
+const config = useRuntimeConfig();
 const { formatDigits } = useLocaleDigits();
+const siteUrl = computed(() => String(config.public.siteUrl || 'https://sazan.studio').replace(/\/$/, ''));
 
 const serviceIcons: Record<(typeof services)[number]['key'], string> = {
   websites: 'M4 6.5h16v9.5H4zM8 19.5h8',
@@ -17,7 +19,19 @@ const serviceIcons: Record<(typeof services)[number]['key'], string> = {
 
 usePublicSeo({
   title: () => t('studio.servicesPage.seoTitle'),
-  description: () => t('studio.servicesPage.seoDescription')
+  description: () => t('studio.servicesPage.seoDescription'),
+  structuredData: () => ({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: t('studio.servicesPage.title'),
+    itemListElement: services.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: t(`home.services.items.${service.key}.title`),
+      description: t(`home.services.items.${service.key}.description`),
+      url: `${siteUrl.value}${localePath('/services')}#${service.key}`
+    }))
+  })
 });
 </script>
 

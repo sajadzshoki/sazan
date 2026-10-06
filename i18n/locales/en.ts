@@ -169,7 +169,7 @@ export default {
   },
   portfolio: {
     seo: {
-      title: 'Projects',
+      title: 'Shipped websites, apps, and product systems',
       description: 'Explore SAZAN portfolio projects across websites, web apps, mobile apps, e-commerce, admin panels, and backend systems.'
     },
     categories: {
@@ -257,7 +257,7 @@ export default {
 
   startProject: {
     seo: {
-      title: 'Start a Project',
+      title: 'A short brief for a new product',
       description: 'Start a lightweight project request with SAZAN. Share only what you know and we will shape the rest together.'
     },
     hero: {
@@ -424,7 +424,7 @@ export default {
   },
   contact: {
     seo: {
-      title: 'Contact',
+      title: 'Email and other ways to reach us',
       description: 'Contact SAZAN for digital product strategy, design, websites, applications, commerce, admin systems, and backend work.'
     },
     hero: {
@@ -688,6 +688,7 @@ export default {
     hero: {
       eyebrow: 'Digital product studio',
       title: 'Digital products,\nbuilt to work.',
+      seoTitle: 'Websites, applications, and business systems',
       lead: 'Websites, applications and business systems — designed and engineered as one product.',
       secondaryCta: 'Explore Work',
       showcaseLabel: 'Studio products',
@@ -746,7 +747,7 @@ export default {
       all: 'All services'
     },
     servicesPage: {
-      seoTitle: 'Services',
+      seoTitle: 'Sites, apps, commerce, and backend systems',
       seoDescription: 'Websites, web applications, mobile products, e-commerce, admin tools, and backend systems from SAZAN.',
       eyebrow: 'Services',
       title: 'What we actually build.',
@@ -782,7 +783,7 @@ export default {
       }
     },
     about: {
-      seoTitle: 'About',
+      seoTitle: 'The interface and the system under it',
       seoDescription: 'SAZAN is a digital product studio for websites, applications, commerce, and the systems behind them.',
       eyebrow: 'About',
       title: 'Taste and engineering, together.',

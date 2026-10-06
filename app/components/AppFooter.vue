@@ -84,7 +84,7 @@ const getNavPath = (item: { path?: string; hash?: string }) => {
               </li>
             </ul>
             <div class="mt-5">
-              <LanguageSwitcher />
+              <LanguageSwitcher class="w-fit" />
             </div>
           </div>
         </div>

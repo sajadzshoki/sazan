@@ -6,11 +6,8 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 const { formatDigits } = useLocaleDigits();
-
-const servicesText = computed(() => props.project.services
-  .map((service) => t(`home.services.items.${service}.title`))
-  .join(' / '));
 
 const timelineText = computed(() => {
   if (!props.project.timeline) {
@@ -45,9 +42,9 @@ const pricingText = computed(() => {
 });
 
 const details = computed(() => {
-  const baseDetails = [
+  const baseDetails: Array<{ label: string; value?: string; services?: boolean }> = [
     { label: t('portfolio.detail.meta.category'), value: t(`portfolio.categories.${props.project.category}`) },
-    { label: t('portfolio.detail.meta.services'), value: servicesText.value },
+    { label: t('portfolio.detail.meta.services'), services: true },
     { label: t('portfolio.detail.meta.timeline'), value: timelineText.value },
     { label: t('portfolio.detail.meta.year'), value: formatDigits(props.project.year) }
   ];
@@ -72,7 +69,17 @@ const details = computed(() => {
           {{ item.label }}
         </dt>
         <dd class="mt-2 text-base font-bold leading-7 text-foreground">
-          {{ item.value }}
+          <template v-if="item.services">
+            <template v-for="(service, index) in project.services" :key="service">
+              <span v-if="index > 0"> / </span>
+              <NuxtLink :to="localePath(`/services#${service}`)" class="sazan-focus">
+                {{ t(`home.services.items.${service}.title`) }}
+              </NuxtLink>
+            </template>
+          </template>
+          <template v-else>
+            {{ item.value }}
+          </template>
         </dd>
       </div>
     </dl>

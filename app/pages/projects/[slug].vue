@@ -21,7 +21,6 @@ if (!initialProject) {
 
 const project = computed(() => getProjectBySlug(slug) || initialProject);
 const categoryLabel = computed(() => t(`portfolio.categories.${project.value.category}`));
-const serviceLabels = computed(() => project.value.services.map((service) => t(`home.services.items.${service}.title`)));
 const relatedProjects = computed(() => getRelatedProjects(project.value.raw, 3));
 const nextProject = computed(() => {
   const list = projects.value;
@@ -53,20 +52,48 @@ const projectLinks = computed(() => {
   return links;
 });
 
+const projectUrl = computed(() => `${siteUrl.value}${localePath(`/projects/${project.value.slug}`)}`);
+
 usePublicSeo({
   title: () => project.value.title,
   description: () => project.value.shortDescription,
   type: 'article',
-  structuredData: () => ({
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: project.value.title,
-    description: project.value.shortDescription,
-    inLanguage: locale.value === 'fa' ? 'fa-IR' : 'en-US',
-    dateCreated: project.value.year,
-    genre: categoryLabel.value,
-    url: `${siteUrl.value}${localePath(`/projects/${project.value.slug}`)}`
-  })
+  structuredData: () => [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      name: project.value.title,
+      description: project.value.shortDescription,
+      inLanguage: locale.value === 'fa' ? 'fa-IR' : 'en-US',
+      dateCreated: project.value.year,
+      genre: categoryLabel.value,
+      url: projectUrl.value
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: t('navigation.links.home'),
+          item: `${siteUrl.value}${localePath('/')}`
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: t('navigation.links.projects'),
+          item: `${siteUrl.value}${localePath('/projects')}`
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: project.value.title,
+          item: projectUrl.value
+        }
+      ]
+    }
+  ]
 });
 </script>
 
@@ -94,12 +121,10 @@ usePublicSeo({
 
             <div class="motion-fade-up motion-delay-3 mt-8 flex flex-col gap-5 sm:mt-9 sm:flex-row sm:items-center sm:justify-between lg:max-w-3xl">
               <ul class="flex flex-wrap gap-2">
-                <li
-                  v-for="service in serviceLabels"
-                  :key="service"
-                  class="sazan-chip"
-                >
-                  {{ service }}
+                <li v-for="service in project.services" :key="service">
+                  <NuxtLink :to="localePath(`/services#${service}`)" class="sazan-chip sazan-focus">
+                    {{ t(`home.services.items.${service}.title`) }}
+                  </NuxtLink>
                 </li>
               </ul>
 
