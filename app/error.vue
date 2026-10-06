@@ -15,7 +15,7 @@ const homePath = computed(() => `/${locale.value}`);
 const projectsPath = computed(() => `/${locale.value}/projects`);
 const title = computed(() => {
   if (locale.value === 'fa') {
-    return isNotFound.value ? 'این صفحه پیدا نشد.' : 'مشکلی در سرور پیش آمد.';
+    return isNotFound.value ? 'این صفحه پیدا نشد.' : 'مشکلی پیش آمد.';
   }
 
   return isNotFound.value ? 'This page was not found.' : 'Something went wrong.';
@@ -23,15 +23,15 @@ const title = computed(() => {
 const description = computed(() => {
   if (locale.value === 'fa') {
     return isNotFound.value
-      ? 'ممکن است آدرس تغییر کرده باشد یا صفحه‌ای که دنبال آن هستید دیگر در دسترس نباشد.'
-      : 'درخواست شما کامل نشد. کمی بعد دوباره تلاش کنید یا از مسیرهای اصلی سایت ادامه دهید.';
+      ? 'آدرس عوض شده، یا این صفحه دیگر وجود ندارد.'
+      : 'درخواست کامل نشد. کمی بعد دوباره امتحان کنید، یا از صفحات اصلی ادامه دهید.';
   }
 
   return isNotFound.value
     ? 'The address may have changed or the page you are looking for is no longer available.'
     : 'The request could not be completed. Please try again shortly or continue from the main site routes.';
 });
-const homeLabel = computed(() => locale.value === 'fa' ? 'بازگشت به خانه' : 'Return home');
+const homeLabel = computed(() => locale.value === 'fa' ? 'صفحه اصلی' : 'Return home');
 const projectsLabel = computed(() => locale.value === 'fa' ? 'دیدن پروژه‌ها' : 'View projects');
 const eyebrow = computed(() => isNotFound.value ? '404' : '500');
 

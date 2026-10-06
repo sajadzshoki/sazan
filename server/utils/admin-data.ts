@@ -13,38 +13,38 @@ import { getMongoRuntimeConfig } from './mongodb';
 import type { Category, LocaleCode, Project, ProjectRequest, PublicContactSettings, Service, SiteSettings } from '~~/types';
 
 const localizedCategoryTitles: Record<string, { en: string; fa: string }> = {
-  websites: { en: 'Websites', fa: 'وب‌سایت‌ها' },
-  webApps: { en: 'Web Apps', fa: 'وب‌اپ‌ها' },
+  websites: { en: 'Websites', fa: 'وب‌سایت' },
+  webApps: { en: 'Web Apps', fa: 'وب‌اپ' },
   mobileApps: { en: 'Mobile Apps', fa: 'موبایل' },
-  ecommerce: { en: 'E-commerce', fa: 'فروشگاه آنلاین' },
-  adminPanels: { en: 'Admin Panels', fa: 'پنل مدیریتی' },
-  backendSystems: { en: 'Backend Systems', fa: 'سیستم بک‌اند' }
+  ecommerce: { en: 'E-commerce', fa: 'فروشگاه' },
+  adminPanels: { en: 'Admin Panels', fa: 'پنل مدیریت' },
+  backendSystems: { en: 'Backend Systems', fa: 'بک‌اند' }
 };
 
 const localizedServiceDescriptions: Record<string, { en: string; fa: string }> = {
   websites: {
     en: 'High-performing brand, marketing, and content websites.',
-    fa: 'وب‌سایت‌های برند، مارکتینگ و محتوا با عملکرد بالا.'
+    fa: 'سایت برند، بازاریابی و محتوا؛ سریع و با ساختار سئو.'
   },
   webApps: {
     en: 'Product interfaces, portals, dashboards, and real-time workflows.',
-    fa: 'رابط‌های محصول، پورتال‌ها، داشبوردها و جریان‌های بلادرنگ.'
+    fa: 'رابط محصول، پورتال، داشبورد و جریان‌های زنده.'
   },
   mobileApps: {
     en: 'Focused iOS, Android, and cross-platform mobile experiences.',
-    fa: 'تجربه‌های متمرکز موبایل برای iOS، Android و چندسکویی.'
+    fa: 'اپ iOS، اندروید و چندپلتفرمی، با تمرکز مشخص.'
   },
   ecommerce: {
     en: 'Storefronts, catalogs, checkout, and commerce systems.',
-    fa: 'فروشگاه، کاتالوگ، پرداخت و سیستم‌های تجارت.'
+    fa: 'فروشگاه، کاتالوگ، پرداخت و سیستم فروش.'
   },
   adminPanels: {
     en: 'Internal tools for permissions, workflows, reporting, and operations.',
-    fa: 'ابزارهای داخلی برای دسترسی، فرآیند، گزارش و عملیات.'
+    fa: 'ابزار داخلی برای دسترسی، روند کار، گزارش و عملیات.'
   },
   backendSystems: {
     en: 'APIs, data models, integrations, and service foundations.',
-    fa: 'API، مدل داده، یکپارچه‌سازی و زیرساخت سرویس.'
+    fa: 'API، مدل داده، اتصال‌ها و پایه سرویس.'
   }
 };
 

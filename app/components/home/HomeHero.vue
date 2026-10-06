@@ -347,9 +347,9 @@ watch(stageHovered, (hovered) => {
             <div class="hero-trace hero-enter-trace" aria-hidden="true">
               <svg class="trace-svg" viewBox="0 0 88 168" fill="none">
                 <path d="M7 8 V160" />
-                <path d="M7 8 H24" />
-                <path d="M7 84 H24" />
-                <path d="M7 160 H78" />
+                <path d="M7 8 H18" />
+                <path d="M7 84 H18" />
+                <path d="M7 160 H18" />
                 <circle cx="7" cy="8" r="2.6" />
                 <circle cx="7" cy="84" r="2.6" />
                 <circle cx="7" cy="160" r="2.6" />
@@ -663,7 +663,7 @@ watch(stageHovered, (hovered) => {
 
 .trace-labels {
   position: absolute;
-  inset-inline-start: 1.35rem;
+  inset-inline-start: 1.85rem;
   top: 0;
   display: flex;
   flex-direction: column;
